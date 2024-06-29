@@ -19,11 +19,11 @@ export const theme: DefaultTheme = {
       lightGray: '#EBEBEB',
       blue: '#23A1F8',
     },
-    fontWeight: {
-      light: 300,
-      regular: 400,
-      bold: 700,
-      extraBold: 800,
-    },
+  },
+  fontWeight: {
+    light: 300,
+    regular: 400,
+    bold: 700,
+    extraBold: 800,
   },
 };
