@@ -1,20 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import { createGlobalStyle } from 'styled-components';
+
 import reset from 'styled-reset';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './styled';
+import { theme } from './theme';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
+
 ${reset}
+
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+body {
+    font-family: 'NanumSquareRound', sans-serif;
+  }
 
 a {
   text-decoration: none;
