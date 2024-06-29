@@ -1,5 +1,7 @@
+
 import Button from './common/Button';
 import { Container } from './common/GlobalStyle';
+
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
           </Button>
         </div>
       </Container>
+
     </>
   );
 }
