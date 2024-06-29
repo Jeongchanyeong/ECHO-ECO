@@ -8,21 +8,25 @@ import { theme } from './theme';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
-
 
 ${reset}
-
+  
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
+  font-family: 'NanumSquareRound';
 }
 
-body {
-    font-family: 'NanumSquareRound', sans-serif;
-  }
+
 
 a {
   text-decoration: none;
