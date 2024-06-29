@@ -20,12 +20,12 @@ declare module 'styled-components' {
         lightGray: string;
         blue: string;
       };
-      fontWeight: {
-        light: number;
-        regular: number;
-        bold: number;
-        extraBold: number;
-      };
+    };
+    fontWeight: {
+      light: number;
+      regular: number;
+      bold: number;
+      extraBold: number;
     };
   }
 }
