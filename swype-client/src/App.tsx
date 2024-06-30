@@ -1,9 +1,9 @@
-import StoreMain from './pages/StoreMain';
+import CharacterSelection from './pages/CharacterSelection';
 
 function App() {
   return (
     <>
-      <StoreMain />
+      <CharacterSelection />
     </>
   );
 }
