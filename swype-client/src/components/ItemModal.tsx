@@ -53,6 +53,7 @@ const InfoModal = styled.div`
     background-color: #F9F9F9;
     border: 1px solid #f2f2f2;
     padding:20px;
+
 `;
 
 const ImgBox = styled.div`
@@ -61,6 +62,9 @@ const ImgBox = styled.div`
 `;
 
 const Img = styled.img`
+  position: relative;
+  top: 50px;
+  z-index: -1;
 `;
 
 const Title = styled.p`
