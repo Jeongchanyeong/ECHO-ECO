@@ -10,14 +10,15 @@ export const theme: DefaultTheme = {
 
       kakao: '#FEE500',
       naver: '#5EC538',
-      google: '#E2E2E2',
+      google: '#FFFFFF',
     },
     text: {
       black: '#000000',
-      darkGray: '#666666',
+      darkGray: '#787878',
       gray: '#959595',
       lightGray: '#EBEBEB',
       blue: '#23A1F8',
+      white: '#fafafa',
     },
   },
   font: {
