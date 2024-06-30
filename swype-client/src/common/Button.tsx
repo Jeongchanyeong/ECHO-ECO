@@ -5,15 +5,14 @@ import { DefaultTheme } from 'styled-components/dist/types';
 const CommonButton = styled.button<ButtonProps>`
   background-color: ${props => props.theme.colors.bgColor[props.bgColor]};
   color: ${props => props.theme.colors.text[props.textColor]};
-
+  font-weight: ${props => props.theme.font.weight.bold};
+  font-size: ${props => props.theme.font.size.buttonText};
   width: ${props => props.width}; 
   height: ${props => props.height}; 
-  font-weight: ${props => props.theme.fontWeight.bold};
 
   border-radius: 10px;
-  font-size: 17px;
   text-align: center;
-  letter-spacing: -3%;
+  letter-spacing: -0.03rem;
   transition: all 0.2s;
   
 
