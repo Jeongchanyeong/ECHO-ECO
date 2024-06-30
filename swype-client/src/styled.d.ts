@@ -21,11 +21,25 @@ declare module 'styled-components' {
         blue: string;
       };
     };
-    fontWeight: {
-      light: number;
-      regular: number;
-      bold: number;
-      extraBold: number;
+    font: {
+      weight: {
+        light: number;
+        regular: number;
+        bold: number;
+        extraBold: number;
+      };
+      size: {
+        quizHeader1: string;
+        header1: string;
+        quizHeader2: string;
+        priceText2: string;
+        priceText: string;
+        buttonText: string;
+        body: string;
+        chipText: string;
+        choose: string;
+        levelText: string;
+      };
     };
   }
 }
