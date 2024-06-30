@@ -7,13 +7,12 @@ export default function ItemCard() {
       <ImageBox></ImageBox>
       <Text>북극곰 먹이</Text>
       <PriceBox>
-        <p className='priceText'>2,500</p>
+        <p>2,500</p>
         <img
           src={StorePoint}
           alt='포인트'
-          className='point'
         />
-        <span className='level'>Lv +3</span>
+        <span>Lv +3</span>
       </PriceBox>
     </Container>
   );
@@ -38,24 +37,23 @@ const Text = styled.div`
   display: flex;
   align-items: center;
   font-weight: ${props => props.theme.fontWeight.bold};
-  font-size: 0.875em;
-  letter-spacing: -3%;
+  font-size: 0.875rem;
 `;
 
 const PriceBox = styled.div`
   display: flex;
   align-items: center;
-  .priceText{
+  p{
     font-weight: ${props => props.theme.fontWeight.extraBold};
-    font-size: 1.0625em // 17px
+    font-size: 1.0625rem // 17px
   }
-  .point{
+  img{
     margin-left: 5px;
   }
-  .level{
+  span{
     color: ${props => props.theme.colors.text.gray};
     font-weight: ${props => props.theme.fontWeight.extraBold};
-    font-size: 0.8125em; // 13px
+    font-size: 0.8125rem; // 13px
     position: absolute;
     top:0;
     padding:10px;
