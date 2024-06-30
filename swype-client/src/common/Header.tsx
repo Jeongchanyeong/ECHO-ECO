@@ -7,14 +7,18 @@ const Nav = styled.div`
   align-items: center;
   position: fixed;
   width: 100%;
+  max-width: 480px; 
   top: 0;
-  background-color: #e7e7e7;
-  font-size: 14px;
+  
+  background-color: rgba(0,0,0,0);
+  
+  font-size: ${props => props.theme.font.size.choose};
+  letter-spacing: 0.03em;
+  z-index: 1000;
   padding: 12px 30px 12px 15px;
   box-sizing: border-box; 
 
 `;
-
 const Col = styled.div`
   display: flex;
   align-items: center;
