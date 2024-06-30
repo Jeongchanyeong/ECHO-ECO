@@ -23,22 +23,22 @@ declare module 'styled-components' {
     };
     font: {
       weight: {
-        light: 300;
-        regular: 400;
-        bold: 700;
-        extraBold: 800;
+        light: number;
+        regular: number;
+        bold: number;
+        extraBold: number;
       };
       size: {
-        quizHeader1: '1.5rem'; // 24px
-        header1: '1.375rem'; // 22px
-        quizHeader2: '1.25rem'; // 20px
-        priceText2: '1.375rem'; // 22px
-        priceText: '1.0625rem'; // 17px
-        buttonText: '1.0625rem'; // 17px
-        body: '1rem'; // 16px
-        chipText: '0.9375rem'; // 15px
-        choose: '0.875rem'; // 14px
-        levelText: '0.8125rem'; // 13px
+        quizHeader1: string;
+        header1: string;
+        quizHeader2: string;
+        priceText2: string;
+        priceText: string;
+        buttonText: string;
+        body: string;
+        chipText: string;
+        choose: string;
+        levelText: string;
       };
     };
   }
