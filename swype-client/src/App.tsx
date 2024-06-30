@@ -1,9 +1,10 @@
-import StoreMain from './pages/StoreMain';
+import StoreDetail from './pages/store/StoreDetail';
+import StoreMain from './pages/store/StoreMain';
 
 function App() {
   return (
     <>
-      <StoreMain />
+      <StoreDetail />
     </>
   );
 }
