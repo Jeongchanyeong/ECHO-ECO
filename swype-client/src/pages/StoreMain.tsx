@@ -1,37 +1,30 @@
 import styled from 'styled-components';
 import ItemCard from '../components/ItemCard';
+import { Container } from '../common/GlobalStyle';
 
 export default function StoreMain() {
   return (
-    <Container>
-      <Header></Header>
-      <GridBox>
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-      </GridBox>
-    </Container>
+    <>
+      <Container>
+        <MainBox>
+          <GridBox>
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+            <ItemCard />
+          </GridBox>
+        </MainBox>
+      </Container>
+    </>
   );
 }
 
-const Container = styled.div`
-  max-width: 480px;
-  border: 1px solid black;
-  margin: 0 auto;
-  height: 100vh;
+const MainBox = styled.div`
   padding: 15px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-`;
-
-const Header = styled.div`
-  height: 10%;
-  background-color: gainsboro;
-  flex-shrink: 0; 
+  margin-top: 50px;
+  height : 100%;
 `;
 
 const GridBox = styled.div`

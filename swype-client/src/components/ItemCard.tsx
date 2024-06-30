@@ -11,8 +11,8 @@ export default function ItemCard() {
         <img
           src={StorePoint}
           alt='포인트'
-          className='point'
         />
+        <span>Lv +3</span>
       </PriceBox>
     </Container>
   );
@@ -22,27 +22,41 @@ const Container = styled.div`
   width:45%;
   height:30%;
   margin: 7px;
+  position: relative;
 `;
 
 const ImageBox = styled.div`
-  border: 1px solid black;
   height: 70%;
   border-radius: 10px;
+  background-color: #F5F5F5;
+  margin-bottom: 4px;
 `;
 
 const Text = styled.div`
   height: 15%;
   display: flex;
   align-items: center;
+  font-weight: ${props => props.theme.fontWeight.bold};
+  font-size: 0.875rem;
 `;
 
 const PriceBox = styled.div`
-  height: 15%;
   display: flex;
   align-items: center;
-
-  .point{
-    margin-left: 10px;
+  p{
+    font-weight: ${props => props.theme.fontWeight.extraBold};
+    font-size: 1.0625rem // 17px
+  }
+  img{
+    margin-left: 5px;
+  }
+  span{
+    color: ${props => props.theme.colors.text.gray};
+    font-weight: ${props => props.theme.fontWeight.extraBold};
+    font-size: 0.8125rem; // 13px
+    position: absolute;
+    top:0;
+    padding:10px;
   }
   
 `;

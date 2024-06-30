@@ -1,5 +1,11 @@
+import StoreMain from './pages/StoreMain';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <StoreMain />
+    </>
+  );
 }
 
 export default App;

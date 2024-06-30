@@ -20,10 +20,9 @@ ${reset}
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  
-  font-family: 'NanumSquareRound';
+  margin: 0; 
+  padding: 0; 
+  font-family: 'NanumSquareRound' !important;
 }
 
 
@@ -42,6 +41,25 @@ button {
 ul, ol {
   list-style: none;
 }
+
+::-webkit-scrollbar {
+  background-color: ${props => props.theme.colors.bgColor.lightGray};
+  border-radius: 10px;
+  width: 10px;
+}
+
+/* 스크롤바 막대 꾸미기 */
+::-webkit-scrollbar-thumb {
+  background-color: ${props => props.theme.colors.bgColor.gray};
+  border-radius: 10px;
+}
+
+/* 스크롤바 트랙 꾸미기 */
+::-webkit-scrollbar-track {
+  background-color: ${props => props.theme.colors.bgColor.lightGray};
+  border-radius: 10px;
+}
+
 `;
 
 const client = new QueryClient();
