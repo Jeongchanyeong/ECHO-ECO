@@ -19,6 +19,7 @@ declare module 'styled-components' {
         gray: string;
         lightGray: string;
         blue: string;
+        white: string;
       };
     };
     font: {
