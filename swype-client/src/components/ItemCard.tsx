@@ -36,24 +36,24 @@ const Text = styled.div`
   height: 15%;
   display: flex;
   align-items: center;
-  font-weight: ${props => props.theme.fontWeight.bold};
-  font-size: 0.875rem;
+  font-weight: ${props => props.theme.font.weight.bold};
+  font-size: ${props => props.theme.font.size.choose};
 `;
 
 const PriceBox = styled.div`
   display: flex;
   align-items: center;
   p{
-    font-weight: ${props => props.theme.fontWeight.extraBold};
-    font-size: 1.0625rem // 17px
+    font-weight: ${props => props.theme.font.weight.extraBold};
+    font-size: ${props => props.theme.font.size.priceText};
   }
   img{
     margin-left: 5px;
   }
   span{
     color: ${props => props.theme.colors.text.gray};
-    font-weight: ${props => props.theme.fontWeight.extraBold};
-    font-size: 0.8125rem; // 13px
+    font-weight: ${props => props.theme.font.weight.extraBold};
+    font-size: ${props => props.theme.font.size.levelText};
     position: absolute;
     top:0;
     padding:10px;
