@@ -38,7 +38,7 @@ const CharacterButtonWrapper = styled.div`
   
   
 
-  & > button {
+    button {
     display: flex;
     align-items: center;
     justify-content: center;
