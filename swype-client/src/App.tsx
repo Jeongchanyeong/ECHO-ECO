@@ -1,10 +1,9 @@
-import StoreDetail from './pages/store/StoreDetail';
-import StoreMain from './pages/store/StoreMain';
+import QuizModal from './pages/quiz/QuizModal';
 
 function App() {
   return (
     <>
-      <StoreDetail />
+      <QuizModal />
     </>
   );
 }
