@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../common/Button';
-import Pola from '../assets/Pola.png';
+import Pola_half from '../assets/Pola_half.png';
 import Quokka_Lock from '../assets/Quokka_Lock.png';
 import RedPanda_Lock from '../assets/RedPanda_Lock.png';
 import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
@@ -83,7 +83,7 @@ const Name = styled.div`
 `;
 
 const characters = [
-  { src: Pola, name: '폴라' },
+  { src: Pola_half, name: '폴라' },
   { src: Quokka_Lock, name: '쿼카' },
   { src: RedPanda_Lock, name: '붉은 팬더' },
   { src: GreenTurtle_Lock, name: '바다 거북' },
