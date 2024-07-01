@@ -48,10 +48,7 @@ const CharacterSelection = () => {
       <Wrapper>
         {selectedCharacter !== null ? (
           <CharacterImageWrapper>
-            <CharacterImage
-              src={characters[selectedCharacter]}
-              alt='Selected Character'
-            />
+            <CharacterImage src={characters[selectedCharacter]} />
           </CharacterImageWrapper>
         ) : null}
 

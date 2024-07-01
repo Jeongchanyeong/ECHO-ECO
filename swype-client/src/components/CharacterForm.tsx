@@ -5,14 +5,13 @@ import Quokka_Lock from '../assets/Quokka_Lock.png';
 import RedPanda_Lock from '../assets/RedPanda_Lock.png';
 import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
 import Koala_Lock from '../assets/Koala_Lock.png';
+import { useState } from 'react';
 
 const Form = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;   
   flex-direction: column;
-  
-
 
   background-color: ${props => props.theme.colors.text.white};
   position: absolute;
@@ -91,7 +90,16 @@ const characters = [
   { src: Koala_Lock, name: '코알라' },
 ];
 
+// 전반적인 기능이 구현 되는지 확인 후 세부적을 기능구현할 때 타입 지정 예정
+
 const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handlePolaClick = () => {
+    setIsSelected(true);
+    characterSelect(0);
+  };
+
   return (
     <Form>
       <CharacterButtonWrapper>
@@ -102,7 +110,7 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
             width='80%'
             height='80%'
             textColor='black'
-            onClick={index === 0 ? () => characterSelect(index) : undefined}
+            onClick={index === 0 ? handlePolaClick : undefined}
           >
             <CharacterImg src={character.src} />
             <NameWrapper>
@@ -113,11 +121,12 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
       </CharacterButtonWrapper>
       <SubmitButton>
         <Button
-          bgColor='blue'
+          bgColor={isSelected ? 'blue' : 'gray'}
           width='90%'
           height='40%'
           textColor='lightGray'
-          onClick={() => {}}
+          onClick={isSelected ? () => {} : undefined}
+          disabled={!isSelected}
         >
           확인
         </Button>
@@ -125,4 +134,5 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
     </Form>
   );
 };
+
 export default CharacterForm;
