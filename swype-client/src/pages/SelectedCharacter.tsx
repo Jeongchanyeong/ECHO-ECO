@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import { Container } from '../common/GlobalStyle';
-import CharacterPage_bg from '../assets/CharacterPage_bg.png';
+import Iceberg_Pola from '../assets/Iceberg_Pola.png';
 import InfoModal from '../common/InfoModal';
-import Pola from '../assets/Pola.png';
+import Frozen_Land from '../assets/Frozen_Land.png';
+
 import Header from '../common/Header';
 
 const Wrapper = styled.div`
+  position: relative;
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
-  background-image: url(${CharacterPage_bg});
+  background-image: url(${Frozen_Land});
   
   background-repeat: no-repeat;
   background-position: center ;
@@ -24,7 +26,7 @@ const Wrapper = styled.div`
 
 const CharacterImageWrapper = styled.div`
   position: absolute;
-  top: 20%;
+  top: 40%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -32,7 +34,7 @@ const CharacterImageWrapper = styled.div`
 `;
 
 const CharacterImage = styled.img`
-  width: 150px;
+  width: 85%;
   height: auto;
 `;
 
@@ -42,7 +44,7 @@ const SelectedCharacter = () => {
       <Header />
       <Wrapper>
         <CharacterImageWrapper>
-          <CharacterImage src={Pola} />
+          <CharacterImage src={Iceberg_Pola} />
         </CharacterImageWrapper>
         <InfoModal />
       </Wrapper>

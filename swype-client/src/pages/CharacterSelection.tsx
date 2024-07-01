@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Container } from '../common/GlobalStyle';
-import CharacterPage_bg from '../assets/CharacterPage_bg.png';
+import Grass_Land from '../assets/Grass_Land.png';
 import CharacterForm from '../components/CharacterForm';
-import Pola from '../assets/Pola.png';
+import Tree_Pola from '../assets/Tree_Pola.png';
 import Quokka_Lock from '../assets/Quokka_Lock.png';
 import RedPanda_Lock from '../assets/RedPanda_Lock.png';
 import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
@@ -10,10 +10,11 @@ import Koala_Lock from '../assets/Koala_Lock.png';
 
 import { useState } from 'react';
 const Wrapper = styled.div`
+  position: relative;
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
-  background-image: url(${CharacterPage_bg});
+  background-image: url(${Grass_Land});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -34,11 +35,22 @@ const CharacterImageWrapper = styled.div`
 `;
 
 const CharacterImage = styled.img`
-  width: 170px;
+  width: 50%;
   height: auto;
 `;
 
-const characters = [Pola, Quokka_Lock, RedPanda_Lock, GreenTurtle_Lock, Koala_Lock];
+const Text = styled.div`
+  border: 1px solid #FFFFFF;
+  color: ${props => props.theme.colors.text.white};
+  font-weight: ${props => props.theme.font.weight.bold};
+  border-radius: 20px;
+  padding: 7px 15px;
+  position: absolute;
+  letter-spacing: -0.03rem;
+
+  top: 10%;`;
+
+const characters = [Tree_Pola, Quokka_Lock, RedPanda_Lock, GreenTurtle_Lock, Koala_Lock];
 
 const CharacterSelection = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -46,6 +58,9 @@ const CharacterSelection = () => {
   return (
     <Container>
       <Wrapper>
+        <Text>
+          <span>성장시킬 동물을 선택해주세요!</span>
+        </Text>
         {selectedCharacter !== null ? (
           <CharacterImageWrapper>
             <CharacterImage src={characters[selectedCharacter]} />
