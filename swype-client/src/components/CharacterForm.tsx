@@ -106,7 +106,7 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
         {characters.map((character, index) => (
           <Button
             key={index}
-            bgColor={selectedCharacter === index ? 'blue' : 'google'}
+            bgColor={selectedCharacter === index ? '#7FD0FF' : '#FFFFF'}
             width='80%'
             height='80%'
             textColor='black'
