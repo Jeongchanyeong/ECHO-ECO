@@ -1,9 +1,9 @@
-import CharacterSelection from './pages/CharacterSelection';
+import SelectedCharacter from './pages/SelectedCharacter';
 
 function App() {
   return (
     <>
-      <CharacterSelection />
+      <SelectedCharacter />
     </>
   );
 }
