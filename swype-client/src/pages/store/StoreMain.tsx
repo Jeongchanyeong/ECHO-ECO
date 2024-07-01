@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import ItemCard from '../components/ItemCard';
-import { Container } from '../common/GlobalStyle';
+import ItemCard from '../../components/ItemCard';
+import { Container } from '../../common/GlobalStyle';
+import Header from '../../common/Header';
 
 export default function StoreMain() {
   return (
     <>
       <Container>
+        <Header />
         <MainBox>
           <GridBox>
             <ItemCard />
