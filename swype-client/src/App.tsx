@@ -1,11 +1,9 @@
-import ItemModal from './components/ItemModal';
-import StoreDetail from './pages/store/StoreDetail';
-import StoreMain from './pages/store/StoreMain';
+import QuizModal from './pages/quiz/QuizModal';
 
 function App() {
   return (
     <>
-      <ItemModal />
+      <QuizModal />
     </>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Leeca from '../assets/LeeCa.png';
 import { Container } from '../common/GlobalStyle';
