@@ -1,11 +1,9 @@
-import CharacterSelection from './pages/CharacterSelection';
-import SelectedCharacter from './pages/SelectedCharacter';
-import Stage from './pages/Stage';
+import Quizox from './pages/quiz/Quiz';
 
 function App() {
   return (
     <>
-      <Stage />
+      <Quizox />
     </>
   );
 }

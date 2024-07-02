@@ -47,7 +47,7 @@ const ModalBox = styled.div`
 `;
 
 const InfoModal = styled.div`
-    border-radius: 10px;
+    border-radius: 20px;
     width: 100%;
     background-color: #F9F9F9;
     border: 1px solid #f2f2f2;
