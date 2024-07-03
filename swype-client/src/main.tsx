@@ -6,7 +6,6 @@ import reset from 'styled-reset';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from './theme';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import { BrowserRouter } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
 
