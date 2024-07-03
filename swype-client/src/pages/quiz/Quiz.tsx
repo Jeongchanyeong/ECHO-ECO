@@ -4,7 +4,7 @@ import Leeca from '../../assets/LeeCa.png';
 import Header from '../../common/Header';
 import quizbackground from '../../assets/quizbackground.png';
 
-export default function Quizox() {
+export default function Quiz() {
   return (
     <Container>
       <Header></Header>

@@ -1,11 +1,7 @@
-import Quizox from './pages/quiz/Quiz';
+import { Router } from './Router';
 
 function App() {
-  return (
-    <>
-      <Quizox />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
