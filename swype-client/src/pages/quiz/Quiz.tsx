@@ -49,11 +49,14 @@ const MainBox = styled.div`
     width:100%;
     height: 100%;
     background-image: url(${quizbackground});
+    background-size: cover;
+    background-position: center;
 `;
 
 const ModalBox = styled.div`
     width: 100%; 
     margin-top: 50px;
+  
 `;
 
 const InfoModal = styled.div`
