@@ -45,11 +45,15 @@ const PointImage = styled.img`
   margin-right: 8px;
 `;
 
-const Header = () => {
+type HeaderProps = {
+  movie?: boolean;
+};
+
+const Header: React.FC<HeaderProps> = ({ movie }) => {
   return (
     <Nav>
       <Col>
-        <button>{'＜'}</button>
+        <button style={{ color: movie ? '#fff' : 'black' }}>{'＜'}</button>
       </Col>
       <Col>
         <Item>
