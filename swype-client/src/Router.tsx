@@ -7,6 +7,7 @@ import CharacterSelection from './pages/CharacterSelection';
 import SelectedCharacter from './pages/SelectedCharacter';
 import PollutedStage from './pages/PollutedStage';
 import StoreDetail from './pages/store/StoreDetail';
+import Movie from './pages/Movie';
 
 export const Router = () => {
   return (
@@ -24,6 +25,10 @@ export const Router = () => {
         <Route
           path='/quiz'
           element={<Quiz />}
+        />
+        <Route
+          path='/movie'
+          element={<Movie />}
         />
         <Route
           path='/login'
