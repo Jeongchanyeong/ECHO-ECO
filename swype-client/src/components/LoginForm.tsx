@@ -3,6 +3,7 @@ import Button from '../common/Button';
 import kakao_logo from '../assets/kakao_logo.png';
 import naver_logo from '../assets/naver_logo.png';
 import google_logo from '../assets/google_logo.png';
+import { KAKAO_AUTH_URL } from '../features/OAuth/OAuth';
 
 const Form = styled.div`
   display: flex;
@@ -78,6 +79,9 @@ const NoticeText = styled.p`
 `;
 
 const LoginForm = () => {
+  const handleKakaoLogin = () => {
+    window.location.href = KAKAO_AUTH_URL;
+  };
   return (
     <Form>
       <LoginText>
@@ -91,12 +95,9 @@ const LoginForm = () => {
           width='93%'
           height='25%'
           textColor='black'
-          onClick={() => {}}
+          onClick={handleKakaoLogin}
         >
-          <LogoImg
-            src={kakao_logo}
-            alt='카카오 로고'
-          />
+          <LogoImg src={kakao_logo} />
           카카오로 시작하기
         </Button>
         <Button
@@ -106,10 +107,7 @@ const LoginForm = () => {
           textColor='white'
           onClick={() => {}}
         >
-          <LogoImg
-            src={naver_logo}
-            alt='카카오 로고'
-          />
+          <LogoImg src={naver_logo} />
           네이버로 시작하기
         </Button>
         <Button
@@ -119,10 +117,7 @@ const LoginForm = () => {
           textColor='black'
           onClick={() => {}}
         >
-          <LogoImg
-            src={google_logo}
-            alt='구글 로고'
-          />
+          <LogoImg src={google_logo} />
           구글로 시작하기
         </Button>
       </ButtonWrapper>
