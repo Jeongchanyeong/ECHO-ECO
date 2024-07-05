@@ -8,6 +8,7 @@ import SelectedCharacter from './pages/SelectedCharacter';
 import PollutedStage from './pages/PollutedStage';
 import StoreDetail from './pages/store/StoreDetail';
 import Movie from './pages/Movie';
+import OAuthControl from './pages/OAuthControl';
 
 export const Router = () => {
   return (
@@ -53,6 +54,18 @@ export const Router = () => {
         <Route
           path='/store/:id'
           element={<StoreDetail />}
+        />
+        <Route
+          path='/oauth/callback/kakao'
+          element={<OAuthControl />}
+        />
+        <Route
+          path='/oauth/callback/naver'
+          element={<OAuthControl />}
+        />
+        <Route
+          path='/oauth/callback/google'
+          element={<OAuthControl />}
         />
       </Routes>
     </BrowserRouter>
