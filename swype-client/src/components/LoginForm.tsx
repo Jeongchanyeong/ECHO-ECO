@@ -79,17 +79,17 @@ const NoticeText = styled.p`
 
 const LoginForm = () => {
   const handleKakaoLogin = () => {
-    const KAKAO_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/kakako';
+    const KAKAO_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/kakao';
     window.location.href = KAKAO_AUTH_URL;
   };
 
   const handleNaverLogin = () => {
-    const NAVER_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/naver';
+    const NAVER_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/naver';
     window.location.href = NAVER_AUTH_URL;
   };
 
   const handleGoogleLogin = () => {
-    const GOOGLE_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/google';
+    const GOOGLE_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/google';
     window.location.href = GOOGLE_AUTH_URL;
   };
 
