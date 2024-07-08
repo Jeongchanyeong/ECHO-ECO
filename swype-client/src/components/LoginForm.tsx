@@ -78,6 +78,21 @@ const NoticeText = styled.p`
 `;
 
 const LoginForm = () => {
+  const handleKakaoLogin = () => {
+    const KAKAO_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/kakao';
+    window.location.href = KAKAO_AUTH_URL;
+  };
+
+  const handleNaverLogin = () => {
+    const NAVER_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/naver';
+    window.location.href = NAVER_AUTH_URL;
+  };
+
+  const handleGoogleLogin = () => {
+    const GOOGLE_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/google';
+    window.location.href = GOOGLE_AUTH_URL;
+  };
+
   return (
     <Form>
       <LoginText>
@@ -91,12 +106,9 @@ const LoginForm = () => {
           width='93%'
           height='25%'
           textColor='black'
-          onClick={() => {}}
+          onClick={handleKakaoLogin}
         >
-          <LogoImg
-            src={kakao_logo}
-            alt='카카오 로고'
-          />
+          <LogoImg src={kakao_logo} />
           카카오로 시작하기
         </Button>
         <Button
@@ -104,12 +116,9 @@ const LoginForm = () => {
           width='93%'
           height='25%'
           textColor='white'
-          onClick={() => {}}
+          onClick={handleNaverLogin}
         >
-          <LogoImg
-            src={naver_logo}
-            alt='카카오 로고'
-          />
+          <LogoImg src={naver_logo} />
           네이버로 시작하기
         </Button>
         <Button
@@ -117,12 +126,9 @@ const LoginForm = () => {
           width='93%'
           height='25%'
           textColor='black'
-          onClick={() => {}}
+          onClick={handleGoogleLogin}
         >
-          <LogoImg
-            src={google_logo}
-            alt='구글 로고'
-          />
+          <LogoImg src={google_logo} />
           구글로 시작하기
         </Button>
       </ButtonWrapper>
