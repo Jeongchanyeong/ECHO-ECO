@@ -79,7 +79,7 @@ const NoticeText = styled.p`
 
 const LoginForm = () => {
   const handleKakaoLogin = () => {
-    const KAKAO_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/naver';
+    const KAKAO_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/kakako';
     window.location.href = KAKAO_AUTH_URL;
   };
 
@@ -89,7 +89,7 @@ const LoginForm = () => {
   };
 
   const handleGoogleLogin = () => {
-    const GOOGLE_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/naver';
+    const GOOGLE_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/google';
     window.location.href = GOOGLE_AUTH_URL;
   };
 
