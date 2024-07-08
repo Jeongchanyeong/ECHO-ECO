@@ -3,7 +3,6 @@ import Button from '../common/Button';
 import kakao_logo from '../assets/kakao_logo.png';
 import naver_logo from '../assets/naver_logo.png';
 import google_logo from '../assets/google_logo.png';
-import { KAKAO_AUTH_URL } from '../features/OAuth/OAuth';
 
 const Form = styled.div`
   display: flex;
@@ -80,8 +79,20 @@ const NoticeText = styled.p`
 
 const LoginForm = () => {
   const handleKakaoLogin = () => {
+    const KAKAO_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/naver';
     window.location.href = KAKAO_AUTH_URL;
   };
+
+  const handleNaverLogin = () => {
+    const NAVER_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/naver';
+    window.location.href = NAVER_AUTH_URL;
+  };
+
+  const handleGoogleLogin = () => {
+    const GOOGLE_AUTH_URL = 'http://132.32.42.32:8080/oauth2/authorization/naver';
+    window.location.href = GOOGLE_AUTH_URL;
+  };
+
   return (
     <Form>
       <LoginText>
@@ -105,7 +116,7 @@ const LoginForm = () => {
           width='93%'
           height='25%'
           textColor='white'
-          onClick={() => {}}
+          onClick={handleNaverLogin}
         >
           <LogoImg src={naver_logo} />
           네이버로 시작하기
@@ -115,7 +126,7 @@ const LoginForm = () => {
           width='93%'
           height='25%'
           textColor='black'
-          onClick={() => {}}
+          onClick={handleGoogleLogin}
         >
           <LogoImg src={google_logo} />
           구글로 시작하기
