@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { Container } from '../common/GlobalStyle';
-import TrashItem from '../components/Trash-related/TrashItem';
-import TrashCan from '../components/Trash-related/TrashCan';
 
 import Polluted_Land from '../assets/trash/Polluted_Land.png';
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import Trash_Pola from '../assets/trash/Trash_Pola.png';
 import Header from '../common/Header';
+
+import Can from '../assets/trash/Can.png';
+import Mask from '../assets/trash/Mask.png';
+import PlasticBag from '../assets/trash/PlasticBag.png';
+import Trash_Can from '../assets/trash/Trash_Can.png';
+
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Wrapper = styled.div`
   position: relative;
@@ -31,7 +36,8 @@ const Text = styled.div`
   border-radius: 20px;
   padding: 7px 15px;
   letter-spacing: -0.03rem;
-  top: 10%;`;
+  top: 10%;
+  `;
 
 const CharacterImageWrapper = styled.div`
   display: flex;
@@ -39,7 +45,6 @@ const CharacterImageWrapper = styled.div`
   position: absolute;
   top: 27%;
   width: 100%;
-
 `;
 
 const CharacterImage = styled.img`
@@ -53,21 +58,61 @@ const PollutedWater = styled.div`
   position: absolute;
   
   width: 100%;
-  
   z-index: 1;
   opacity: 0.4;
-
 
   img {
     width: 100%;
     bottom:0;
     height: auto;
-    
-
   }
 `;
 
+const TrashWideWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 20%;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+const TrashPile = styled.div`
+  display: flex;
+`;
+
+const TrashWrapper = styled.div<{ top: string; left: string }>`
+  position: absolute;
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  img {
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const TrashCanWrapper = styled.div`
+margin-left: 15%;
+`;
+
+const TrashCanWideWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 20%;
+  z-index: 1;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const trashItems = [
+  { id: '1', src: PlasticBag, alt: 'Plastic Bag', top: '15%', left: '10%' },
+  { id: '2', src: Can, alt: 'Can', top: '15%', left: '80%' },
+  { id: '3', src: Mask, alt: 'Mask', top: '60%', left: '30%' },
+];
+
 const PollutedStage = () => {
+  const onDragEnd = () => {};
   return (
     <Container>
       <Header />
@@ -87,8 +132,30 @@ const PollutedStage = () => {
             alt='Trash Pola'
           />
         </CharacterImageWrapper>
-        <TrashItem />
-        <TrashCan />
+
+        <DragDropContext onDragEnd={onDragEnd}>
+          <TrashWideWrapper>
+            <TrashPile>
+              {trashItems.map(trash => (
+                <TrashWrapper
+                  key={trash.id}
+                  top={trash.top}
+                  left={trash.left}
+                >
+                  <img
+                    src={trash.src}
+                    alt={trash.alt}
+                  />
+                </TrashWrapper>
+              ))}
+            </TrashPile>
+          </TrashWideWrapper>
+          <TrashCanWideWrapper>
+            <TrashCanWrapper>
+              <img src={Trash_Can} />
+            </TrashCanWrapper>
+          </TrashCanWideWrapper>
+        </DragDropContext>
       </Wrapper>
     </Container>
   );
