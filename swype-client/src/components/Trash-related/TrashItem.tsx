@@ -1,71 +1,48 @@
 import styled from 'styled-components';
-import Can from '../../assets/trash/Can.png';
-import Mask from '../../assets/trash/Mask.png';
-import PlasticBag from '../../assets/trash/PlasticBag.png';
+import { Draggable } from 'react-beautiful-dnd';
 
-const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 20%;
+const Wrapper = styled.div<{ top: string; left: string }>`
+    position: absolute;
+    top: ${({ top }) => top};
+    left: ${({ left }) => left};
   
-  overflow: hidden;
-  z-index: 1;
-`;
+    img {
+      width: 120%;
+      height: auto;
+    }
+  `;
 
-const TrashPile = styled.div`
-  display: flex;
-  
-  
-`;
+interface TrashItemProps {
+  index: number;
+  item: {
+    src: string;
+    alt: string;
+    top: string;
+    left: string;
+  };
+}
 
-const TrashWrapper = styled.div`
-  position: absolute;
-  img {
-    width: 100%;
-    height: auto;
-  }
-`;
-
-const PlasticBagWrapper = styled(TrashWrapper)`
-  top: 15%;
-  left: 10%;
-`;
-
-const CanWrapper = styled(TrashWrapper)`
-  top: 15%;
-  left: 80%;
-`;
-
-const MaskWrapper = styled(TrashWrapper)`
-  top: 60%;
-  left: 30%;
-`;
-
-const TrashItem = () => {
-  return (
-    <Wrapper>
-      <TrashPile>
-        <PlasticBagWrapper>
-          <img
-            src={PlasticBag}
-            alt='Plastic Bag'
-          />
-        </PlasticBagWrapper>
-        <CanWrapper>
-          <img
-            src={Can}
-            alt='Can'
-          />
-        </CanWrapper>
-        <MaskWrapper>
-          <img
-            src={Mask}
-            alt='Mask'
-          />
-        </MaskWrapper>
-      </TrashPile>
-    </Wrapper>
-  );
-};
+const TrashItem = ({ item, index }: TrashItemProps) => (
+  <Draggable
+    key={index}
+    draggableId={`item-${index}`}
+    index={index}
+  >
+    {provided => (
+      <Wrapper
+        ref={provided.innerRef}
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        top={item.top}
+        left={item.left}
+      >
+        <img
+          src={item.src}
+          alt={item.alt}
+        />
+      </Wrapper>
+    )}
+  </Draggable>
+);
 
 export default TrashItem;

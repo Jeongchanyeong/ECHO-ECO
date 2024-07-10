@@ -1,12 +1,19 @@
 import styled from 'styled-components';
+
 import { Container } from '../common/GlobalStyle';
+import Header from '../common/Header';
 import TrashItem from '../components/Trash-related/TrashItem';
 import TrashCan from '../components/Trash-related/TrashCan';
 
 import Polluted_Land from '../assets/trash/Polluted_Land.png';
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import Trash_Pola from '../assets/trash/Trash_Pola.png';
-import Header from '../common/Header';
+
+import { useState } from 'react';
+import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
+
+import { useRecoilState } from 'recoil';
+import { draggableItemsState } from '../share/recoil/dndAtoms';
 
 const Wrapper = styled.div`
   position: relative;
@@ -31,7 +38,8 @@ const Text = styled.div`
   border-radius: 20px;
   padding: 7px 15px;
   letter-spacing: -0.03rem;
-  top: 10%;`;
+  top: 10%;
+`;
 
 const CharacterImageWrapper = styled.div`
   display: flex;
@@ -39,41 +47,77 @@ const CharacterImageWrapper = styled.div`
   position: absolute;
   top: 27%;
   width: 100%;
-
-`;
-
-const CharacterImage = styled.img`
-  width: 40%;
-  height: auto;
 `;
 
 const PollutedWater = styled.div`
   display: flex;
   align-items: flex-end;
   position: absolute;
-  
   width: 100%;
-  
   z-index: 1;
   opacity: 0.4;
 
-
   img {
     width: 100%;
-    bottom:0;
+    bottom: 0;
     height: auto;
-    
-
   }
 `;
 
+const TrashWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+const Modal = styled.div`
+  background: white;
+  border-radius: 5px;
+  padding: 16px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  z-index: 1;
+`;
+
 const PollutedStage = () => {
+  const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
+  const [TrashCanVisible, setTrashCanVisible] = useState(false);
+  const [ModalVisible, setModalVisible] = useState(false);
+
+  const onDragStart = () => {
+    setTrashCanVisible(true);
+  };
+
+  const onDragEnd = (result: DropResult) => {
+    setTrashCanVisible(false);
+
+    if (!result.destination) {
+      return;
+    }
+
+    if (result.destination.droppableId === 'trash-can') {
+      const items = Array.from(trashItems);
+      items.splice(result.source.index, 1);
+      setTrashItems(items);
+
+      if (items.length === 0) {
+        setModalVisible(true);
+      }
+    }
+  };
+
   return (
     <Container>
       <Header />
       <Wrapper>
         <Text>
-          <span>쓰레기를 드레그하여 휴지통에 넣어주세요!</span>
+          <span>쓰레기를 드래그하여 휴지통에 넣어주세요!</span>
         </Text>
         <PollutedWater>
           <img
@@ -82,14 +126,46 @@ const PollutedStage = () => {
           />
         </PollutedWater>
         <CharacterImageWrapper>
-          <CharacterImage
+          <img
             src={Trash_Pola}
             alt='Trash Pola'
           />
         </CharacterImageWrapper>
-        <TrashItem />
-        <TrashCan />
+
+        <DragDropContext
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+        >
+          <TrashWrapper>
+            <Droppable droppableId='trashs'>
+              {provided => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {trashItems.map((item, index) => (
+                    <TrashItem
+                      key={index}
+                      item={item}
+                      index={index}
+                    />
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+
+            <TrashCan TrashCanVisible={TrashCanVisible} />
+          </TrashWrapper>
+        </DragDropContext>
       </Wrapper>
+
+      {ModalVisible && (
+        <Modal>
+          <h1>쓰레기 치우기 완료~</h1>
+          <button onClick={() => setModalVisible(false)}> go to stage page</button>
+        </Modal>
+      )}
     </Container>
   );
 };
