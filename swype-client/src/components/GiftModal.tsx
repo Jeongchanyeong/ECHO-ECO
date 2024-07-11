@@ -11,8 +11,8 @@ export default function GiftModal() {
   const [isText, setIsText] = useState(true);
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let email = e.target.value;
-    let validation = email.length > 0 && email.includes('@');
+    const email = e.target.value;
+    const validation = email.length > 0 && email.includes('@');
     setIsCheck(validation);
     setIsText(email.length > 0 && validation);
   };
@@ -28,12 +28,12 @@ export default function GiftModal() {
           <SubInfo>아이스 아메리카노</SubInfo>
           <InputBox>
             <EmailInput
-              placeholder='example@ecoecho.com'
+              placeholder='example@echoeco.com'
               onChange={handleCheck}
             ></EmailInput>
             <Icon src={isCheck ? CheckTrue : CheckFalse} />
           </InputBox>
-          <Noti isText={isText}>! 유효하지 않은 이메일입니다.</Noti>
+          <Noti $isText={isText}>! 유효하지 않은 이메일입니다.</Noti>
           <Button
             bgColor='blue'
             textColor='white'
@@ -121,11 +121,11 @@ right: 0;
 padding-right: 15px;
 `;
 
-const Noti = styled.p<{ isText: boolean }>`
+const Noti = styled.p<{ $isText: boolean }>`
   width: 100%;
   margin-bottom: 10px;
   color : #EA4335;
   font-size: 12px;
   font-weight: 700;
-  display: ${props => (props.isText ? 'none' : 'block')};
+  display: ${props => (props.$isText ? 'none' : 'block')};
 `;
