@@ -1,10 +1,22 @@
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Container } from '../common/GlobalStyle';
 import coffee from '../assets/coffee.png';
-import EmailIcon from '../assets/EmailIcon.png';
+import CheckFalse from '../assets/CheckFalse.png';
+import CheckTrue from '../assets/CheckTrue.png';
 import Button from '../common/Button';
 
 export default function GiftModal() {
+  const [isCheck, setIsCheck] = useState(false);
+  const [isText, setIsText] = useState(true);
+
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let email = e.target.value;
+    let validation = email.length > 0 && email.includes('@');
+    setIsCheck(validation);
+    setIsText(email.length > 0 && validation);
+  };
+
   return (
     <Container>
       <ModalBox>
@@ -15,9 +27,13 @@ export default function GiftModal() {
           <Tag>[빽다방]</Tag>
           <SubInfo>아이스 아메리카노</SubInfo>
           <InputBox>
-            <EmailInput placeholder='example@ecoecho.com'></EmailInput>
-            <Icon src={EmailIcon} />
+            <EmailInput
+              placeholder='example@ecoecho.com'
+              onChange={handleCheck}
+            ></EmailInput>
+            <Icon src={isCheck ? CheckTrue : CheckFalse} />
           </InputBox>
+          <Noti isText={isText}>! 유효하지 않은 이메일입니다.</Noti>
           <Button
             bgColor='blue'
             textColor='white'
@@ -103,4 +119,13 @@ const Icon = styled.img`
 position: absolute;
 right: 0;
 padding-right: 15px;
+`;
+
+const Noti = styled.p<{ isText: boolean }>`
+  width: 100%;
+  margin-bottom: 10px;
+  color : #EA4335;
+  font-size: 12px;
+  font-weight: 700;
+  display: ${props => (props.isText ? 'none' : 'block')};
 `;
