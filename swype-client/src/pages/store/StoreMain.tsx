@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import ItemCard from '../../components/ItemCard';
-import { Container } from '../../common/GlobalStyle';
-import Header from '../../common/Header';
+import { Container } from '../../share/utils/GlobalStyle';
+import Header from '../../components/common/Header';
+import { getCookie } from '../../cookie';
 
 export default function StoreMain() {
+  console.log(getCookie('Authorization'));
+
   return (
     <>
       <Container>
