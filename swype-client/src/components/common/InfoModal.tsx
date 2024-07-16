@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from './Button';
-import Quokka from '../assets/Quokka.png';
+import Quokka from '../../assets/Quokka.png';
 import { useState } from 'react';
 
 const Wrapper = styled.div`

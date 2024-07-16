@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Leeca from '../../assets/LeeCa.png';
-import { Container } from '../common/GlobalStyle';
+import { Container } from '../share/utils/GlobalStyle';
 
 export default function QuizModal() {
   return (

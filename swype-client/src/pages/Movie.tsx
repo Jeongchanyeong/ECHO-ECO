@@ -1,8 +1,8 @@
-import { Container } from '../common/GlobalStyle';
+import { Container } from '../share/utils/GlobalStyle';
 import styled from 'styled-components';
-import Header from '../common/Header';
+import Header from '../components/common/Header';
 import ReactPlayer from 'react-player';
-import Button from '../common/Button';
+import Button from '../components/common/Button';
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 

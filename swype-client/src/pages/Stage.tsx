@@ -1,13 +1,18 @@
-import { Container } from '../common/GlobalStyle';
+import { Container } from '../share/utils/GlobalStyle';
 import FeatureButtons from '../components/FeatureButtons';
 import Frozen_Land from '../assets/Frozen_Land.png';
 import Iceberg_Pola from '../assets/Iceberg_Pola.png';
-import Header from '../common/Header';
+import Header from '../components/common/Header';
 import styled from 'styled-components';
 
 import Store from '../assets/Store.png';
 import Trash_Old from '../assets/Trash_Old.png';
 import { useNavigate } from 'react-router-dom';
+import { useLoginCheck } from '../share/quries/useLoginCheck';
+import { useEffect } from 'react';
+
+import { getCookie, setCookie } from '../cookie';
+import { loginCheck } from '../apis/auth';
 
 const Wrapper = styled.div`
   position: relative;
@@ -70,6 +75,29 @@ const TrashButton = styled(StoreButton)`
 
 const Stage = () => {
   const navigate = useNavigate();
+  // const { data, isLoading, error } = useLoginCheck();
+
+  useEffect(() => {
+    loginCheck();
+    console.log(getCookie('Authorization'));
+
+    // getCookie 값이 있으면 "/" 없으면 "login"
+
+    // if (!isLoading) {
+    //   if (data && data.check_status) {
+
+    // setCookie('Authorization', )
+    // 헤더에 토큰 실어서 보내주시면 setcookie 2번째 인자값에 넣어서 보내주기
+
+    //   } else {
+    //     navigate('/login');
+
+    //   }
+    // }
+  }, []);
+
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {error.message}</div>;
 
   const goStorePage = () => {
     navigate('/store');
