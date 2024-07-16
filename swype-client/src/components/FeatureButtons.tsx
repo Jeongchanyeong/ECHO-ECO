@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Quiz from '../assets/Quiz.png';
 import Video from '../assets/Video.png';
-import Button from '../common/Button';
+import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`

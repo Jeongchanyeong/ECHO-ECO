@@ -1,7 +1,7 @@
-import { Container } from '../../common/GlobalStyle';
+import { Container } from '../../share/utils/GlobalStyle';
 import styled from 'styled-components';
 import Leeca from '../../assets/LeeCa.png';
-import Header from '../../common/Header';
+import Header from '../../components/common/Header';
 import quizbackground from '../../assets/quizbackground.png';
 
 export default function Quiz() {

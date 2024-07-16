@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from '../common/GlobalStyle';
+import { Container } from '../share/utils/GlobalStyle';
 import Grass_Land from '../assets/Grass_Land.png';
 import CharacterForm from '../components/CharacterForm';
 import Tree_Pola from '../assets/Tree_Pola.png';

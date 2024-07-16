@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Container } from '../common/GlobalStyle';
-import Header from '../common/Header';
+import { Container } from '../share/utils/GlobalStyle';
+import Header from '../components/common/Header';
 import TrashItem from '../components/Trash-related/TrashItem';
 import TrashCan from '../components/Trash-related/TrashCan';
 

@@ -1,8 +1,8 @@
-import { Container } from '../../common/GlobalStyle';
+import { Container } from '../../share/utils/GlobalStyle';
 import styled from 'styled-components';
-import Header from '../../common/Header';
+import Header from '../../components/common/Header';
 import StorePoint from '../../assets/StorePoint.png';
-import Button from '../../common/Button';
+import Button from '../../components/common/Button';
 
 export default function StoreDetail() {
   return (

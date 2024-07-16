@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import Button from '../common/Button';
+import Button from './common/Button';
 import kakao_logo from '../assets/kakao_logo.png';
 import naver_logo from '../assets/naver_logo.png';
 import google_logo from '../assets/google_logo.png';
+import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL, NAVER_AUTH_URL } from '../share/utils/OAuth';
 
 const Form = styled.div`
   display: flex;
@@ -20,11 +21,6 @@ const Form = styled.div`
   border:1px solid rgb(242, 242, 242);
 
   border-radius: 40px 40px 0px 0px;
-`;
-
-const LogoImg = styled.img`
-
-
 `;
 
 const LoginText = styled.p`
@@ -79,17 +75,14 @@ const NoticeText = styled.p`
 
 const LoginForm = () => {
   const handleKakaoLogin = () => {
-    const KAKAO_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/kakao';
     window.location.href = KAKAO_AUTH_URL;
   };
 
   const handleNaverLogin = () => {
-    const NAVER_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/naver';
     window.location.href = NAVER_AUTH_URL;
   };
 
   const handleGoogleLogin = () => {
-    const GOOGLE_AUTH_URL = 'http://13.124.73.201:8080/oauth2/authorization/google';
     window.location.href = GOOGLE_AUTH_URL;
   };
 
@@ -108,7 +101,7 @@ const LoginForm = () => {
           textColor='black'
           onClick={handleKakaoLogin}
         >
-          <LogoImg src={kakao_logo} />
+          <img src={kakao_logo} />
           카카오로 시작하기
         </Button>
         <Button
@@ -118,7 +111,7 @@ const LoginForm = () => {
           textColor='white'
           onClick={handleNaverLogin}
         >
-          <LogoImg src={naver_logo} />
+          <img src={naver_logo} />
           네이버로 시작하기
         </Button>
         <Button
@@ -128,7 +121,7 @@ const LoginForm = () => {
           textColor='black'
           onClick={handleGoogleLogin}
         >
-          <LogoImg src={google_logo} />
+          <img src={google_logo} />
           구글로 시작하기
         </Button>
       </ButtonWrapper>

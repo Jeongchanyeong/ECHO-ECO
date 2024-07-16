@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../common/Button';
+import Button from './common/Button';
 import Pola_half from '../assets/Pola_half.png';
 import Quokka_Lock from '../assets/Quokka_Lock.png';
 import RedPanda_Lock from '../assets/RedPanda_Lock.png';

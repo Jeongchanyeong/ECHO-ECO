@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Leeca from '../assets/LeeCa.png';
-import { Container } from '../common/GlobalStyle';
-import Button from '../common/Button';
+import { Container } from '../share/utils/GlobalStyle';
+import Button from './common/Button';
 
 export default function ItemModal() {
   return (
