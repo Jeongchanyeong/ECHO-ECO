@@ -5,6 +5,7 @@ import InfoModal from '../components/common/InfoModal';
 import Frozen_Land from '../assets/Frozen_Land.png';
 
 import Header from '../components/common/Header';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   position: relative;
@@ -39,9 +40,15 @@ const CharacterImage = styled.img`
 `;
 
 const SelectedCharacter = () => {
+  const navigate = useNavigate();
   return (
     <Container>
-      <Header />
+      <Header
+        onClick={() => {
+          navigate('/character');
+        }}
+        buttonText={' 〈 '}
+      />
       <Wrapper>
         <CharacterImageWrapper>
           <CharacterImage src={Iceberg_Pola} />

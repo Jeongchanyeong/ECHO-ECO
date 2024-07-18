@@ -2,7 +2,7 @@ import { Container } from '../share/utils/GlobalStyle';
 import styled from 'styled-components';
 import Header from '../components/common/Header';
 import ReactPlayer from 'react-player';
-import Button from '../components/common/Button';
+
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,10 +30,15 @@ export default function Movie() {
       clearInterval(intervalIdRef.current);
     }
   }, [time]);
-
   return (
     <Container>
-      <Header movie={true} />
+      <Header
+        onClick={() => {
+          navigate('/stage');
+        }}
+        buttonText={' 〈 '}
+        buttonColor='white'
+      />
       <MovieBox>
         <ReactPlayer
           className='react-player'

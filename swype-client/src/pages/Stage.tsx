@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 
 import { getCookie, setCookie } from '../cookie';
 import { loginCheck } from '../apis/auth';
+import Point from '../components/Point';
 
 const Wrapper = styled.div`
   position: relative;
@@ -109,7 +110,7 @@ const Stage = () => {
 
   return (
     <Container>
-      <Header />
+      <Header rightChild={<Point />} />
       <Wrapper>
         <Out>
           <StoreButton onClick={goStorePage}>

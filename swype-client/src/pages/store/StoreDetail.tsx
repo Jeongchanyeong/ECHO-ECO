@@ -4,10 +4,21 @@ import Header from '../../components/common/Header';
 import StorePoint from '../../assets/StorePoint.png';
 import Button from '../../components/common/Button';
 
+import Point from '../../components/Point';
+import { useNavigate } from 'react-router-dom';
+
 export default function StoreDetail() {
+  const navigate = useNavigate();
   return (
     <Container>
-      <Header />
+      <Header
+        onClick={() => {
+          navigate(-1);
+        }}
+        buttonText={' 〈 '}
+        title={'아이템'}
+        rightChild={<Point />}
+      />
       <DetailBox>
         <ItemImage></ItemImage>
         <Text>북극곰 먹이</Text>

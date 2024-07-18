@@ -3,11 +3,22 @@ import styled from 'styled-components';
 import Leeca from '../../assets/LeeCa.png';
 import Header from '../../components/common/Header';
 import quizbackground from '../../assets/quizbackground.png';
+import QuizLife from '../../components/QuizLife';
+import Point from '../../components/Point';
+import { useNavigate } from 'react-router-dom';
 
 export default function Quiz() {
+  const navigate = useNavigate();
   return (
     <Container>
-      <Header></Header>
+      <Header
+        onClick={() => {
+          navigate('/stage');
+        }}
+        buttonText={' 〈 '}
+        leftChild={<QuizLife />}
+        rightChild={<Point />}
+      />
       <MainBox>
         <ModalBox>
           <ImgBox>
