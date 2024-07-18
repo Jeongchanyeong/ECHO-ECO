@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Container } from '../share/utils/GlobalStyle';
 import Iceberg_Pola from '../assets/Iceberg_Pola.png';
-import InfoModal from '../components/common/InfoModal';
 import Frozen_Land from '../assets/Frozen_Land.png';
 
 import Header from '../components/common/Header';
 import { useNavigate } from 'react-router-dom';
+import InfoModal from '../components/Modal/InfoModal';
 
 const Wrapper = styled.div`
   position: relative;
