@@ -3,7 +3,11 @@ import StorePoint from '../assets/StorePoint.png';
 import { useNavigate } from 'react-router-dom';
 import { ItemList } from '../model/StoreType/GetItem';
 
-const ItemCard: React.FC<ItemList> = ({ item }) => {
+type ItemCardProps = {
+  item: ItemList;
+};
+
+const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
   const navigate = useNavigate();
   return (
     <Container onClick={() => navigate(`/store/${item.id}`)}>
