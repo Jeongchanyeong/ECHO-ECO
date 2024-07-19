@@ -1,6 +1,5 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
-import StorePoint from '../../assets/StorePoint.png';
-import Quiz_Life from '../../assets/Quiz_Life.png';
 
 const Nav = styled.div`
   display: flex;
@@ -20,75 +19,59 @@ const Nav = styled.div`
   box-sizing: border-box; 
 
 `;
-const Col = styled.div`
+const Col = styled.div<{ buttonColor?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${props => props.theme.colors.text.black};
   text-align: center;
+  gap: 20px;
 
   &:nth-child(2) span {
     font-size: ${props => props.theme.font.size.header1};
     font-weight: ${props => props.theme.font.weight.extraBold};
-    margin-right: 90px;
+    margin-right: 140px;
   }
-
 
   button {
     font-size: 24px;
+    color: ${props => props.buttonColor || props.theme.colors.text.black};
   }
-  gap: 20px;
 `;
 
-const Item1 = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  background-color: ${props => props.theme.colors.text.white};
+interface HeaderProps {
+  title?: string;
+  buttonText?: string;
+  leftChild?: ReactNode;
+  rightChild?: ReactNode;
+  onClick?: () => void;
+  buttonColor?: string;
+}
 
-  width: 66px;
-  height: 30px;
-  
-  color: ${props => props.theme.colors.text.gray};
-  img{
-  padding-right: 10px;
-  };
-`;
-
-const Item2 = styled(Item1)`
-img{
-  padding-right: 8px;
-  };
-`;
-
-interface HeaderProps {}
-
-const Header = () => {
+const Header = ({
+  title,
+  buttonText,
+  leftChild,
+  rightChild,
+  onClick,
+  buttonColor,
+}: HeaderProps) => {
   return (
     <Nav>
-      <Col>
-        <button>{'＜'}</button>
+      <Col buttonColor={buttonColor}>
+        <button
+          onClick={onClick}
+          style={{ color: buttonColor }}
+        >
+          {buttonText}
+        </button>
       </Col>
       <Col>
-        <span>상점</span>
+        <span>{title}</span>
       </Col>
       <Col>
-        <Item1>
-          <img
-            src={Quiz_Life}
-            alt='퀴즈 생명'
-          />
-          <span>0/3</span>
-        </Item1>
-
-        <Item2>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-          <span>30</span>
-        </Item2>
+        {leftChild}
+        {rightChild}
       </Col>
     </Nav>
   );

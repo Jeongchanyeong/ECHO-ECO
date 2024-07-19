@@ -3,14 +3,25 @@ import ItemCard from '../../components/ItemCard';
 import { Container } from '../../share/utils/GlobalStyle';
 import Header from '../../components/common/Header';
 import { getCookie } from '../../cookie';
+import Point from '../../components/Point';
+import QuizLife from '../../components/QuizLife';
+import { useNavigate } from 'react-router-dom';
 
 export default function StoreMain() {
   console.log(getCookie('Authorization'));
+  const navigate = useNavigate();
 
   return (
     <>
       <Container>
-        <Header />
+        <Header
+          onClick={() => {
+            navigate('/stage');
+          }}
+          buttonText={' 〈 '}
+          title={'상점'}
+          rightChild={<Point />}
+        />
         <MainBox>
           <GridBox>
             <ItemCard />

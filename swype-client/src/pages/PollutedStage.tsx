@@ -14,6 +14,8 @@ import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
 import { useRecoilState } from 'recoil';
 import { draggableItemsState } from '../share/recoil/dndAtoms';
+import Point from '../components/Point';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   position: relative;
@@ -111,10 +113,16 @@ const PollutedStage = () => {
       }
     }
   };
-
+  const navigate = useNavigate();
   return (
     <Container>
-      <Header />
+      <Header
+        onClick={() => {
+          navigate('/stage');
+        }}
+        buttonText={' 〈 '}
+        rightChild={<Point />}
+      />
       <Wrapper>
         <Text>
           <span>쓰레기를 드래그하여 휴지통에 넣어주세요!</span>
