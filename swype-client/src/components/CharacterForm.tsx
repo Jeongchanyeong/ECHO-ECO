@@ -6,6 +6,7 @@ import RedPanda_Lock from '../assets/RedPanda_Lock.png';
 import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
 import Koala_Lock from '../assets/Koala_Lock.png';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Form = styled.div`
   display: flex;
@@ -54,7 +55,6 @@ const CharacterButtonWrapper = styled.div`
 const SubmitButton = styled.div`
     display: flex;
     justify-content: center;
-
     width: 100%;    
     height: 50%;
     padding-top: 16px;
@@ -63,8 +63,9 @@ const SubmitButton = styled.div`
 const CharacterImg = styled.img`
     width: 50%;
     flex: 3;
-  
+    position: relative;
 `;
+
 const NameWrapper = styled.div`
     flex: 1;
     width: 100%;
@@ -100,6 +101,21 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
     characterSelect(0);
   };
 
+  const handleCharacter = () => {
+    axios
+      .post(
+        'http://13.124.73.201:8080/character/pick',
+        { character_id: 1 },
+        {
+          headers: {
+            Authorization: 'asdsadads',
+          },
+        }
+      )
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
   return (
     <Form>
       <CharacterButtonWrapper>
@@ -125,7 +141,7 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
           width='90%'
           height='40%'
           textColor='lightGray'
-          onClick={isSelected ? () => {} : undefined}
+          onClick={handleCharacter}
           disabled={!isSelected}
         >
           확인

@@ -1,22 +1,32 @@
 import styled from 'styled-components';
 import StorePoint from '../assets/StorePoint.png';
+import { useNavigate } from 'react-router-dom';
+import { ItemList } from '../model/StoreType/GetItem';
 
-export default function ItemCard() {
+const ItemCard: React.FC<ItemList> = ({ item }) => {
+  const navigate = useNavigate();
   return (
-    <Container>
-      <ImageBox></ImageBox>
-      <Text>북극곰 먹이</Text>
+    <Container onClick={() => navigate(`/store/${item.id}`)}>
+      <ImageBox>
+        <img
+          src={item.imageUrl}
+          alt='아이템'
+        />
+      </ImageBox>
+      <Text>{item.name}</Text>
       <PriceBox>
-        <p>2,500</p>
+        <p>{item.price}</p>
         <img
           src={StorePoint}
           alt='포인트'
         />
-        <span>Lv +3</span>
+        <span>Lv +{item.levelUp}</span>
       </PriceBox>
     </Container>
   );
-}
+};
+
+export default ItemCard;
 
 const Container = styled.div`
   width:45%;
@@ -28,8 +38,14 @@ const Container = styled.div`
 const ImageBox = styled.div`
   height: 70%;
   border-radius: 10px;
-  background-color: #F5F5F5;
   margin-bottom: 4px;
+
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-size: cover;
+  }
 `;
 
 const Text = styled.div`

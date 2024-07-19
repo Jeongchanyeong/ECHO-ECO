@@ -10,6 +10,7 @@ import SelectedCharacter from './pages/SelectedCharacter';
 import PollutedStage from './pages/PollutedStage';
 import OAuthControl from './pages/OAuthControl';
 import StoreDetail from './pages/store/StoreDetail';
+import Charcter from './pages/Charcter';
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/character',
-    element: <CharacterSelection />,
+    element: <Charcter />,
   },
   {
     path: '/selected',

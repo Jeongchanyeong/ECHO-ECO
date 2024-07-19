@@ -4,13 +4,11 @@ import Frozen_Land from '../assets/Frozen_Land.png';
 import Iceberg_Pola from '../assets/Iceberg_Pola.png';
 import Header from '../components/common/Header';
 import styled from 'styled-components';
-
 import Store from '../assets/Store.png';
 import Trash_Old from '../assets/Trash_Old.png';
 import { useNavigate } from 'react-router-dom';
-import { useLoginCheck } from '../share/quries/useLoginCheck';
+import { useLoginCheck } from '../share/queries/useLoginCheck';
 import { useEffect } from 'react';
-
 import { getCookie, setCookie } from '../cookie';
 import { loginCheck } from '../apis/auth';
 import Point from '../components/Point';
@@ -107,7 +105,7 @@ const Stage = () => {
   const goPollutedPage = () => {
     navigate('/polluted');
   };
-
+  console.log(getCookie('hi'));
   return (
     <Container>
       <Header rightChild={<Point />} />
