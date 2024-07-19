@@ -4,23 +4,17 @@ import { Container } from '../../share/utils/GlobalStyle';
 import Header from '../../components/common/Header';
 import Point from '../../components/Point';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { ItemList } from '../../model/StoreType/GetItem';
+import { useQuery } from '@tanstack/react-query';
+import { useGetItems } from '../../share/queries/useGetItems';
 
 export default function StoreMain() {
-  const [items, setItems] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_APP_KEY}/item/list`)
-      .then(response => {
-        setItems(response.data.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+  const { data: items } = useQuery<ItemList[]>({
+    queryKey: ['Item'],
+    queryFn: useGetItems,
+  });
 
   return (
     <>
@@ -29,16 +23,12 @@ export default function StoreMain() {
           onClick={() => {
             navigate('/stage');
           }}
-          buttonText={' 〈 '}
+          buttonText={'〈'}
           title={'상점'}
           rightChild={<Point />}
         />
         <MainBox>
-          <GridBox>
-            {items.map(item => (
-              <ItemCard item={item} />
-            ))}
-          </GridBox>
+          <GridBox>{items?.map(item => <ItemCard item={item} />)}</GridBox>
         </MainBox>
       </Container>
     </>
