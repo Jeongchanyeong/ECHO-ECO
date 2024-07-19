@@ -70,7 +70,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <RecoilRoot>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <ReactQueryDevtools initialIsOpen={true} />
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
 
         <App />
       </ThemeProvider>

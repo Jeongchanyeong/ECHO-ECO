@@ -47,7 +47,6 @@ const Text = styled.div`
   padding: 7px 15px;
   position: absolute;
   letter-spacing: -0.03rem;
-
   top: 10%;`;
 
 const characters = [Tree_Pola, Quokka_Lock, RedPanda_Lock, GreenTurtle_Lock, Koala_Lock];
