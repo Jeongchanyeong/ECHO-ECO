@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function StoreDetail() {
   const navigate = useNavigate();
+
   return (
     <Container>
       <Header
@@ -20,7 +21,9 @@ export default function StoreDetail() {
         rightChild={<Point />}
       />
       <DetailBox>
-        <ItemImage></ItemImage>
+        <ItemImage>
+          <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFf9Vc%2FbtsIr8BKtaE%2Fr51xhFz1QOAnItxapGHJK0%2Fimg.png' />
+        </ItemImage>
         <Text>북극곰 먹이</Text>
         <PriceBox>
           <p>2,500</p>
@@ -60,7 +63,7 @@ export default function StoreDetail() {
           bgColor='lightGray'
           textColor='gray'
           width='45%'
-          height='60px'
+          height='50px'
         >
           취소
         </Button>
@@ -68,7 +71,7 @@ export default function StoreDetail() {
           bgColor='blue'
           textColor='lightGray'
           width='45%'
-          height='60px'
+          height='50px'
         >
           구매하기
         </Button>
@@ -86,10 +89,16 @@ const DetailBox = styled.div`
 `;
 
 const ItemImage = styled.div`
-    background-color: ${props => props.theme.colors.bgColor.gray};
     width: 300px;
     height: 300px;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 100%;
+      height: 100%;
+    }
 `;
 
 const Text = styled.div`
@@ -119,7 +128,7 @@ const PriceBox = styled.div`
 const Line = styled.div`
   height: 20px;
   background-color: #f5f5f5;
-  margin: 40px 0px;
+  margin: 20px 0px;
 `;
 
 const InfoBox = styled.div`
@@ -142,7 +151,7 @@ const InfoText = styled.p`
 `;
 
 const ButtonBox = styled.div`
-    margin:40px 25px;
+    padding:40px 25px;
     display: flex;
     justify-content: center;
 button{
