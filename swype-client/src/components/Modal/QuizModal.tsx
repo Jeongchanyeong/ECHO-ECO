@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Leeca from '../../assets/LeeCa.png';
 import { Container } from '../../share/utils/GlobalStyle';
+import Button from '../common/Button';
 
 export default function QuizModal() {
   return (
@@ -10,18 +11,6 @@ export default function QuizModal() {
           <Img src={Leeca} />
         </ImgBox>
         <InfoModal>
-<<<<<<< Updated upstream:swype-client/src/components/Modal/QuizModal.tsx
-          <Title>정답입니다!</Title>
-          <Point>획득 포인트 + 10</Point>
-          <Info>
-            북극에 사는 북극곰의 먹이는 뤼카이며 북극곰은 귀엽고 북극곰은 흰색이다. 멸종위기 종
-            북극곰을 지켜주자
-          </Info>
-          <ButtonBox>
-            <ButtonNext>다음 문제 풀러가기</ButtonNext>
-            <ButtonFinish>영상 보고 퀴즈 더 풀기</ButtonFinish>
-          </ButtonBox>
-=======
           <Title>게임기 구매완료!</Title>
           <Info>심심할때는 ? 새로운 게임의 세계로!</Info>
           <ImageDiv>
@@ -46,7 +35,6 @@ export default function QuizModal() {
           >
             스테이지로 바로가기
           </Button>
->>>>>>> Stashed changes:swype-client/src/components/ItemModal.tsx
         </InfoModal>
       </ModalBox>
     </Container>
@@ -94,51 +82,7 @@ const Info = styled.div`
     color: ${props => props.theme.colors.text.darkGray};
     font-size: ${props => props.theme.font.size.body};
     font-weight: ${props => props.theme.font.weight.bold};
-<<<<<<< Updated upstream:swype-client/src/components/Modal/QuizModal.tsx
-    padding:20px;
-    background-color: #fff;
-    margin-bottom: 20px;
-    border-radius: 15px;
-`;
 
-const Point = styled.p`
-    color: ${props => props.theme.colors.text.darkGray};
-    font-size: ${props => props.theme.font.size.quizHeader2};
-    font-weight: ${props => props.theme.font.weight.bold};
-    margin-left: 10px;
-    padding:20px;
-    text-align: center;
-`;
-
-const ButtonBox = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const ButtonNext = styled.button`
-    border-radius: 10px;
-    color : #eeeeee;
-    background-color : ${props => props.theme.colors.bgColor.blue};
-    padding:15px;
-    text-align: center;
-    letter-spacing: -0.03rem;
-    transition: all 0.2s;
-    font-size: ${props => props.theme.font.size.buttonText};
-    font-weight: ${props => props.theme.font.weight.bold};
-    margin-bottom: 10px;
-`;
-
-const ButtonFinish = styled.button`
-    border-radius: 10px;
-    color : ${props => props.theme.colors.text.darkGray};
-    background-color : #F9F9F9;
-    padding:15px;
-    text-align: center;
-    letter-spacing: -0.03rem;
-    transition: all 0.2s;
-    font-size: ${props => props.theme.font.size.buttonText};
-    font-weight: ${props => props.theme.font.weight.bold};
-=======
     margin: 10px 0px;
 `;
 
@@ -173,5 +117,4 @@ const NextLevel = styled.p`
 const Icon = styled.div`
   font-size: ${props => props.theme.font.size.quizHeader1};
   margin: 0px 10px;
->>>>>>> Stashed changes:swype-client/src/components/ItemModal.tsx
 `;

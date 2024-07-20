@@ -16,6 +16,7 @@ import { useRecoilState } from 'recoil';
 import { draggableItemsState } from '../share/recoil/dndAtoms';
 import Point from '../components/Point';
 import { useNavigate } from 'react-router-dom';
+import TrashModal from '../components/Modal/TrashModal';
 
 const Wrapper = styled.div`
   position: relative;
@@ -43,12 +44,36 @@ const Text = styled.div`
   top: 10%;
 `;
 
+const Info = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3% 6%;
+`;
+
+const LevelBox = styled.div`
+  background-color: ${props => props.theme.colors.bgColor.blue};
+  border-radius: 13px;
+  padding: 5px 11px;
+  margin-right: 10px;
+  color: ${props => props.theme.colors.text.white};
+  font-size: ${props => props.theme.font.size.choose};
+`;
+
+const NameBox = styled.div`
+  font-weight: ${props => props.theme.font.weight.extraBold};
+  font-size: ${props => props.theme.font.size.buttonText};
+`;
+
 const CharacterImageWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: absolute;
-  top: 27%;
-  width: 100%;
+  top: 20%;
+
+  gap:10px;
 `;
 
 const PollutedWater = styled.div`
@@ -71,19 +96,6 @@ const TrashWrapper = styled.div`
   width: 100%;
   height: 50%;
   overflow: hidden;
-  z-index: 1;
-`;
-
-const Modal = styled.div`
-  background: white;
-  border-radius: 5px;
-  padding: 16px;
-
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
   z-index: 1;
 `;
 
@@ -133,7 +145,16 @@ const PollutedStage = () => {
             alt='Polluted Water'
           />
         </PollutedWater>
+
         <CharacterImageWrapper>
+          <Info>
+            <LevelBox>
+              <span>Lv1</span>
+            </LevelBox>
+            <NameBox>
+              <span>폴라</span>
+            </NameBox>
+          </Info>
           <img
             src={Trash_Pola}
             alt='Trash Pola'
@@ -166,14 +187,8 @@ const PollutedStage = () => {
             <TrashCan TrashCanVisible={TrashCanVisible} />
           </TrashWrapper>
         </DragDropContext>
+        {ModalVisible && <TrashModal />}
       </Wrapper>
-
-      {ModalVisible && (
-        <Modal>
-          <h1>쓰레기 치우기 완료~</h1>
-          <button onClick={() => setModalVisible(false)}> go to stage page</button>
-        </Modal>
-      )}
     </Container>
   );
 };
