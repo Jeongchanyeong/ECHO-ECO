@@ -3,6 +3,8 @@ declare module '*.png' {
   export default value;
 }
 
+declare module '*.gif';
+
 interface ImportMetaEnv {
   VITE_GOOGLE_AUTH_URL: any;
   VITE_BASE_URL: any;
