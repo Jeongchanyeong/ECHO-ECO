@@ -6,21 +6,27 @@ import Pola from '../assets/Pola.png';
 import CharacterCard from '../components/CharacterCard';
 import Button from '../components/common/Button';
 import { useState } from 'react';
+import { useGetCharacter } from '../share/queries/useGetCharacter';
+import { useQuery } from '@tanstack/react-query';
+import { CharacterList } from '../model/CharacterType/GetCharacter';
 
 export default function Charcter() {
   const [selectedItem, setSelectedItem] = useState<string>('');
+  const [selectImage, setSelectImage] = useState<string>('');
+
+  const { data: Characters } = useQuery<CharacterList[]>({
+    queryKey: ['Character'],
+    queryFn: useGetCharacter,
+  });
 
   const handleSelect = (item: string) => {
     const newItem = item === selectedItem ? '' : item;
     setSelectedItem(newItem);
   };
-  const [CardItem, setCardItem] = useState<string[]>([
-    '폴라',
-    '뤄카',
-    '붉은 팬더',
-    '바다 거북',
-    '코알라',
-  ]);
+
+  const handleImage = (image: string) => {
+    setSelectImage(image);
+  };
 
   return (
     <Container>
@@ -29,17 +35,22 @@ export default function Charcter() {
           <Title>성장시킬 동물을 선택해 주세요!</Title>
         </TitleBox>
         <ImgBox>
-          <Animal src={Pola}></Animal>
-          <Tree src={TreeImg}></Tree>
+          <AnimalImageBox>
+            <Animal src={selectImage && Pola}></Animal>
+          </AnimalImageBox>
+          <TreeImageBox>
+            <Tree src={TreeImg}></Tree>
+          </TreeImageBox>
         </ImgBox>
         <SelectBox>
           <CardBox>
-            {CardItem.map((item, idx) => (
+            {Characters?.map((item, idx) => (
               <CharacterCard
                 key={idx}
-                item={item}
-                isSelected={selectedItem === item}
+                Characters={item}
+                isSelected={selectedItem === item.name}
                 handleSelect={handleSelect}
+                handleImage={handleImage}
               />
             ))}
           </CardBox>
@@ -85,12 +96,11 @@ const Title = styled.p`
 `;
 
 const Animal = styled.img`
-    width:40%;
-    z-index: 1;
+    width:50%;
 `;
 
 const Tree = styled.img`
-    width:60%;
+    width:70%;
     position: relative;
     bottom: 20px;
 `;
@@ -129,4 +139,24 @@ const ButtonBox = styled.div`
     justify-content: center;
     height: 25%;
     padding-top: 3px;
+`;
+
+const AnimalImageBox = styled.div`
+  width: 100%;
+  height: 70%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+`;
+
+const TreeImageBox = styled.div`
+  width: 100%;
+  height: 30%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  position: relative;
 `;
