@@ -7,9 +7,7 @@ import styled from 'styled-components';
 import Store from '../assets/Store.png';
 import Trash_Old from '../assets/Trash_Old.png';
 import { useNavigate } from 'react-router-dom';
-import { useLoginCheck } from '../share/queries/useLoginCheck';
 import { useEffect } from 'react';
-import { getCookie, setCookie } from '../cookie';
 import { loginCheck } from '../apis/auth';
 import Point from '../components/Point';
 
@@ -24,7 +22,6 @@ const Wrapper = styled.div`
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -33,11 +30,11 @@ const CharacterBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 40%;
   width: 100%;
+  height: 40%;  
   display: flex;
   justify-content: center;
+  
 `;
 
 const CharacterImage = styled.img`
@@ -52,7 +49,13 @@ const Out = styled.div`
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding-bottom: 80%;
+  margin-top: 70px;
+  height: 20%;
+
+  span{
+    font-weight: ${props => props.theme.font.weight.extraBold};
+    font-size: 0.8rem;
+  }
 `;
 
 const StoreButton = styled.button`
@@ -72,13 +75,20 @@ const TrashButton = styled(StoreButton)`
   padding-top: 5%;
 `;
 
+const InfoBox = styled.div`
+  width:100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Stage = () => {
   const navigate = useNavigate();
   // const { data, isLoading, error } = useLoginCheck();
 
   useEffect(() => {
     loginCheck();
-    console.log(getCookie('Authorization'));
 
     // getCookie 값이 있으면 "/" 없으면 "login"
 
@@ -105,7 +115,6 @@ const Stage = () => {
   const goPollutedPage = () => {
     navigate('/polluted');
   };
-  console.log(getCookie('hi'));
   return (
     <Container>
       <Header rightChild={<Point />} />
@@ -123,7 +132,9 @@ const Stage = () => {
         <CharacterBox>
           <CharacterImage src={Iceberg_Pola} />
         </CharacterBox>
-        <FeatureButtons />
+        <InfoBox>
+          <FeatureButtons />
+        </InfoBox>
       </Wrapper>
     </Container>
   );
