@@ -6,12 +6,70 @@ import Header from '../components/common/Header';
 import styled from 'styled-components';
 import Store from '../assets/Store.png';
 import Trash_Old from '../assets/Trash_Old.png';
+import Trash_New from '../assets/Trash_New.png';
+
 import { useNavigate } from 'react-router-dom';
-import { useLoginCheck } from '../share/queries/useLoginCheck';
-import { useEffect } from 'react';
-import { getCookie, setCookie } from '../cookie';
-import { loginCheck } from '../apis/auth';
+
+import { useEffect, useState } from 'react';
+
 import Point from '../components/Point';
+import { trashStatusCheck } from '../apis/trashStatusCheck';
+import { showToast } from '../share/utils/Toast';
+
+const Stage = () => {
+  const [isClean, setIsClean] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // cleanData 함수가 서버에서 청소 상태를 받아와서 isClean 상태를 설정함
+    const cleanData = async () => {
+      try {
+        const status = await trashStatusCheck();
+        setIsClean(status);
+      } catch (error) {
+        console.error('error:', error);
+      }
+    };
+
+    cleanData();
+  }, []);
+
+  const goPollutedPage = () => {
+    if (!isClean) {
+      navigate('/polluted');
+    } else {
+      showToast('error', '쓰레기 줍기는 이미 완료 되었습니다. 12시 이후에 다시 만나요!');
+    }
+  };
+
+  const goStorePage = () => {
+    navigate('/store');
+  };
+
+  return (
+    <Container>
+      <Header rightChild={<Point />} />
+      <Wrapper>
+        <Out>
+          <StoreButton onClick={goStorePage}>
+            <img src={Store} />
+            <span>상점</span>
+          </StoreButton>
+          <TrashButton onClick={goPollutedPage}>
+            <img src={isClean ? Trash_Old : Trash_New} />
+            <span>쓰레기 치우기</span>
+          </TrashButton>
+        </Out>
+        <CharacterBox>
+          <CharacterImage src={Iceberg_Pola} />
+        </CharacterBox>
+        <FeatureButtons />
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default Stage;
 
 const Wrapper = styled.div`
   position: relative;
@@ -52,7 +110,7 @@ const Out = styled.div`
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding-bottom: 80%;
+  padding-bottom: 70%;
 `;
 
 const StoreButton = styled.button`
@@ -71,62 +129,3 @@ const StoreButton = styled.button`
 const TrashButton = styled(StoreButton)`
   padding-top: 5%;
 `;
-
-const Stage = () => {
-  const navigate = useNavigate();
-  // const { data, isLoading, error } = useLoginCheck();
-
-  useEffect(() => {
-    loginCheck();
-    console.log(getCookie('Authorization'));
-
-    // getCookie 값이 있으면 "/" 없으면 "login"
-
-    // if (!isLoading) {
-    //   if (data && data.check_status) {
-
-    // setCookie('Authorization', )
-    // 헤더에 토큰 실어서 보내주시면 setcookie 2번째 인자값에 넣어서 보내주기
-
-    //   } else {
-    //     navigate('/login');
-
-    //   }
-    // }
-  }, []);
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error.message}</div>;
-
-  const goStorePage = () => {
-    navigate('/store');
-  };
-
-  const goPollutedPage = () => {
-    navigate('/polluted');
-  };
-  console.log(getCookie('hi'));
-  return (
-    <Container>
-      <Header rightChild={<Point />} />
-      <Wrapper>
-        <Out>
-          <StoreButton onClick={goStorePage}>
-            <img src={Store} />
-            <span>상점</span>
-          </StoreButton>
-          <TrashButton onClick={goPollutedPage}>
-            <img src={Trash_Old} />
-            <span>쓰레기 치우기</span>
-          </TrashButton>
-        </Out>
-        <CharacterBox>
-          <CharacterImage src={Iceberg_Pola} />
-        </CharacterBox>
-        <FeatureButtons />
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default Stage;
