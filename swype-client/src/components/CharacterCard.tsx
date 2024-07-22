@@ -1,20 +1,39 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+import { CharacterList } from '../model/CharacterType/GetCharacter';
+import { showToast } from '../share/utils/Toast';
 type CharacterData = {
-  item: string;
+  Characters: CharacterList;
   isSelected: boolean;
   handleSelect: (item: string) => void;
+  handleImage: (image: string) => void;
 };
 
 interface ImgBoxProps {
   isSelected: boolean;
 }
 
-const CharacterCard: React.FC<CharacterData> = ({ item, isSelected, handleSelect }) => {
+const CharacterCard: React.FC<CharacterData> = ({
+  Characters,
+  isSelected,
+  handleSelect,
+  handleImage,
+}) => {
+  const handleCheck = () => {
+    if (!Characters.isPossible) {
+      showToast('info', '서비스 준비 중인 캐릭터입니다.');
+      return;
+    } else {
+      handleSelect(Characters.name);
+    }
+
+    !isSelected ? handleImage(Characters.image) : handleImage('');
+  };
+
   return (
-    <CardBox onClick={() => handleSelect(item)}>
+    <CardBox onClick={handleCheck}>
       <ImgBox isSelected={isSelected}>
-        <Info isSelected={isSelected}>{item}</Info>
+        <img src={Characters.image} />
+        <Info isSelected={isSelected}>{Characters.name}</Info>
       </ImgBox>
     </CardBox>
   );
