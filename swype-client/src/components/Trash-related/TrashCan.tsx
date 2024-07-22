@@ -11,24 +11,24 @@ const Wrapper = styled.div<TrashCanProps>`
   height: 70%;
   z-index: 1;
 
-  visibility: ${({ TrashCanVisible }) => (TrashCanVisible ? 'visible' : 'hidden')};
-  opacity: ${({ TrashCanVisible }) => (TrashCanVisible ? '1' : '0')};
+  visibility: ${({ trashCanVisible }) => (trashCanVisible ? 'visible' : 'hidden')};
+  opacity: ${({ trashCanVisible }) => (trashCanVisible ? '1' : '0')};
   
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  transform: ${({ TrashCanVisible }) => (TrashCanVisible ? 'translateY(90%)' : 'translateY(95%)')};
+  transform: ${({ trashCanVisible }) => (trashCanVisible ? 'translateY(90%)' : 'translateY(95%)')};
 `;
 
 interface TrashCanProps {
-  TrashCanVisible: boolean;
+  trashCanVisible: boolean;
 }
 
-const TrashCan = ({ TrashCanVisible }: TrashCanProps) => (
+const TrashCan = ({ trashCanVisible }: TrashCanProps) => (
   <Droppable droppableId='trash-can'>
     {provided => (
       <Wrapper
         ref={provided.innerRef}
         {...provided.droppableProps}
-        TrashCanVisible={TrashCanVisible}
+        trashCanVisible={trashCanVisible}
       >
         <img
           src={Trash_Can}
