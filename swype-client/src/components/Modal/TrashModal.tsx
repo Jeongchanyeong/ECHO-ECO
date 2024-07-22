@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 
-const TrashModal = () => {
+interface TrashModalProps {
+  addPoint: number;
+  afterPoint: number;
+}
+
+const TrashModal = ({ addPoint, afterPoint }: TrashModalProps) => {
   const navigate = useNavigate();
   return (
     <ModalBox>
@@ -14,13 +19,13 @@ const TrashModal = () => {
         <LevelBox>
           <PointText>
             <text>
-              획득 포인트 : <text>+ 20P</text>
+              획득 포인트 : <text>+ {addPoint}P</text>
             </text>
           </PointText>
           <CurrentPointBox>
             <PointText>현재 포인트 : </PointText>
             <CurrentPointText>
-              <text>20 P</text>
+              <text>{afterPoint} P</text>
             </CurrentPointText>
           </CurrentPointBox>
         </LevelBox>
