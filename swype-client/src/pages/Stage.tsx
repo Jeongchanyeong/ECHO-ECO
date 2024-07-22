@@ -6,10 +6,69 @@ import Header from '../components/common/Header';
 import styled from 'styled-components';
 import Store from '../assets/Store.png';
 import Trash_Old from '../assets/Trash_Old.png';
+import Trash_New from '../assets/Trash_New.png';
+
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { loginCheck } from '../apis/auth';
 import Point from '../components/Point';
+import { trashStatusCheck } from '../apis/trashStatusCheck';
+import { showToast } from '../share/utils/Toast';
+
+const Stage = () => {
+  const [isClean, setIsClean] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // cleanData 함수가 서버에서 청소 상태를 받아와서 isClean 상태를 설정함
+    const cleanData = async () => {
+      try {
+        const status = await trashStatusCheck();
+        setIsClean(status);
+      } catch (error) {
+        console.error('error:', error);
+      }
+    };
+
+    cleanData();
+  }, []);
+
+  const goPollutedPage = () => {
+    if (!isClean) {
+      navigate('/polluted');
+    } else {
+      showToast('error', '쓰레기 줍기는 이미 완료 되었습니다. 12시 이후에 다시 만나요!');
+    }
+  };
+
+  const goStorePage = () => {
+    navigate('/store');
+  };
+
+  return (
+    <Container>
+      <Header rightChild={<Point />} />
+      <Wrapper>
+        <Out>
+          <StoreButton onClick={goStorePage}>
+            <img src={Store} />
+            <span>상점</span>
+          </StoreButton>
+          <TrashButton onClick={goPollutedPage}>
+            <img src={isClean ? Trash_Old : Trash_New} />
+            <span>쓰레기 치우기</span>
+          </TrashButton>
+        </Out>
+        <CharacterBox>
+          <CharacterImage src={Iceberg_Pola} />
+        </CharacterBox>
+        <FeatureButtons />
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default Stage;
 
 const Wrapper = styled.div`
   position: relative;
@@ -56,6 +115,7 @@ const Out = styled.div`
     font-weight: ${props => props.theme.font.weight.extraBold};
     font-size: 0.8rem;
   }
+
 `;
 
 const StoreButton = styled.button`
@@ -74,6 +134,7 @@ const StoreButton = styled.button`
 const TrashButton = styled(StoreButton)`
   padding-top: 5%;
 `;
+
 
 const InfoBox = styled.div`
   width:100%;
@@ -141,3 +202,4 @@ const Stage = () => {
 };
 
 export default Stage;
+
