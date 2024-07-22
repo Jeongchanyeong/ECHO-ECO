@@ -4,10 +4,6 @@ import Header from '../components/common/Header';
 import TrashItem from '../components/Trash-related/TrashItem';
 import TrashCan from '../components/Trash-related/TrashCan';
 
-import Polluted_Land from '../assets/trash/Polluted_Land.png';
-import Polluted_Water from '../assets/trash/Polluted_Water.png';
-import Trash_Pola from '../assets/trash/Trash_Pola.png';
-
 import { useEffect, useState } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
@@ -16,9 +12,36 @@ import { draggableItemsState, initialTrashItemsState } from '../share/recoil/dnd
 import Point from '../components/Point';
 import { useNavigate } from 'react-router-dom';
 import TrashModal from '../components/Modal/TrashModal';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { trashPoint } from '../apis/trashPoint';
-// import { useTrashImg } from '../share/queries/useTrashImg';
+import { getTrashImg } from '../apis/trashImg';
+import { getUserInfo } from '../apis/userInfo';
+import Polluted_Water from '../assets/trash/Polluted_Water.png';
+
+interface TrashImgData {
+  backgroundImage: string;
+  characterImage: string;
+}
+
+interface TrashPointData {
+  addPoint: number;
+  afterPoint: number;
+}
+
+interface CharacterInfo {
+  id: number;
+  name: string;
+  maxLevel: number;
+}
+
+interface UserInfo {
+  character: CharacterInfo;
+  level: number;
+  environment: string;
+  backgroundImage: string;
+  characterImage: string;
+  userPoint: number;
+}
 
 const PollutedStage = () => {
   const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
@@ -26,17 +49,26 @@ const PollutedStage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [addPoint, setAddPoint] = useState(0);
   const [afterPoint, setAfterPoint] = useState(0);
-  // const { data, error, isLoading } = useTrashImg();
 
-  const mutation = useMutation({
+  // 쓰레기 배경, 동물 받아오기
+  const { data: trashStatusImg } = useQuery<TrashImgData>({
+    queryKey: ['trashStatusImg'],
+    queryFn: getTrashImg,
+  });
+
+  // 레벨, 동물 이름 받아오기
+  const { data: userInfo } = useQuery<UserInfo>({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+  });
+
+  const mutation = useMutation<TrashPointData>({
     mutationFn: trashPoint,
 
     onSuccess: data => {
       console.log('res:', data);
-
-      setAddPoint(data.data.addPoint);
-      setAfterPoint(data.data.afterPoint);
-
+      setAddPoint(data.addPoint);
+      setAfterPoint(data.afterPoint);
       setModalVisible(true);
     },
 
@@ -71,21 +103,16 @@ const PollutedStage = () => {
       }
     }
   };
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error loading images</div>;
 
   const navigate = useNavigate();
   return (
     <Container>
       <Header
-        onClick={() => {
-          navigate('/stage');
-        }}
-        buttonText={' 〈 '}
+        onClick={() => navigate('/stage')}
+        buttonText={'〈'}
         rightChild={<Point />}
       />
-      <Wrapper>
-        {/* <Wrapper backgroundImage={data.backgroundImage}> Wrapper 대체 예정 */}
+      <Wrapper backgroundImage={trashStatusImg?.backgroundImage}>
         <Text>
           <span>쓰레기를 드래그하여 휴지통에 넣어주세요!</span>
         </Text>
@@ -99,15 +126,14 @@ const PollutedStage = () => {
         <CharacterImageWrapper>
           <Info>
             <LevelBox>
-              <span>Lv1</span>
+              <span>{userInfo?.level}</span>
             </LevelBox>
             <NameBox>
-              <span>폴라</span>
+              <span>{userInfo?.character.name}</span>
             </NameBox>
           </Info>
           <img
-            src={Trash_Pola}
-            // src={data.characterImage} Trash_Pola 대체 예정
+            src={trashStatusImg?.characterImage}
             alt='Trash Pola'
           />
         </CharacterImageWrapper>
@@ -151,28 +177,12 @@ const PollutedStage = () => {
 
 export default PollutedStage;
 
-// const Wrapper = styled.div//<{ backgroundImage: string }>`
-//   position: relative;
-//   background-color: #E1F3F4;
-//   width: 100%;
-//   height: 100vh;
-//   background-image: url(${props => props.backgroundImage});
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-end;
-//   align-items: center;
-//                            Wrapper 대체 예정
-// `;
-
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ backgroundImage?: string }>`
   position: relative;
-  background-color: #E1F3F4;
+  background-color: #e1f3f4;
   width: 100%;
   height: 100vh;
-  background-image: url(${Polluted_Land});
+  background-image: url(${props => props.backgroundImage});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -184,7 +194,7 @@ const Wrapper = styled.div`
 
 const Text = styled.div`
   position: absolute;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   color: ${props => props.theme.colors.text.white};
   font-weight: ${props => props.theme.font.weight.bold};
   border-radius: 20px;
@@ -221,7 +231,7 @@ const CharacterImageWrapper = styled.div`
   flex-direction: column;
   position: absolute;
   top: 20%;
-  gap:10px;
+  gap: 10px;
 `;
 
 const PollutedWater = styled.div`
