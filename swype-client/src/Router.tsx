@@ -5,18 +5,22 @@ import StoreMain from './pages/store/StoreMain';
 import Quiz from './pages/quiz/Quiz';
 import Movie from './pages/Movie';
 import Login from './pages/Login';
-import CharacterSelection from './pages/CharacterSelection';
 import SelectedCharacter from './pages/SelectedCharacter';
 import PollutedStage from './pages/PollutedStage';
 import OAuthControl from './pages/OAuthControl';
 import StoreDetail from './pages/store/StoreDetail';
 import Charcter from './pages/Charcter';
+import Loading from './pages/Loading';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Stage />,
     errorElement: <NotFound />,
+  },
+  {
+    path: '/loginwait',
+    element: <Loading />,
   },
   {
     path: '/store',
