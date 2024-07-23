@@ -33,18 +33,6 @@ export default function Charcter() {
     setSelectImage(image);
   };
 
-  const handleId = () => {
-    axios.post(
-      'http://13.124.73.201:8080/character/pick',
-      { characterId: 2 },
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-  };
-
   return (
     <Container>
       <BackBox>
