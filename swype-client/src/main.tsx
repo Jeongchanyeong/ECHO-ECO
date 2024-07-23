@@ -24,6 +24,7 @@ ${reset}
   margin: 0; 
   padding: 0; 
   font-family: 'NanumSquareRound' !important;
+  font-size: 16px;
 }
 
 

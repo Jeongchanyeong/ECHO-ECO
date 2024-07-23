@@ -29,16 +29,16 @@ export const theme: DefaultTheme = {
       extraBold: 800,
     },
     size: {
-      quizHeader1: '6.34vw', // 24px
-      header1: '5.82vw', // 22px
-      quizHeader2: '5.28vw', // 20px
-      priceText2: '5.82vw', // 22px
-      priceText: '4.49vw', // 17px
-      buttonText: '4.49vw', // 17px
-      body: '4.23vw', // 16px
-      chipText: '3.97vw', // 15px
-      choose: '3.7vw', // 기존 값
-      levelText: '3.23vw', // 12px
+      quizHeader1: '150%', // 24px
+      header1: '137.5%', // 22px
+      quizHeader2: '125%', // 20px
+      priceText2: '137.5%', // 22px
+      priceText: '106.25%', // 17px
+      buttonText: '106.25%', // 17px
+      body: '100%', // 16px
+      chipText: '93.75%', // 15px
+      choose: '87.5%', // 14px
+      levelText: '75%', //
     },
   },
 };
