@@ -15,7 +15,7 @@ const Nav = styled.div`
   font-size: ${props => props.theme.font.size.choose};
   letter-spacing: 0.03em;
   z-index: 1000;
-  padding: 12px 30px 12px 15px;
+  padding: 3% 6.7% 3% 7%;
   box-sizing: border-box; 
 
 `;
