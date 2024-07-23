@@ -9,7 +9,7 @@ import Trash_Old from '../assets/Trash_Old.png';
 import Trash_New from '../assets/Trash_New.png';
 
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { loginCheck } from '../apis/auth';
 import Point from '../components/Point';
 import { trashStatusCheck } from '../apis/trashStatusCheck';
@@ -62,7 +62,9 @@ const Stage = () => {
         <CharacterBox>
           <CharacterImage src={Iceberg_Pola} />
         </CharacterBox>
-        <FeatureButtons />
+        <InfoBox>
+          <FeatureButtons />
+        </InfoBox>
       </Wrapper>
     </Container>
   );
@@ -110,6 +112,7 @@ const Out = styled.div`
   height: auto;
   margin-top: 70px;
   height: 20%;
+  
 
   span{
     font-weight: ${props => props.theme.font.weight.extraBold};
@@ -126,15 +129,16 @@ const StoreButton = styled.button`
   color: ${props => props.theme.colors.text.white};
   font-size: ${props => props.theme.font.size.levelText};
   img {
-    width: 40px;
-    padding-bottom: 10%;
+    width: 85%;
   }
 `;
 
 const TrashButton = styled(StoreButton)`
   padding-top: 5%;
+  img {
+  padding-bottom: 5%;
+  }
 `;
-
 
 const InfoBox = styled.div`
   width:100%;
@@ -143,63 +147,3 @@ const InfoBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-const Stage = () => {
-  const navigate = useNavigate();
-  // const { data, isLoading, error } = useLoginCheck();
-
-  useEffect(() => {
-    loginCheck();
-
-    // getCookie 값이 있으면 "/" 없으면 "login"
-
-    // if (!isLoading) {
-    //   if (data && data.check_status) {
-
-    // setCookie('Authorization', )
-    // 헤더에 토큰 실어서 보내주시면 setcookie 2번째 인자값에 넣어서 보내주기
-
-    //   } else {
-    //     navigate('/login');
-
-    //   }
-    // }
-  }, []);
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error.message}</div>;
-
-  const goStorePage = () => {
-    navigate('/store');
-  };
-
-  const goPollutedPage = () => {
-    navigate('/polluted');
-  };
-  return (
-    <Container>
-      <Header rightChild={<Point />} />
-      <Wrapper>
-        <Out>
-          <StoreButton onClick={goStorePage}>
-            <img src={Store} />
-            <span>상점</span>
-          </StoreButton>
-          <TrashButton onClick={goPollutedPage}>
-            <img src={Trash_Old} />
-            <span>쓰레기 치우기</span>
-          </TrashButton>
-        </Out>
-        <CharacterBox>
-          <CharacterImage src={Iceberg_Pola} />
-        </CharacterBox>
-        <InfoBox>
-          <FeatureButtons />
-        </InfoBox>
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default Stage;
-
