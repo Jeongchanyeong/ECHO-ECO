@@ -4,7 +4,7 @@ import { Container } from '../../share/utils/GlobalStyle';
 import Header from '../../components/common/Header';
 import Point from '../../components/Point';
 import { useNavigate } from 'react-router-dom';
-import { ItemList } from '../../model/StoreType/GetItem';
+import { ItemList } from '../../model/storeType';
 import { useQuery } from '@tanstack/react-query';
 import { useGetItems } from '../../share/queries/useGetItems';
 
@@ -28,7 +28,14 @@ export default function StoreMain() {
           rightChild={<Point />}
         />
         <MainBox>
-          <GridBox>{items?.map(item => <ItemCard item={item} />)}</GridBox>
+          <GridBox>
+            {items?.map(item => (
+              <ItemCard
+                item={item}
+                key={item.id}
+              />
+            ))}
+          </GridBox>
         </MainBox>
       </Container>
     </>
