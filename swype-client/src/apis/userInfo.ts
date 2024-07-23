@@ -19,20 +19,16 @@ interface UserInfo {
 
 const token = getCookie('Authorization');
 
-export const getUserInfo = async (): Promise<UserInfo> => {
-  try {
-    const res = await axios.get<{ data: UserInfo }>(`${BASE_URL}/character/user`, {
+export const getUserInfo = (): Promise<UserInfo> => {
+  return axios
+    .get<{ data: UserInfo }>(`${BASE_URL}/character/user`, {
       headers: {
         Authorization: `${token}`,
       },
-    });
-    return res.data.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('err:', error.response?.data);
-    } else {
+    })
+    .then(res => res.data.data)
+    .catch(error => {
       console.error('err:', error);
-    }
-    throw error;
-  }
+      throw error;
+    });
 };

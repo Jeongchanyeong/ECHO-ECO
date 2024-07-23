@@ -9,9 +9,10 @@ interface TrashPointData {
 
 const token = getCookie('Authorization');
 // 청소 시 point 다루는 함수
-export const trashPoint = async (): Promise<TrashPointData> => {
-  try {
-    const res = await axios.post<{ data: TrashPointData }>(
+
+export const trashPoint = (): Promise<TrashPointData> => {
+  return axios
+    .post<{ data: TrashPointData }>(
       `${BASE_URL}/trash/clear`,
       {},
       {
@@ -19,14 +20,10 @@ export const trashPoint = async (): Promise<TrashPointData> => {
           Authorization: `${token}`,
         },
       }
-    );
-    return res.data.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('err:', error.response?.data);
-    } else {
+    )
+    .then(res => res.data.data)
+    .catch(error => {
       console.error('err:', error);
-    }
-    throw error;
-  }
+      throw error;
+    });
 };

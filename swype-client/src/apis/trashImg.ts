@@ -8,21 +8,18 @@ interface TrashImgData {
 }
 
 const token = getCookie('Authorization');
+
 // 쓰레기 배경, 동물 받아오는 함수
-export const getTrashImg = async (): Promise<TrashImgData> => {
-  try {
-    const res = await axios.get<{ data: TrashImgData }>(`${BASE_URL}/character/trash`, {
+export const getTrashImg = (): Promise<TrashImgData> => {
+  return axios
+    .get<{ data: TrashImgData }>(`${BASE_URL}/character/trash`, {
       headers: {
         Authorization: `${token}`,
       },
-    });
-    return res.data.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('err:', error.response?.data);
-    } else {
+    })
+    .then(res => res.data.data)
+    .catch(error => {
       console.error('err:', error);
-    }
-    throw error;
-  }
+      throw error;
+    });
 };
