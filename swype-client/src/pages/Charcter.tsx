@@ -9,16 +9,12 @@ import { useState } from 'react';
 import { useGetCharacter } from '../share/queries/useGetCharacter';
 import { useQuery } from '@tanstack/react-query';
 import { CharacterList } from '../model/characterType';
-import axios from 'axios';
-import { getCookie } from '../cookie';
 import { useNavigate } from 'react-router-dom';
 
 export default function Charcter() {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [selectImage, setSelectImage] = useState<string>('');
-  const token = getCookie('Authorization');
   const navigate = useNavigate();
-
   const { data: Characters } = useQuery<CharacterList[]>({
     queryKey: ['Character'],
     queryFn: useGetCharacter,
@@ -65,7 +61,7 @@ export default function Charcter() {
               width='90%'
               height='50px'
               textColor='lightGray'
-              onClick={() => navigate('/selected')}
+              onClick={() => navigate(`/selected?character=${selectedItem}`)}
             >
               확인
             </Button>
