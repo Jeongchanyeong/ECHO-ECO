@@ -116,7 +116,8 @@ const Out = styled.div`
 
   span{
     font-weight: ${props => props.theme.font.weight.extraBold};
-    font-size: 0.8rem;
+    font-size: ${props => props.theme.font.size.choose};
+    
   }
 
 `;
@@ -127,16 +128,16 @@ const StoreButton = styled.button`
   flex-direction: column;
   width: 25%;
   color: ${props => props.theme.colors.text.white};
-  font-size: ${props => props.theme.font.size.levelText};
+  
   img {
     width: 85%;
   }
 `;
 
 const TrashButton = styled(StoreButton)`
-  padding-top: 5%;
+  margin-top: 5%;
   img {
-  padding-bottom: 5%;
+  margin-bottom: 5%;
   }
 `;
 
