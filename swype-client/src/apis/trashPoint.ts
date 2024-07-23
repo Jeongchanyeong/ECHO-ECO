@@ -7,16 +7,23 @@ interface TrashPointData {
   afterPoint: number;
 }
 
+const token = getCookie('Authorization');
 // 청소 시 point 다루는 함수
-export const trashPoint = async (): Promise<TrashPointData> => {
-  const token = getCookie('Authorization');
 
-  const res = await axios.post<{ data: TrashPointData }>(`${BASE_URL}/trash/clear`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    withCredentials: true,
-  });
-
-  return res.data.data;
+export const trashPoint = (): Promise<TrashPointData> => {
+  return axios
+    .post<{ data: TrashPointData }>(
+      `${BASE_URL}/trash/clear`,
+      {},
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    )
+    .then(res => res.data.data)
+    .catch(error => {
+      console.error('err:', error);
+      throw error;
+    });
 };
