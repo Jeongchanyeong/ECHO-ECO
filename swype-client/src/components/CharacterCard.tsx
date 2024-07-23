@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CharacterList } from '../model/CharacterType/GetCharacter';
+import { CharacterList } from '../model/characterType';
 import { showToast } from '../share/utils/Toast';
 type CharacterData = {
   Characters: CharacterList;

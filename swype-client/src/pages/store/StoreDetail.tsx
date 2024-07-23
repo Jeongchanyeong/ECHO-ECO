@@ -3,12 +3,22 @@ import styled from 'styled-components';
 import Header from '../../components/common/Header';
 import StorePoint from '../../assets/StorePoint.png';
 import Button from '../../components/common/Button';
-
 import Point from '../../components/Point';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDetailItems } from '../../share/queries/useDetailItem';
+import { useQuery } from '@tanstack/react-query';
+import { DetailItem } from '../../model/storeType';
 
 export default function StoreDetail() {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { data: item } = useQuery<DetailItem>({
+    queryKey: ['ItemDetail', id],
+    queryFn: () => useDetailItems(id as string),
+  });
+
+  const Calnum = (item?.userPoint ?? 0) - (item?.itemResponse?.price ?? 0);
 
   return (
     <Container>
@@ -22,11 +32,11 @@ export default function StoreDetail() {
       />
       <DetailBox>
         <ItemImage>
-          <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFf9Vc%2FbtsIr8BKtaE%2Fr51xhFz1QOAnItxapGHJK0%2Fimg.png' />
+          <img src={item?.itemResponse.imageUrl} />
         </ItemImage>
-        <Text>북극곰 먹이</Text>
+        <Text>{item?.itemResponse.name}</Text>
         <PriceBox>
-          <p>2,500</p>
+          <p>{item?.itemResponse.price}</p>
           <img
             src={StorePoint}
             alt='포인트'
@@ -36,7 +46,7 @@ export default function StoreDetail() {
       <Line></Line>
       <InfoBox>
         <InfoText>레벨 상승</InfoText>
-        <InfoText>Lv +3</InfoText>
+        <InfoText>Lv +{item?.itemResponse.levelUp}</InfoText>
       </InfoBox>
       <InfoBox>
         <InfoText>
@@ -46,7 +56,7 @@ export default function StoreDetail() {
           />
           내 포인트
         </InfoText>
-        <InfoText>5,000 P</InfoText>
+        <InfoText>{item?.userPoint} P</InfoText>
       </InfoBox>
       <InfoBox>
         <InfoText>
@@ -56,26 +66,33 @@ export default function StoreDetail() {
           />
           구매 후 잔여포인트
         </InfoText>
-        <InfoText>2,500 P</InfoText>
+        <InfoText> {Calnum} P</InfoText>
       </InfoBox>
-      <ButtonBox>
-        <Button
-          bgColor='lightGray'
-          textColor='gray'
-          width='45%'
-          height='50px'
-        >
-          취소
-        </Button>
-        <Button
-          bgColor='blue'
-          textColor='lightGray'
-          width='45%'
-          height='50px'
-        >
-          구매하기
-        </Button>
-      </ButtonBox>
+
+      {Calnum > 0 ? (
+        <ButtonBox>
+          <Button
+            bgColor='lightGray'
+            textColor='gray'
+            width='45%'
+            height='50px'
+          >
+            취소
+          </Button>
+          <Button
+            bgColor='blue'
+            textColor='lightGray'
+            width='45%'
+            height='50px'
+          >
+            구매하기
+          </Button>
+        </ButtonBox>
+      ) : (
+        <ButtonBox>
+          <NoPayButton disabled={true}>구매 불가</NoPayButton>
+        </ButtonBox>
+      )}
     </Container>
   );
 }
@@ -157,4 +174,14 @@ const ButtonBox = styled.div`
 button{
   margin-right: 10px;
 }
+`;
+
+const NoPayButton = styled.button`
+  width: 90%;
+  height: 50px;
+  background-color: #D9D9D9;
+  color: #EBEBEB;
+  border-radius: 10px;
+  font-size: ${props => props.theme.font.size.buttonText};
+  font-weight: ${props => props.theme.font.weight.bold};
 `;
