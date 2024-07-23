@@ -1,32 +1,39 @@
 import styled from 'styled-components';
 import { Container } from '../../share/utils/GlobalStyle';
 import Button from '../common/Button';
-import Leeca from '../../assets/LeeCa.png';
+import { DetailItem } from '../../model/storeType';
+import { useNavigate } from 'react-router-dom';
+interface ItemModalProps {
+  item?: DetailItem;
+}
 
-export default function ItemModal() {
+const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <ModalBox>
         <InfoModal>
           <Title>
-            <text>게임기 구매 완료</text>
+            <text>{item?.itemResponse.name} 구매 완료</text>
           </Title>
 
           <Info>
-            <text>심심할 때는? 새로운 게임의 세계로!</text>
+            <text>{item?.itemResponse.description}</text>
           </Info>
 
           <ImgBox>
             <img
-              src={Leeca}
+              src={item?.itemResponse.imageUrl}
               alt='ItemImg'
             />
           </ImgBox>
 
           <LevelBox>
-            <PointText>Lv.1 </PointText>
+            <PointText>Lv.{item?.itemResponse.levelUp} </PointText>
             <PointText>{'->'}</PointText>
-            <UpPointText>Lv.3</UpPointText>
+            {/* 유저 정보 Recoil로 가져와서 나의 레벨 + 아이템 레벨 더해주기  */}
+            <UpPointText>Lv.{item?.itemResponse.levelUp}</UpPointText>
           </LevelBox>
 
           <Button
@@ -34,14 +41,16 @@ export default function ItemModal() {
             textColor='white'
             width='100%'
             height='50px'
+            onClick={() => navigate('/store')}
           >
-            스테이지로 바로가기
+            확인
           </Button>
         </InfoModal>
       </ModalBox>
     </Container>
   );
-}
+};
+export default ItemModal;
 const ImgBox = styled.div`
     display: flex;
     align-items: center;
@@ -50,13 +59,12 @@ const ImgBox = styled.div`
 img{
   width: 100px;
   height: 100px;
-
 }
 
 `;
 
 const ModalBox = styled.div`
-    margin: 100px auto;
+    margin: auto;
     width:80%;
 `;
 
