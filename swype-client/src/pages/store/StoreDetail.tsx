@@ -8,8 +8,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDetailItems } from '../../share/queries/useDetailItem';
 import { useQuery } from '@tanstack/react-query';
 import { DetailItem } from '../../model/storeType';
+import { useState } from 'react';
+import ItemModal from '../../components/Modal/ItemModal';
 
 export default function StoreDetail() {
+  const [isModal, setIsModal] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -20,80 +23,88 @@ export default function StoreDetail() {
 
   const Calnum = (item?.userPoint ?? 0) - (item?.itemResponse?.price ?? 0);
 
+  const BuyCheck = () => {
+    setIsModal(true);
+  };
   return (
-    <Container>
-      <Header
-        onClick={() => {
-          navigate(-1);
-        }}
-        buttonText={' 〈 '}
-        title={'아이템'}
-        rightChild={<Point />}
-      />
-      <DetailBox>
-        <ItemImage>
-          <img src={item?.itemResponse.imageUrl} />
-        </ItemImage>
-        <Text>{item?.itemResponse.name}</Text>
-        <PriceBox>
-          <p>{item?.itemResponse.price}</p>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-        </PriceBox>
-      </DetailBox>
-      <Line></Line>
-      <InfoBox>
-        <InfoText>레벨 상승</InfoText>
-        <InfoText>Lv +{item?.itemResponse.levelUp}</InfoText>
-      </InfoBox>
-      <InfoBox>
-        <InfoText>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-          내 포인트
-        </InfoText>
-        <InfoText>{item?.userPoint} P</InfoText>
-      </InfoBox>
-      <InfoBox>
-        <InfoText>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-          구매 후 잔여포인트
-        </InfoText>
-        <InfoText> {Calnum} P</InfoText>
-      </InfoBox>
+    <>
+      <Container>
+        <Header
+          onClick={() => {
+            navigate(-1);
+          }}
+          buttonText={' 〈 '}
+          title={'아이템'}
+          rightChild={<Point />}
+        />
+        <DetailBox>
+          <ItemImage>
+            <img src={item?.itemResponse.imageUrl} />
+          </ItemImage>
+          <Text>{item?.itemResponse.name}</Text>
+          <PriceBox>
+            <p>{item?.itemResponse.price}</p>
+            <img
+              src={StorePoint}
+              alt='포인트'
+            />
+          </PriceBox>
+        </DetailBox>
+        <Line></Line>
+        <InfoBox>
+          <InfoText>레벨 상승</InfoText>
+          <InfoText>Lv +{item?.itemResponse.levelUp}</InfoText>
+        </InfoBox>
+        <InfoBox>
+          <InfoText>
+            <img
+              src={StorePoint}
+              alt='포인트'
+            />
+            내 포인트
+          </InfoText>
+          <InfoText>{item?.userPoint} P</InfoText>
+        </InfoBox>
+        <InfoBox>
+          <InfoText>
+            <img
+              src={StorePoint}
+              alt='포인트'
+            />
+            구매 후 잔여포인트
+          </InfoText>
+          <InfoText> {Calnum} P</InfoText>
+        </InfoBox>
 
-      {Calnum > 0 ? (
-        <ButtonBox>
-          <Button
-            bgColor='lightGray'
-            textColor='gray'
-            width='45%'
-            height='50px'
-          >
-            취소
-          </Button>
-          <Button
-            bgColor='blue'
-            textColor='lightGray'
-            width='45%'
-            height='50px'
-          >
-            구매하기
-          </Button>
-        </ButtonBox>
-      ) : (
-        <ButtonBox>
-          <NoPayButton disabled={true}>구매 불가</NoPayButton>
-        </ButtonBox>
-      )}
-    </Container>
+        {Calnum > 0 ? (
+          <ButtonBox>
+            <Button
+              bgColor='lightGray'
+              textColor='gray'
+              width='45%'
+              height='50px'
+              onClick={() => navigate(-1)}
+            >
+              취소
+            </Button>
+            <Button
+              bgColor='blue'
+              textColor='lightGray'
+              width='45%'
+              height='50px'
+              onClick={BuyCheck}
+            >
+              구매하기
+            </Button>
+          </ButtonBox>
+        ) : (
+          <ButtonBox>
+            <NoPayButton disabled={true}>구매 불가</NoPayButton>
+          </ButtonBox>
+        )}
+        <ModalBox isModal={isModal}>{isModal && <ItemModal item={item} />}</ModalBox>
+      </Container>
+    </>
   );
 }
 
@@ -103,6 +114,13 @@ const DetailBox = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+`;
+const ModalBox = styled.div<{ isModal: boolean }>`
+  position: absolute;
+  width:100%;
+  max-width: 480px;
+  opacity: ${({ isModal }) => (isModal ? 1 : 0)};
+  transition: opacity 0.7s ease-in-out; 
 `;
 
 const ItemImage = styled.div`

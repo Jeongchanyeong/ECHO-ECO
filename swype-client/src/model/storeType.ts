@@ -16,5 +16,6 @@ export type DetailItem = {
     levelUp: number;
     name: string;
     price: number;
+    description: string;
   };
 };
