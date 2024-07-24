@@ -45,7 +45,7 @@ width: 100%;
 height: 100vh;
 flex:8;
 
-gap: ${props => props.theme.font.size.body};
+gap: 6%;
 padding: 9px 0px;
 
 & > button {
