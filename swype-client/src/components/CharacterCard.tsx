@@ -9,7 +9,7 @@ type CharacterData = {
 };
 
 interface ImgBoxProps {
-  isSelected: boolean;
+  $isSelected: boolean;
 }
 
 const CharacterCard: React.FC<CharacterData> = ({
@@ -31,9 +31,9 @@ const CharacterCard: React.FC<CharacterData> = ({
 
   return (
     <CardBox onClick={handleCheck}>
-      <ImgBox isSelected={isSelected}>
+      <ImgBox $isSelected={isSelected}>
         <img src={Characters.image} />
-        <Info isSelected={isSelected}>{Characters.name}</Info>
+        <Info $isSelected={isSelected}>{Characters.name}</Info>
       </ImgBox>
     </CardBox>
   );
@@ -58,7 +58,7 @@ const ImgBox = styled.div<ImgBoxProps>`
     display: flex;
     justify-content: center;
     border-radius: 10px;
-    background-color: ${props => (props.isSelected ? '#7FD0FF' : '#fff')};
+    background-color: ${props => (props.$isSelected ? '#7FD0FF' : '#fff')};
     img{
         width:80%;
         height: 100%;
@@ -68,8 +68,8 @@ const ImgBox = styled.div<ImgBoxProps>`
 const Info = styled.div<ImgBoxProps>`
     width: 100%;
     height: 30%;
-    background-color: ${props => (props.isSelected ? 'black' : '#EBEBEB')};
-    color: ${props => (props.isSelected ? '#fff' : '#959595')};
+    background-color: ${props => (props.$isSelected ? 'black' : '#EBEBEB')};
+    color: ${props => (props.$isSelected ? '#fff' : '#959595')};
     font-size: ${props => props.theme.font.size.choose};
     font-weight : bold;
     border-radius: 0px 0px 10px 10px;

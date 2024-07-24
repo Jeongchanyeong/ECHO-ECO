@@ -12,7 +12,6 @@ import { getCookie } from '../../cookie';
 const Wrapper = styled.div`
   display: flex;
   width: 90%; 
-  height: 30%;
   background-color: #FAFAFA; 
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
@@ -33,12 +32,13 @@ const TextWrapper = styled.div`
   color: #333;
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
-  padding: 20px 0px 0px 20px;
+  padding: 20px 0px 20px 20px;
 `;
 
 const Text = styled.span`
   color: ${props => props.theme.colors.text.black};
   font-weight: ${props => props.theme.font.weight.extraBold};
+  padding-top:20px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -85,6 +85,7 @@ const InfoModal = () => {
   const params = new URL(document.URL).searchParams;
   const character = params.get('character');
   const token = getCookie('Authorization');
+
   const { data: Description } = useQuery<DescriptionText>({
     queryKey: ['Description'],
     queryFn: () => useGetDescription(character as string),

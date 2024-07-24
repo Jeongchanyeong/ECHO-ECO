@@ -98,9 +98,9 @@ export default function StoreDetail() {
             </Button>
           </ButtonBox>
         ) : (
-          <ButtonBox>
+          <NoPayButtonBox>
             <NoPayButton disabled={true}>구매 불가</NoPayButton>
-          </ButtonBox>
+          </NoPayButtonBox>
         )}
         <ModalBox isModal={isModal}>{isModal && <ItemModal item={item} />}</ModalBox>
       </Container>
@@ -186,12 +186,22 @@ const InfoText = styled.p`
 `;
 
 const ButtonBox = styled.div`
-    padding:40px 25px;
+    padding: 15px 25px;
     display: flex;
     justify-content: center;
-button{
-  margin-right: 10px;
-}
+    button:nth-child(1){
+      margin-right: 10px;
+      width: 50%;
+    }
+    button:nth-child(2){
+      width: 50%;
+    }
+`;
+
+const NoPayButtonBox = styled.div`
+    padding: 15px 25px;
+    display: flex;
+    justify-content: center;
 `;
 
 const NoPayButton = styled.button`
@@ -202,4 +212,6 @@ const NoPayButton = styled.button`
   border-radius: 10px;
   font-size: ${props => props.theme.font.size.buttonText};
   font-weight: ${props => props.theme.font.weight.bold};
+  margin-top: 20px;
+  width: 100%;
 `;
