@@ -1,21 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../share/utils/OAuth';
 import { getCookie } from '../cookie';
-
-interface CharacterInfo {
-  id: number;
-  name: string;
-  maxLevel: number;
-}
-
-interface UserInfo {
-  character: CharacterInfo;
-  level: number;
-  environment: string;
-  backgroundImage: string;
-  characterImage: string;
-  userPoint: number;
-}
+import { UserInfo } from '../model/userInfoType';
 
 const token = getCookie('Authorization');
 

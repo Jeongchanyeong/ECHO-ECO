@@ -1,21 +1,7 @@
 import { atom } from 'recoil';
+import { UserInfo } from '../../model/userInfoType';
 
-interface CharacterInfoProps {
-  id?: number;
-  name?: string;
-  maxLevel?: number;
-}
-
-interface UserInfoProps {
-  character?: CharacterInfoProps;
-  level?: number;
-  environment?: string;
-  backgroundImage?: string;
-  characterImage?: string;
-  userPoint?: number;
-}
-
-export const userData = atom<UserInfoProps | null>({
+export const userData = atom<UserInfo | null>({
   key: 'userData',
   default: null,
 });
