@@ -11,11 +11,12 @@ import OAuthControl from './pages/OAuthControl';
 import StoreDetail from './pages/store/StoreDetail';
 import Charcter from './pages/Charcter';
 import Loading from './pages/Loading';
+import Splash from './pages/Splash';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Stage />,
+    element: <Splash />,
     errorElement: <NotFound />,
   },
   {
