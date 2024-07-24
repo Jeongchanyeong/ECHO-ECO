@@ -7,7 +7,7 @@ import TrashCan from '../components/Trash-related/TrashCan';
 import { useEffect, useState } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { draggableItemsState, initialTrashItemsState } from '../share/recoil/dndAtoms';
 import Point from '../components/Point';
 import { useNavigate } from 'react-router-dom';
@@ -15,8 +15,9 @@ import TrashModal from '../components/Modal/TrashModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { trashPoint } from '../apis/trashPoint';
 import { getTrashImg } from '../apis/trashImg';
-import { getUserInfo } from '../apis/userInfo';
+
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
+import { userData } from '../share/recoil/userAtom';
 
 interface TrashImgData {
   backgroundImage: string;
@@ -28,21 +29,6 @@ interface TrashPointData {
   afterPoint: number;
 }
 
-interface CharacterInfo {
-  id: number;
-  name: string;
-  maxLevel: number;
-}
-
-interface UserInfo {
-  character: CharacterInfo;
-  level: number;
-  environment: string;
-  backgroundImage: string;
-  characterImage: string;
-  userPoint: number;
-}
-
 const PollutedStage = () => {
   const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
   const [trashCanVisible, setTrashCanVisible] = useState(false);
@@ -50,16 +36,12 @@ const PollutedStage = () => {
   const [addPoint, setAddPoint] = useState(0);
   const [afterPoint, setAfterPoint] = useState(0);
 
+  const userInfo = useRecoilValue(userData);
+
   // 쓰레기 배경, 동물 받아오기
   const { data: trashStatusImg } = useQuery<TrashImgData>({
     queryKey: ['trashStatusImg'],
     queryFn: getTrashImg,
-  });
-
-  // 레벨, 동물 이름 받아오기
-  const { data: userInfo } = useQuery<UserInfo>({
-    queryKey: ['userInfo'],
-    queryFn: getUserInfo,
   });
 
   const mutation = useMutation<TrashPointData>({
@@ -126,10 +108,10 @@ const PollutedStage = () => {
         <CharacterImageWrapper>
           <Info>
             <LevelBox>
-              <span>{userInfo?.level}</span>
+              <span>Lv. {userInfo?.level}</span>
             </LevelBox>
             <NameBox>
-              <span>{userInfo?.character.name}</span>
+              <span>{userInfo?.character?.name}</span>
             </NameBox>
           </Info>
           <img

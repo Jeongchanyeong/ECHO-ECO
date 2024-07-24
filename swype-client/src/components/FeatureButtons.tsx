@@ -5,8 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { getVideoWatched } from '../apis/video/getVideoWatched';
 import { useQuery } from '@tanstack/react-query';
 import { showToast } from '../share/utils/Toast';
+import { userData } from '../share/recoil/userAtom';
+import { useRecoilValue } from 'recoil';
 
 const FeatureButtons = () => {
+  const userInfo = useRecoilValue(userData);
+
   const navigate = useNavigate();
   const { data } = useQuery({
     queryKey: ['getVideoWatched'],
@@ -17,7 +21,7 @@ const FeatureButtons = () => {
     if (data?.isWatched) {
       navigate('/movie');
     } else {
-      showToast('warning', '오늘 영상을 이미 시정하였어요. 12시 이후에 다시 만나요!');
+      showToast('warning', '오늘 영상을 이미 시정하였어요. 00시 이후에 다시 만나요!');
     }
   };
 
@@ -25,16 +29,14 @@ const FeatureButtons = () => {
     <Wrapper>
       <Info>
         <LevelBox>
-          <span>Lv.1</span>
+          <span>Lv. {userInfo?.level}</span>
         </LevelBox>
         <NameBox>
-          <span>폴라</span>
+          <span>{userInfo?.character.name}</span>
         </NameBox>
       </Info>
       <ButtonContainer>
-
         <QuizBox onClick={() => navigate('/quiz')}>
-
           <QuizImg src={Quiz}></QuizImg>
           <QuizText>
             남은 횟수 <br />
@@ -43,7 +45,6 @@ const FeatureButtons = () => {
         </QuizBox>
 
         <MovieBox onClick={handleVideoClick}>
-
           <MovieImg src={Video}></MovieImg>
           <MovieText>영상 시청</MovieText>
         </MovieBox>
