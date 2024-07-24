@@ -5,6 +5,9 @@ import ReactPlayer from 'react-player';
 
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { getVideo } from '../apis/video/getVideo';
+import { getVideoWatched } from '../apis/video/getVideoWatched';
 
 export default function Movie() {
   const navigate = useNavigate();
@@ -12,11 +15,21 @@ export default function Movie() {
   const [width, setWidth] = useState<number>(0);
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
 
+  const { data: videoData } = useQuery({ queryKey: ['video'], queryFn: getVideo });
+
+  const mutation = useMutation({
+    mutationFn: getVideoWatched,
+    onSuccess: () => {
+      navigate(`/`);
+      console.log('hi');
+    },
+  });
+
   useEffect(() => {
     intervalIdRef.current = setInterval(() => {
       setTime(prev => prev - 1);
       setWidth(prev => prev + 3.4);
-    }, 1000);
+    }, 10);
 
     return () => {
       if (intervalIdRef.current) {
@@ -30,6 +43,7 @@ export default function Movie() {
       clearInterval(intervalIdRef.current);
     }
   }, [time]);
+
   return (
     <Container>
       <Header
@@ -39,16 +53,19 @@ export default function Movie() {
         buttonText={' 〈 '}
         buttonColor='white'
       />
+
       <MovieBox>
-        <ReactPlayer
-          className='react-player'
-          url={'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'} // 플레이어 url
-          width='100%' // 플레이어 크기 (가로)
-          height='100%' // 플레이어 크기 (세로)
-          playing={true} // 자동 재생 on
-          muted={true} // 자동 재생 on
-          controls={false} // 플레이어 컨트롤 노출 여부
-        />
+        {videoData && (
+          <ReactPlayer
+            className='react-player'
+            url={videoData.url} // 플레이어 url
+            width='100%' // 플레이어 크기 (가로)
+            height='100%' // 플레이어 크기 (세로)
+            playing={true} // 자동 재생 on
+            muted={true} // 자동 재생 on
+            controls={false} // 플레이어 컨트롤 노출 여부
+          />
+        )}
         <TimeBox>
           <Timer>
             <p>{time < 0 ? 0 : time}</p>
@@ -58,10 +75,11 @@ export default function Movie() {
           </Progress>
         </TimeBox>
       </MovieBox>
+
       <ButtonBox time={time}>
         <button
           disabled={time !== 0}
-          onClick={() => navigate(`/`)}
+          onClick={() => mutation.mutate()}
         >
           퀴즈 기회 받기
         </button>
