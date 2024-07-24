@@ -3,80 +3,108 @@ import styled from 'styled-components';
 import Header from '../../components/common/Header';
 import StorePoint from '../../assets/StorePoint.png';
 import Button from '../../components/common/Button';
-
 import Point from '../../components/Point';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDetailItems } from '../../share/queries/useDetailItem';
+import { useQuery } from '@tanstack/react-query';
+import { DetailItem } from '../../model/storeType';
+import { useState } from 'react';
+import ItemModal from '../../components/Modal/ItemModal';
 
 export default function StoreDetail() {
+  const [isModal, setIsModal] = useState(false);
   const navigate = useNavigate();
+  const { id } = useParams();
 
+  const { data: item } = useQuery<DetailItem>({
+    queryKey: ['ItemDetail', id],
+    queryFn: () => useDetailItems(id as string),
+  });
+
+  const Calnum = (item?.userPoint ?? 0) - (item?.itemResponse?.price ?? 0);
+
+  const BuyCheck = () => {
+    setIsModal(true);
+  };
   return (
-    <Container>
-      <Header
-        onClick={() => {
-          navigate(-1);
-        }}
-        buttonText={' 〈 '}
-        title={'아이템'}
-        rightChild={<Point />}
-      />
-      <DetailBox>
-        <ItemImage>
-          <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFf9Vc%2FbtsIr8BKtaE%2Fr51xhFz1QOAnItxapGHJK0%2Fimg.png' />
-        </ItemImage>
-        <Text>북극곰 먹이</Text>
-        <PriceBox>
-          <p>2,500</p>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-        </PriceBox>
-      </DetailBox>
-      <Line></Line>
-      <InfoBox>
-        <InfoText>레벨 상승</InfoText>
-        <InfoText>Lv +3</InfoText>
-      </InfoBox>
-      <InfoBox>
-        <InfoText>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-          내 포인트
-        </InfoText>
-        <InfoText>5,000 P</InfoText>
-      </InfoBox>
-      <InfoBox>
-        <InfoText>
-          <img
-            src={StorePoint}
-            alt='포인트'
-          />
-          구매 후 잔여포인트
-        </InfoText>
-        <InfoText>2,500 P</InfoText>
-      </InfoBox>
-      <ButtonBox>
-        <Button
-          bgColor='lightGray'
-          textColor='gray'
-          width='45%'
-          height='50px'
-        >
-          취소
-        </Button>
-        <Button
-          bgColor='blue'
-          textColor='lightGray'
-          width='45%'
-          height='50px'
-        >
-          구매하기
-        </Button>
-      </ButtonBox>
-    </Container>
+    <>
+      <Container>
+        <Header
+          onClick={() => {
+            navigate(-1);
+          }}
+          buttonText={' 〈 '}
+          title={'아이템'}
+          rightChild={<Point />}
+        />
+        <DetailBox>
+          <ItemImage>
+            <img src={item?.itemResponse.imageUrl} />
+          </ItemImage>
+          <Text>{item?.itemResponse.name}</Text>
+          <PriceBox>
+            <p>{item?.itemResponse.price}</p>
+            <img
+              src={StorePoint}
+              alt='포인트'
+            />
+          </PriceBox>
+        </DetailBox>
+        <Line></Line>
+        <InfoBox>
+          <InfoText>레벨 상승</InfoText>
+          <InfoText>Lv +{item?.itemResponse.levelUp}</InfoText>
+        </InfoBox>
+        <InfoBox>
+          <InfoText>
+            <img
+              src={StorePoint}
+              alt='포인트'
+            />
+            내 포인트
+          </InfoText>
+          <InfoText>{item?.userPoint} P</InfoText>
+        </InfoBox>
+        <InfoBox>
+          <InfoText>
+            <img
+              src={StorePoint}
+              alt='포인트'
+            />
+            구매 후 잔여포인트
+          </InfoText>
+          <InfoText> {Calnum} P</InfoText>
+        </InfoBox>
+
+        {Calnum > 0 ? (
+          <ButtonBox>
+            <Button
+              bgColor='lightGray'
+              textColor='gray'
+              width='45%'
+              height='50px'
+              onClick={() => navigate(-1)}
+            >
+              취소
+            </Button>
+            <Button
+              bgColor='blue'
+              textColor='lightGray'
+              width='45%'
+              height='50px'
+              onClick={BuyCheck}
+            >
+              구매하기
+            </Button>
+          </ButtonBox>
+        ) : (
+          <NoPayButtonBox>
+            <NoPayButton disabled={true}>구매 불가</NoPayButton>
+          </NoPayButtonBox>
+        )}
+        <ModalBox isModal={isModal}>{isModal && <ItemModal item={item} />}</ModalBox>
+      </Container>
+    </>
   );
 }
 
@@ -86,6 +114,13 @@ const DetailBox = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+`;
+const ModalBox = styled.div<{ isModal: boolean }>`
+  position: absolute;
+  width:100%;
+  max-width: 480px;
+  opacity: ${({ isModal }) => (isModal ? 1 : 0)};
+  transition: opacity 0.7s ease-in-out; 
 `;
 
 const ItemImage = styled.div`
@@ -151,10 +186,32 @@ const InfoText = styled.p`
 `;
 
 const ButtonBox = styled.div`
-    padding:40px 25px;
+    padding: 15px 25px;
     display: flex;
     justify-content: center;
-button{
-  margin-right: 10px;
-}
+    button:nth-child(1){
+      margin-right: 10px;
+      width: 50%;
+    }
+    button:nth-child(2){
+      width: 50%;
+    }
+`;
+
+const NoPayButtonBox = styled.div`
+    padding: 15px 25px;
+    display: flex;
+    justify-content: center;
+`;
+
+const NoPayButton = styled.button`
+  width: 90%;
+  height: 50px;
+  background-color: #D9D9D9;
+  color: #EBEBEB;
+  border-radius: 10px;
+  font-size: ${props => props.theme.font.size.buttonText};
+  font-weight: ${props => props.theme.font.weight.bold};
+  margin-top: 20px;
+  width: 100%;
 `;

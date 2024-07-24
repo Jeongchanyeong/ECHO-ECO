@@ -32,31 +32,18 @@ const FeatureButtons = () => {
         </NameBox>
       </Info>
       <ButtonContainer>
-        {/* {buttonData.map((button, index) => (
-          <Button
-            key={index}
-            bgColor='white'
-            textColor='gray'
-            width='30%'
-            height='50%'
-            onClick={() => navigate(button.goPage)}
-          >
-            <img src={button.buttonImg} />
-            <span>{button.buttonText}</span>
-          </Button>
-        ))} */}
-        <QuizBox
-          onClick={() => {
-            navigate('/quiz');
-          }}
-        >
+
+        <QuizBox onClick={() => navigate('/quiz')}>
+
           <QuizImg src={Quiz}></QuizImg>
           <QuizText>
             남은 횟수 <br />
             3/3
           </QuizText>
         </QuizBox>
+
         <MovieBox onClick={handleVideoClick}>
+
           <MovieImg src={Video}></MovieImg>
           <MovieText>영상 시청</MovieText>
         </MovieBox>

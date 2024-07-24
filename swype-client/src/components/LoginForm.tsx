@@ -45,6 +45,7 @@ width: 100%;
 height: 100vh;
 flex:8;
 
+font-size: ${props => props.theme.font.size.priceText};
 gap: 6%;
 padding: 9px 0px;
 

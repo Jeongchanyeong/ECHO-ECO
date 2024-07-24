@@ -7,10 +7,8 @@ import styled from 'styled-components';
 import Store from '../assets/Store.png';
 import Trash_Old from '../assets/Trash_Old.png';
 import Trash_New from '../assets/Trash_New.png';
-
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { loginCheck } from '../apis/auth';
 import Point from '../components/Point';
 import { trashStatusCheck } from '../apis/trashStatusCheck';
 import { showToast } from '../share/utils/Toast';
@@ -90,16 +88,14 @@ const CharacterBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 100%;
-  height: 40%;  
-  display: flex;
-  justify-content: center;
-  
+  height: 40%;
 `;
 
 const CharacterImage = styled.img`
   width: 85%;
+  height: 100%;
   height: auto;
 `;
 
@@ -112,12 +108,9 @@ const Out = styled.div`
   height: auto;
   margin-top: 70px;
   height: 20%;
-  
-
   span{
     font-weight: ${props => props.theme.font.weight.extraBold};
     font-size: ${props => props.theme.font.size.choose};
-    
   }
 
 `;
