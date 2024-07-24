@@ -3,9 +3,9 @@ import Trash_Can from '../../assets/trash/Trash_Can.png';
 import { Droppable } from 'react-beautiful-dnd';
 
 const Wrapper = styled.div<TrashCanProps>`
-  position: fixed;
-  bottom: 10%;
-  left: 46.5%;
+  position: absolute;
+  bottom: 30%;
+  left: 33%;
   transform: translateX(-50%);
   width: 40%;
   height: 70%;
