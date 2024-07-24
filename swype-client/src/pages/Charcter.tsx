@@ -5,16 +5,26 @@ import TreeImg from '../assets/tree.png';
 import Pola from '../assets/Pola.png';
 import CharacterCard from '../components/CharacterCard';
 import Button from '../components/common/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetCharacter } from '../share/queries/useGetCharacter';
 import { useQuery } from '@tanstack/react-query';
 import { CharacterList } from '../model/characterType';
 import { useNavigate } from 'react-router-dom';
+import { checkUser } from '../share/utils/checkUser';
 
 export default function Charcter() {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [selectImage, setSelectImage] = useState<string>('');
   const navigate = useNavigate();
+  useEffect(() => {
+    try {
+      checkUser();
+      navigate('/');
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   const { data: Characters } = useQuery<CharacterList[]>({
     queryKey: ['Character'],
     queryFn: useGetCharacter,
