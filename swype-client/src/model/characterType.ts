@@ -3,5 +3,11 @@ export type CharacterList = {
   image: string;
   isPossible: boolean;
   name: string;
-  speechBubble?: string;
+  Description: string;
 };
+
+export type Description = {
+  step: string;
+};
+
+export type DescriptionText = Description[];

@@ -1,24 +1,27 @@
 import styled from 'styled-components';
 import Quokka from '../../assets/Quokka.png';
 import { useState } from 'react';
-import Button from '../common/Button';
+import { useGetDescription } from '../../share/queries/useGetCharacter';
+import { DescriptionText } from '../../model/characterType';
+import { useQuery } from '@tanstack/react-query';
+import { MdArrowForwardIos } from 'react-icons/md';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { getCookie } from '../../cookie';
 
 const Wrapper = styled.div`
   display: flex;
   width: 90%; 
-  height: 25%;
+  height: 30%;
   background-color: #FAFAFA; 
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-
-margin-bottom: 15%;
-
+  margin-bottom: 30px;
 `;
 
 const InfoWrapper = styled.div`
   width: 80%;
-  padding: 6% 6% 1%;
 `;
 
 const TextWrapper = styled.div`
@@ -26,9 +29,11 @@ const TextWrapper = styled.div`
   height: 70%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   color: #333;
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
+  padding: 20px 0px 0px 20px;
 `;
 
 const Text = styled.span`
@@ -39,10 +44,9 @@ const Text = styled.span`
 const ButtonWrapper = styled.div`
   width: 100%;
   height: 30%;
-
   display: flex;
-  align-items: center;  
-  
+  justify-content: flex-start;
+  padding-left: 20px;
 `;
 
 const ImgWrapper = styled.div`
@@ -58,36 +62,77 @@ const ImgWrapper = styled.div`
   }
 `;
 
+const Next = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color:#787878;
+  font-size: ${props => props.theme.font.size.body};
+  font-weight: ${props => props.theme.font.weight.bold};
+`;
+
+const Finish = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color:#787878;
+  font-size: ${props => props.theme.font.size.body};
+  font-weight: ${props => props.theme.font.weight.bold};
+`;
+
 const InfoModal = () => {
-  const dummyList = [
-    '어쩌구저쩌구는 어쩌구 저쩌구 입니다. 어쩌구저쩌구는 어쩌구 저쩌구 입니다.어쩌구저쩌구는 어쩌구 저쩌구 입니다.어쩌구저쩌구는 어쩌구 저쩌구 입니다.',
-    '우리 폴라를 저쩌구 해주기 위해 이런 방법이 있습니다.',
-    '폴라를 구하러 갑시다!',
-  ];
+  const navigate = useNavigate();
+  const params = new URL(document.URL).searchParams;
+  const character = params.get('character');
+  const token = getCookie('Authorization');
+  const { data: Description } = useQuery<DescriptionText>({
+    queryKey: ['Description'],
+    queryFn: () => useGetDescription(character as string),
+  });
+
   const [index, setIndex] = useState(0);
 
   const handleClick = () => {
-    if (index < dummyList.length - 1) {
+    if (Description && index < Description.length - 1) {
       setIndex(index + 1);
     }
+  };
+
+  // 뮤테이션으로 바꿀 예정
+  const PickCharacter = () => {
+    axios
+      .post(
+        `${import.meta.env.VITE_BASE_URL}/character/pick`,
+        { characterId: 2 },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      .then(res => {
+        console.log(res);
+        navigate('/');
+      })
+      .catch(e => console.log(e));
   };
 
   return (
     <Wrapper>
       <InfoWrapper>
         <TextWrapper>
-          <Text>{dummyList[index]}</Text>
+          <Text>{Description && Description[index].step}</Text>
         </TextWrapper>
         <ButtonWrapper>
-          <Button
-            bgColor='#FAFAFA'
-            textColor='darkGray'
-            width=''
-            height=''
-            onClick={handleClick}
-          >
-            {index < dummyList.length - 1 ? '다음 >' : '시작하기 >'}
-          </Button>
+          {Description && index < Description.length - 1 ? (
+            <Next onClick={handleClick}>
+              다음 <MdArrowForwardIos />
+            </Next>
+          ) : (
+            <Finish onClick={PickCharacter}>
+              시작하기 <MdArrowForwardIos />
+            </Finish>
+          )}
         </ButtonWrapper>
       </InfoWrapper>
       <ImgWrapper>
