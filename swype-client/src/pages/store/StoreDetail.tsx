@@ -23,9 +23,6 @@ export default function StoreDetail() {
 
   const Calnum = (item?.userPoint ?? 0) - (item?.itemResponse?.price ?? 0);
 
-  const BuyCheck = () => {
-    setIsModal(true);
-  };
   return (
     <>
       <Container>
@@ -92,7 +89,7 @@ export default function StoreDetail() {
               textColor='lightGray'
               width='45%'
               height='50px'
-              onClick={BuyCheck}
+              onClick={() => setIsModal(true)}
             >
               구매하기
             </Button>

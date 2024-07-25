@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import StorePoint from '../assets/StorePoint.png';
 import { useNavigate } from 'react-router-dom';
-import { ItemList } from '../model/StoreType/GetItem';
+import { ItemList } from '../model/storeType';
 
 type ItemCardProps = {
   item: ItemList;

@@ -2,31 +2,41 @@ import styled from 'styled-components';
 import Quiz from '../assets/Quiz.png';
 import Video from '../assets/Video.png';
 import { useNavigate } from 'react-router-dom';
-import { getVideoWatched } from '../apis/video/getVideoWatched';
 import { useQuery } from '@tanstack/react-query';
 import { showToast } from '../share/utils/Toast';
 import { userData } from '../share/recoil/userAtom';
 import { useRecoilValue } from 'recoil';
 import { remainData } from '../share/recoil/remainAtom';
+import { useGetChance } from '../share/queries/useGetChance';
 
 const FeatureButtons = () => {
   const userInfo = useRecoilValue(userData);
   const remainQuiz = useRecoilValue(remainData);
 
   const navigate = useNavigate();
-  const { data } = useQuery({
-    queryKey: ['getVideoWatched'],
-    queryFn: getVideoWatched,
+  const { data: chance } = useQuery({
+    queryKey: ['chance'],
+    queryFn: useGetChance,
   });
 
-  const handleVideoClick = () => {
-    if (
-      typeof data === 'string' &&
-      (data as string).includes('오늘의 영상 횟수가 소진되었습니다.')
-    ) {
-      showToast('warning', '오늘 영상을 이미 시청하였어요.', '00시 이후에 다시 만나요!');
-    } else {
-      navigate('/movie');
+  const handleChanceCheck = (what: string) => {
+    switch (what) {
+      case 'quiz':
+        if (chance.remainQuestion === 0) {
+          showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.', '12시 이후에 다시 만나요');
+          return;
+        } else {
+          navigate('/quiz');
+        }
+        break;
+      case 'video':
+        if (chance.remainVideo === 0) {
+          showToast('warning', '오늘의 영상을 이미 시청하였어요.', '12시 이후에 다시 만나요');
+          return;
+        } else {
+          navigate('/movie');
+        }
+        break;
     }
   };
 
@@ -41,7 +51,7 @@ const FeatureButtons = () => {
         </NameBox>
       </Info>
       <ButtonContainer>
-        <QuizBox onClick={() => navigate('/quiz')}>
+        <QuizBox onClick={() => handleChanceCheck('quiz')}>
           <QuizImg src={Quiz}></QuizImg>
           <QuizText>
             남은 횟수 <br />
@@ -49,7 +59,7 @@ const FeatureButtons = () => {
           </QuizText>
         </QuizBox>
 
-        <MovieBox onClick={handleVideoClick}>
+        <MovieBox onClick={() => handleChanceCheck('video')}>
           <MovieImg src={Video}></MovieImg>
           <MovieText>영상 시청</MovieText>
         </MovieBox>
@@ -112,20 +122,19 @@ const MovieBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 const QuizBox = styled(MovieBox)`
-
+  cursor: pointer;
   margin-right: 10px;
 `;
 
 const QuizImg = styled.img`
   width:65%;
-  margin-bottom: 10px;
 `;
 
 const MovieImg = styled(QuizImg)`
-  
 `;
 
 const QuizText = styled.p`
