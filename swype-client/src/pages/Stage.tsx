@@ -32,7 +32,6 @@ const Stage = () => {
   }, [userInfo, setUserData]);
 
   useEffect(() => {
-    // cleanData 함수가 서버에서 청소 상태를 받아와서 isClean 상태를 설정함
     const cleanData = async () => {
       try {
         const status = await trashStatusCheck();
@@ -49,7 +48,7 @@ const Stage = () => {
     if (!isClean) {
       navigate('/polluted');
     } else {
-      showToast('warning', '오늘의 쓰레기를 다 치웠어요. 00시 이후에 다시 만나요!');
+      showToast('warning', '오늘의 쓰레기를 다 치웠어요.', '00시 이후에 다시 만나요!');
     }
   };
 
@@ -89,7 +88,8 @@ const Wrapper = styled.div<{ backgroundImage?: string }>`
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
-  background-image: url(${props => props.backgroundImage});  background-repeat: no-repeat;
+  background-image: url(${props => props.backgroundImage});  
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: flex;

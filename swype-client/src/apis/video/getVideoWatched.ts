@@ -17,7 +17,7 @@ export const getVideoWatched = (): Promise<{ isWatched: boolean }> => {
     )
     .then(res => res.data.data)
     .catch(error => {
-      console.error('error:', error);
+      console.error('영상 error:', error);
       throw error;
     });
 };

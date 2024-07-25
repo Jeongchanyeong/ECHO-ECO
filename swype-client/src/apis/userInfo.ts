@@ -14,7 +14,7 @@ export const getUserInfo = (): Promise<UserInfo> => {
     })
     .then(res => res.data.data)
     .catch(error => {
-      console.error('err:', error);
+      console.error('User err:', error);
       throw error;
     });
 };

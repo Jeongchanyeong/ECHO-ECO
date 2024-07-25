@@ -1,5 +1,7 @@
 import StorePoint from '../assets/StorePoint.png';
 import styled from 'styled-components';
+import { userData } from '../share/recoil/userAtom';
+import { useRecoilValue } from 'recoil';
 
 const Item = styled.div`
   display: flex;
@@ -18,6 +20,8 @@ img{
 `;
 
 const Point = () => {
+  const userInfo = useRecoilValue(userData);
+
   return (
     <>
       <Item>
@@ -25,7 +29,7 @@ const Point = () => {
           src={StorePoint}
           alt='포인트'
         />
-        <span>30</span>
+        <span>{userInfo?.userPoint}</span>
       </Item>
     </>
   );

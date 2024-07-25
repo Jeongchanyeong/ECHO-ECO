@@ -7,9 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import { showToast } from '../share/utils/Toast';
 import { userData } from '../share/recoil/userAtom';
 import { useRecoilValue } from 'recoil';
+import { remainData } from '../share/recoil/remainAtom';
 
 const FeatureButtons = () => {
   const userInfo = useRecoilValue(userData);
+  const remainQuiz = useRecoilValue(remainData);
 
   const navigate = useNavigate();
   const { data } = useQuery({
@@ -18,10 +20,13 @@ const FeatureButtons = () => {
   });
 
   const handleVideoClick = () => {
-    if (data?.isWatched) {
-      navigate('/movie');
+    if (
+      typeof data === 'string' &&
+      (data as string).includes('오늘의 영상 횟수가 소진되었습니다.')
+    ) {
+      showToast('warning', '오늘 영상을 이미 시청하였어요.', '00시 이후에 다시 만나요!');
     } else {
-      showToast('warning', '오늘 영상을 이미 시정하였어요. 00시 이후에 다시 만나요!');
+      navigate('/movie');
     }
   };
 
@@ -40,7 +45,7 @@ const FeatureButtons = () => {
           <QuizImg src={Quiz}></QuizImg>
           <QuizText>
             남은 횟수 <br />
-            3/3
+            {remainQuiz.remainQuestion}/3
           </QuizText>
         </QuizBox>
 
