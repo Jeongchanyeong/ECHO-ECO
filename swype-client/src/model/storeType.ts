@@ -10,12 +10,5 @@ export type ItemList = {
 export type DetailItem = {
   availableBuy: boolean;
   userPoint: number;
-  itemResponse: {
-    id: number;
-    imageUrl: string;
-    levelUp: number;
-    name: string;
-    price: number;
-    description: string;
-  };
+  itemResponse: ItemList;
 };
