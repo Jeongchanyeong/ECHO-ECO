@@ -5,10 +5,10 @@ export interface CharacterInfo {
 }
 
 export interface UserInfo {
-  character?: CharacterInfo;
-  level?: number;
-  environment?: string;
-  backgroundImage?: string;
-  characterImage?: string;
-  userPoint?: number;
+  character: CharacterInfo;
+  level: number;
+  environment: string;
+  backgroundImage: string;
+  characterImage: string;
+  userPoint: number;
 }

@@ -1,7 +1,5 @@
 import { Container } from '../share/utils/GlobalStyle';
 import FeatureButtons from '../components/FeatureButtons';
-import Frozen_Land from '../assets/Frozen_Land.png';
-import Iceberg_Pola from '../assets/Iceberg_Pola.png';
 import Header from '../components/common/Header';
 import styled from 'styled-components';
 import Store from '../assets/Store.png';
@@ -12,10 +10,26 @@ import { useEffect, useState } from 'react';
 import Point from '../components/Point';
 import { trashStatusCheck } from '../apis/trashStatusCheck';
 import { showToast } from '../share/utils/Toast';
+import { useQuery } from '@tanstack/react-query';
+import { getUserInfo } from '../apis/userInfo';
+import { useSetRecoilState } from 'recoil';
+import { userData } from '../share/recoil/userAtom';
 
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
   const navigate = useNavigate();
+  const setUserData = useSetRecoilState(userData);
+
+  const { data: userInfo } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+  });
+
+  useEffect(() => {
+    if (userInfo) {
+      setUserData(userInfo);
+    }
+  }, [userInfo, setUserData]);
 
   useEffect(() => {
     // cleanData 함수가 서버에서 청소 상태를 받아와서 isClean 상태를 설정함
@@ -35,7 +49,7 @@ const Stage = () => {
     if (!isClean) {
       navigate('/polluted');
     } else {
-      showToast('error', '쓰레기 줍기는 이미 완료 되었습니다. 12시 이후에 다시 만나요!');
+      showToast('warning', '오늘의 쓰레기를 다 치웠어요. 00시 이후에 다시 만나요!');
     }
   };
 
@@ -46,7 +60,7 @@ const Stage = () => {
   return (
     <Container>
       <Header rightChild={<Point />} />
-      <Wrapper>
+      <Wrapper backgroundImage={userInfo?.backgroundImage}>
         <Out>
           <StoreButton onClick={goStorePage}>
             <img src={Store} />
@@ -58,7 +72,7 @@ const Stage = () => {
           </TrashButton>
         </Out>
         <CharacterBox>
-          <CharacterImage src={Iceberg_Pola} />
+          <CharacterImage src={userInfo?.characterImage} />
         </CharacterBox>
         <InfoBox>
           <FeatureButtons />
@@ -70,13 +84,12 @@ const Stage = () => {
 
 export default Stage;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ backgroundImage?: string }>`
   position: relative;
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
-  background-image: url(${Frozen_Land});
-  background-repeat: no-repeat;
+  background-image: url(${props => props.backgroundImage});  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: flex;
