@@ -16,14 +16,14 @@ export default function Charcter() {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [selectImage, setSelectImage] = useState<string>('');
   const navigate = useNavigate();
-  useEffect(() => {
-    try {
-      checkUser();
-      navigate('/');
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     checkUser();
+  //     navigate('/');
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
 
   const { data: Characters } = useQuery<CharacterList[]>({
     queryKey: ['Character'],

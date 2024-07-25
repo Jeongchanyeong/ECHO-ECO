@@ -1,63 +1,100 @@
 import styled from 'styled-components';
 import Leeca from '../../assets/LeeCa.png';
-import { Container } from '../../share/utils/GlobalStyle';
 import Button from '../common/Button';
+import { useNavigate } from 'react-router-dom';
+import { showToast } from '../../share/utils/Toast';
+import { useGetChance } from '../../share/queries/useGetChance';
+import { useQuery } from '@tanstack/react-query';
+import { Quiz } from '../../model/quizType';
 
-export default function QuizModal() {
+type Props = {
+  data?: string;
+  quiz: Quiz;
+  setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
+  console.log(quiz);
+  const navigate = useNavigate();
+
+  const { data: chance } = useQuery({
+    queryKey: ['chance'],
+    queryFn: useGetChance,
+  });
+
+  const GoToMovie = () => {
+    if (chance.remainVideo === 0) {
+      showToast('warning', '오늘 영상 시청을 하셨어요 !');
+      return;
+    } else {
+      navigate('/movie');
+    }
+  };
+
   return (
-    <Container>
-      <ModalBox>
-        <ImgBox>
-          <Img src={Leeca} />
-        </ImgBox>
-        <InfoModal>
-          <Title>게임기 구매완료!</Title>
-          <Info>심심할때는 ? 새로운 게임의 세계로!</Info>
-          <ImageDiv>
-            <ItemImage
-              src={
-                'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdUfE1T%2FbtsItS5k6jH%2FklaOWsPJsuhHXhhoaTrxKk%2Fimg.png'
-              }
-            ></ItemImage>
-          </ImageDiv>
+    <ModalBox>
+      <ImgBox>
+        <Img src={Leeca} />
+      </ImgBox>
+      <InfoModal>
+        <Title>
+          {data === 'INCORRECT' ? (
+            <>
+              아쉽네요
+              <br />
+              오답입니다!
+            </>
+          ) : (
+            '정답입니다'
+          )}
+        </Title>
+        <Info>획득 포인트 + {data === 'INCORRECT' ? 0 : +10}</Info>
 
-          <LevelBox>
-            <BeforeLevel>Lv.1</BeforeLevel>
-            <Icon>→</Icon>
-            <NextLevel>Lv.3</NextLevel>
-          </LevelBox>
+        <InfoBox>{quiz.head}</InfoBox>
 
+        {chance?.remainQuestion == 0 ? (
+          <>
+            <BlueButton onClick={() => navigate('/stage')}>남은 횟수 소진! 스테이지로</BlueButton>
+            <GrayButton onClick={GoToMovie}>영상 보고 퀴즈 더 풀기</GrayButton>
+          </>
+        ) : (
           <Button
             bgColor='blue'
             textColor='white'
             width='100%'
             height='50px'
+            onClick={() => setIsModal(false)}
           >
-            스테이지로 바로가기
+            다음 문제 풀러가기
           </Button>
-        </InfoModal>
-      </ModalBox>
-    </Container>
+        )}
+      </InfoModal>
+    </ModalBox>
   );
-}
+};
+
+export default QuizModal;
 
 const ModalBox = styled.div`
-    margin: 100px auto;
+    margin:  auto;
     width:80%;
 `;
 
 const InfoModal = styled.div`
     border-radius: 20px;
     width: 100%;
-    background-color: #fff;
+    background-color: #F9F9F9;
     border: 1px solid #f2f2f2;
     padding:20px;
-
+    position: relative;
+    z-index: 3;
 `;
 
 const ImgBox = styled.div`
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 `;
 
 const Img = styled.img`
@@ -86,35 +123,37 @@ const Info = styled.div`
     margin: 10px 0px;
 `;
 
-const ImageDiv = styled.div`
+const InfoBox = styled.div`
+  border: 1px solid #F2F2F2;
+  border-radius: 20px;
+  width:100%;
+  margin-bottom: 20px;
+  background-color: #fff;
   text-align: center;
-  margin: 10px 0px;
+  padding:20px;
+  font-size: ${props => props.theme.font.size.body};
+  font-weight: ${props => props.theme.font.weight.bold};
+  color:#787878;
+  line-height: 1.5;
 `;
 
-const ItemImage = styled.img`
-  width: 40%;
-  height: 40%;
+const BlueButton = styled.button`
+  background-color: #23A1F8;
+  color:#fff;
+  border-radius: 10px;
+  width:100%;
+  height: 50px;
+  margin-bottom: 10px;
+  font-size: ${props => props.theme.font.size.buttonText};
+  font-weight: ${props => props.theme.font.weight.bold};
 `;
 
-const LevelBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px;
-`;
-
-const BeforeLevel = styled.p`
-  font-size: ${props => props.theme.font.size.quizHeader2};
-  font-weight: ${props => props.theme.font.weight.extraBold};
-`;
-
-const NextLevel = styled.p`
-  color : #23a1f8;
-  font-size: ${props => props.theme.font.size.quizHeader1};
-  font-weight: ${props => props.theme.font.weight.extraBold};
-`;
-
-const Icon = styled.div`
-  font-size: ${props => props.theme.font.size.quizHeader1};
-  margin: 0px 10px;
+const GrayButton = styled.button`
+  background-color: #F9F9F9;
+  color:#959595;
+  border-radius: 10px;
+  width:100%;
+  height: 50px;
+  font-size: ${props => props.theme.font.size.buttonText};
+  font-weight: ${props => props.theme.font.weight.bold};
 `;

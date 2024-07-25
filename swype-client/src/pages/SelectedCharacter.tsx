@@ -37,14 +37,14 @@ const CharacterImage = styled.img`
 
 const SelectedCharacter = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    try {
-      checkUser();
-      navigate('/');
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     checkUser();
+  //     navigate('/');
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
   return (
     <Container>
       <Header

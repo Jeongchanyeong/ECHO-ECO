@@ -6,9 +6,52 @@ import quizbackground from '../../assets/quizbackground.png';
 import QuizLife from '../../components/QuizLife';
 import Point from '../../components/Point';
 import { useNavigate } from 'react-router-dom';
+import { useGetQuiz } from '../../share/queries/useGetQuiz';
+import { useQuery } from '@tanstack/react-query';
+import { BASE_URL } from '../../share/utils/OAuth';
+import axios from 'axios';
+import { getCookie } from '../../cookie';
+import { useEffect, useState } from 'react';
+import QuizModal from '../../components/Modal/QuizModal';
 
 export default function Quiz() {
   const navigate = useNavigate();
+  const token = getCookie('Authorization');
+  const [isModal, setIsModal] = useState(false);
+  const [data, setData] = useState();
+  const {
+    data: quiz,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['quiz'],
+    queryFn: useGetQuiz,
+  });
+
+  useEffect(() => {
+    if (!isModal) {
+      refetch();
+    }
+  }, [isModal]);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const quizList = quiz ? JSON.parse(quiz.body) : null;
+
+  const handleAnswer = (idx: number) => {
+    const data = { id: quiz.id, select: idx };
+    axios
+      .post(`${BASE_URL}/question/post`, data, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
+      .then(res => {
+        setIsModal(true);
+        setData(res.data.data.answer);
+      })
+      .catch(err => console.log(err));
+  };
   return (
     <Container>
       <Header
@@ -20,37 +63,35 @@ export default function Quiz() {
         rightChild={<Point />}
       />
       <MainBox>
-        <ModalBox>
-          <ImgBox>
-            <Img src={Leeca} />
-          </ImgBox>
-          <InfoModal>
-            <Text>가뭄은 기상이변의 한 예시로 볼 수 있을까요?</Text>
-            <ChoiceBox>
-              <Choice>
-                <h1>A</h1>
-                <p>열대 나무</p>
-              </Choice>
-              <Choice>
-                <h1>B</h1>
-                <p>선인장</p>
-              </Choice>
-              <Choice>
-                <h1>C</h1>
-                <p>툰드라 이끼</p>
-              </Choice>
-              <Choice>
-                <h1>D</h1>
-                <p>사막 풀</p>
-              </Choice>
-            </ChoiceBox>
-            {/* OX 버전 조건부 스타일 예정*/}
-            {/* <ButtonBox>
-              <ButtonO>O</ButtonO>
-              <ButtonX>X</ButtonX>
-            </ButtonBox> */}
-          </InfoModal>
-        </ModalBox>
+        {isModal ? (
+          <QuizModal
+            data={data}
+            quiz={quiz}
+            setIsModal={setIsModal}
+          />
+        ) : (
+          <ModalBox>
+            <ImgBox>
+              <Img src={Leeca} />
+            </ImgBox>
+            <InfoModal>
+              <Text>{quiz?.name}</Text>
+              <ChoiceBox>
+                {quizList.map((data: { row: string }, idx: number) => {
+                  return (
+                    <Choice
+                      onClick={() => handleAnswer(idx + 1)}
+                      key={idx}
+                    >
+                      <h1>{idx + 1}</h1>
+                      <p>{data.row}</p>
+                    </Choice>
+                  );
+                })}
+              </ChoiceBox>
+            </InfoModal>
+          </ModalBox>
+        )}
       </MainBox>
     </Container>
   );
@@ -75,7 +116,7 @@ const InfoModal = styled.div`
     width: 90%;
     background-color: #F9F9F9;
     border: 1px solid #f2f2f2;
-    padding:30px 30px 40px 30px;
+    padding:20px;
     margin: 0 auto;
     position: relative;
 `;
@@ -93,34 +134,8 @@ const Img = styled.img`
 const Text = styled.p`
     font-size: ${props => props.theme.font.size.quizHeader2};
     font-weight: ${props => props.theme.font.weight.bold};
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     line-height: 1.3;
-`;
-
-const ButtonBox = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const ButtonO = styled.button`
-    background-color: #23A1F8;
-    margin-right: 20px;
-    font-size: 9rem;
-    font-weight: 800;
-    color:#fff;
-    width:150px;
-    height: 150px;
-    border-radius : 20px;
-`;
-
-const ButtonX = styled.button`
-    background-color: #F25A6F;
-    font-size: 9rem;
-    font-weight: 800;
-    color:#fff;
-    width:150px;
-    height: 150px;
-    border-radius : 20px;
 `;
 
 const ChoiceBox = styled.div`
@@ -138,12 +153,13 @@ const Choice = styled.div`
     margin-bottom: 15px;
     background-color: #fff;
     display: flex;
+    line-height: 1.3;
     h1{
         width:10%;
     }
     p{
         width:90%;
-        text-align: center;
+        text-align: left;
     }
 
     &:hover {

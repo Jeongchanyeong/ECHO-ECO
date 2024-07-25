@@ -113,7 +113,7 @@ const InfoModal = () => {
       )
       .then(res => {
         console.log(res);
-        navigate('/');
+        navigate('/stage');
       })
       .catch(e => console.log(e));
   };
