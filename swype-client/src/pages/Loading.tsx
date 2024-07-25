@@ -15,7 +15,7 @@ const Loading = () => {
   useEffect(() => {
     axios.get(`${BASE_URL}/user/token/${useremail}`).then(res => {
       setCookie('Authorization', res.data.data.authorization);
-      navigate('/');
+      navigate('/stage');
     });
   }, []);
   return (
