@@ -1,5 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 import Quiz_Life from '../assets/Quiz_Life.png';
 import styled from 'styled-components';
+import { remainContents } from '../apis/remainContents';
+import { useSetRecoilState } from 'recoil';
+import { remainData } from '../share/recoil/remainAtom';
+import { useEffect } from 'react';
 
 const Item = styled.div`
   display: flex;
@@ -18,6 +23,19 @@ const Item = styled.div`
 `;
 
 const QuizLife = () => {
+  const setRemainData = useSetRecoilState(remainData);
+
+  const { data } = useQuery({
+    queryKey: ['quiz'],
+    queryFn: remainContents,
+  });
+
+  useEffect(() => {
+    if (data) {
+      setRemainData(data);
+    }
+  }, [data, setRemainData]);
+
   return (
     <>
       <Item>
@@ -25,7 +43,7 @@ const QuizLife = () => {
           src={Quiz_Life}
           alt='퀴즈 생명'
         />
-        <span>0/3</span>
+        <span>{data?.remainQuestion}/3</span>
       </Item>
     </>
   );
