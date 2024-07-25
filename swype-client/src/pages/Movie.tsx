@@ -20,8 +20,7 @@ export default function Movie() {
   const mutation = useMutation({
     mutationFn: getVideoWatched,
     onSuccess: () => {
-      navigate(`/`);
-      console.log('hi');
+      navigate(`/stage`);
     },
   });
 
