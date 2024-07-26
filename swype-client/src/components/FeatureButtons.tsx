@@ -76,6 +76,7 @@ const Wrapper = styled.div`
   width:90%;
   height: 80%;
   padding:20px;
+  margin-bottom: 15px;
 `;
 
 const ButtonContainer = styled.div`

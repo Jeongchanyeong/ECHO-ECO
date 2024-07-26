@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { characterComplete } from '../../apis/characterComplete';
+import GiftModal from './GiftModal';
 
 const CompleteModal = () => {
+  const [index, setIndex] = useState(0);
+  const [isModal, setIsModal] = useState(true);
   const { data: completeMessages } = useQuery({
     queryKey: ['characterComplete'],
     queryFn: characterComplete,
   });
-
-  const [index, setIndex] = useState(0);
 
   const handleClick = () => {
     if (completeMessages && index < completeMessages.length - 1) {
@@ -20,32 +21,43 @@ const CompleteModal = () => {
   };
 
   return (
-    <Wrapper>
-      <InfoWrapper>
-        <TextWrapper>
-          {completeMessages && completeMessages[index] && (
-            <Text>{completeMessages[index].step}</Text>
-          )}
-        </TextWrapper>
-        <ButtonWrapper>
-          {completeMessages && index < completeMessages.length - 1 ? (
-            <Next onClick={handleClick}>
-              다음 <MdArrowForwardIos />
-            </Next>
-          ) : (
-            <Finish onClick={() => {}}>
-              기프티콘 받으러 가기 <MdArrowForwardIos />
-            </Finish>
-          )}
-        </ButtonWrapper>
-      </InfoWrapper>
-      <ImgWrapper>
-        <img
-          src={Quokka}
-          alt='Quokka'
-        />
-      </ImgWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        {isModal ? (
+          <>
+            <InfoWrapper>
+              <TextWrapper>
+                {completeMessages && completeMessages[index] && (
+                  <Text>{completeMessages[index].step}</Text>
+                )}
+              </TextWrapper>
+              <ButtonWrapper>
+                {completeMessages && index < completeMessages.length - 1 ? (
+                  <Next onClick={handleClick}>
+                    다음 <MdArrowForwardIos />
+                  </Next>
+                ) : (
+                  <Finish
+                    onClick={() => {
+                      setIsModal(false);
+                    }}
+                  >
+                    기프티콘 받으러 가기 <MdArrowForwardIos />
+                  </Finish>
+                )}
+              </ButtonWrapper>
+            </InfoWrapper>
+            <ImgWrapper>
+              <img
+                src={Quokka}
+                alt='Quokka'
+              />
+            </ImgWrapper>
+          </>
+        ) : null}
+      </Wrapper>
+      {!isModal && <GiftModal />}
+    </>
   );
 };
 
@@ -63,6 +75,7 @@ const Wrapper = styled.div`
 
 const InfoWrapper = styled.div`
   width: 80%;
+  padding:20px;
 `;
 
 const TextWrapper = styled.div`
@@ -74,13 +87,12 @@ const TextWrapper = styled.div`
   color: #333;
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
-  padding: 20px 0px 20px 20px;
+  margin-bottom: 10px;
 `;
 
 const Text = styled.span`
   color: ${props => props.theme.colors.text.black};
   font-weight: ${props => props.theme.font.weight.extraBold};
-  padding-top:20px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -88,7 +100,6 @@ const ButtonWrapper = styled.div`
   height: 30%;
   display: flex;
   justify-content: flex-start;
-  padding-left: 20px;
 `;
 
 const ImgWrapper = styled.div`
