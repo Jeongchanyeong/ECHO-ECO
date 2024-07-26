@@ -3,12 +3,37 @@ import { Container } from '../../share/utils/GlobalStyle';
 import Button from '../common/Button';
 import { DetailItem } from '../../model/storeType';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userData } from '../../share/recoil/userAtom';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { BASE_URL } from '../../share/utils/OAuth';
+import axios from 'axios';
+import { getCookie } from '../../cookie';
 interface ItemModalProps {
   item?: DetailItem;
 }
 
 const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
+  const user = useRecoilValue(userData);
   const navigate = useNavigate();
+  const token = getCookie('Authorization');
+
+  const buyItem = () => {
+    axios
+      .post(
+        `${BASE_URL}/item/buy`,
+        { itemId: item?.itemResponse.id },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      .then(res => {
+        console.log(res);
+        navigate('/store');
+      }).catch;
+  };
 
   return (
     <Container>
@@ -31,9 +56,8 @@ const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
 
           <LevelBox>
             <PointText>Lv.{item?.itemResponse.levelUp} </PointText>
-            <PointText>{'->'}</PointText>
-            {/* 유저 정보 Recoil로 가져와서 나의 레벨 + 아이템 레벨 더해주기  */}
-            <UpPointText>Lv.{item?.itemResponse.levelUp}</UpPointText>
+            <PointText>{<FaArrowRightLong />}</PointText>
+            <UpPointText>Lv.{Number(item?.itemResponse.levelUp) + Number(user?.level)}</UpPointText>
           </LevelBox>
 
           <Button
@@ -41,7 +65,7 @@ const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
             textColor='white'
             width='100%'
             height='50px'
-            onClick={() => navigate('/store')}
+            onClick={buyItem}
           >
             확인
           </Button>
@@ -66,6 +90,8 @@ img{
 const ModalBox = styled.div`
     margin: auto;
     width:80%;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 20%);
+    border-radius: 20px;
 `;
 
 const InfoModal = styled.div`

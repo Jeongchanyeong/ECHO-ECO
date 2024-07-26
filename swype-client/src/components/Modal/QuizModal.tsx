@@ -5,16 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { showToast } from '../../share/utils/Toast';
 import { useGetChance } from '../../share/queries/useGetChance';
 import { useQuery } from '@tanstack/react-query';
-import { Quiz } from '../../model/quizType';
+import { QuizType } from '../../model/quizType';
 
 type Props = {
   data?: string;
-  quiz: Quiz;
+  quiz?: QuizType;
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
-  console.log(quiz);
   const navigate = useNavigate();
 
   const { data: chance } = useQuery({
@@ -24,7 +23,7 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
 
   const GoToMovie = () => {
     if (chance.remainVideo === 0) {
-      showToast('warning', '오늘 영상 시청을 하셨어요 !');
+      showToast('warning', '오늘 영상 시청을 하셨어요 !', '');
       return;
     } else {
       navigate('/movie');
@@ -50,7 +49,7 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
         </Title>
         <Info>획득 포인트 + {data === 'INCORRECT' ? 0 : +10}</Info>
 
-        <InfoBox>{quiz.head}</InfoBox>
+        <InfoBox>{quiz?.head}</InfoBox>
 
         {chance?.remainQuestion == 0 ? (
           <>
