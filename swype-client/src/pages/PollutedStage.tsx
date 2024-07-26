@@ -48,7 +48,6 @@ const PollutedStage = () => {
     mutationFn: trashPoint,
 
     onSuccess: data => {
-      console.log('res:', data);
       setAddPoint(data.addPoint);
       setAfterPoint(data.afterPoint);
       setModalVisible(true);

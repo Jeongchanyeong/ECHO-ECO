@@ -28,7 +28,7 @@ export default function Movie() {
     intervalIdRef.current = setInterval(() => {
       setTime(prev => prev - 1);
       setWidth(prev => prev + 3.4);
-    }, 10);
+    }, 1000);
 
     return () => {
       if (intervalIdRef.current) {

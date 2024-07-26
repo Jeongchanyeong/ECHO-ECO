@@ -14,7 +14,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getUserInfo } from '../apis/userInfo';
 import { useSetRecoilState } from 'recoil';
 import { userData } from '../share/recoil/userAtom';
+import CompleteModal from '../components/Modal/CompleteModal';
 import { getCookie } from '../cookie';
+
 
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
@@ -68,24 +70,45 @@ const Stage = () => {
   return (
     <Container>
       <Header rightChild={<Point />} />
-      <Wrapper backgroundImage={userInfo?.backgroundImage}>
-        <Out>
-          <StoreButton onClick={goStorePage}>
-            <img src={Store} />
-            <span>상점</span>
-          </StoreButton>
-          <TrashButton onClick={goPollutedPage}>
-            <img src={isClean ? Trash_Old : Trash_New} />
-            <span>쓰레기 치우기</span>
-          </TrashButton>
-        </Out>
-        <CharacterBox>
-          <CharacterImage src={userInfo?.characterImage} />
-        </CharacterBox>
-        <InfoBox>
-          <FeatureButtons />
-        </InfoBox>
-      </Wrapper>
+      {userInfo?.level === userInfo?.character.maxLevel ? (
+        <Wrapper backgroundImage={userInfo?.backgroundImage}>
+          <ButtonWrapper>
+            <StoreButton onClick={goStorePage}>
+              <img src={Store} />
+              <span>상점</span>
+            </StoreButton>
+            <TrashButton onClick={goPollutedPage}>
+              <img src={isClean ? Trash_Old : Trash_New} />
+              <span>쓰레기 치우기</span>
+            </TrashButton>
+          </ButtonWrapper>
+
+          <CharacterBox>
+            <CharacterImage src={userInfo?.characterImage} />
+          </CharacterBox>
+
+          <InfoBox>
+            <FeatureButtons />
+          </InfoBox>
+        </Wrapper>
+      ) : (
+        <Wrapper backgroundImage={userInfo?.backgroundImage}>
+          <ButtonWrapper>
+            <StoreButton hidden={true}>
+              <img src={Store} />
+              <span>상점</span>
+            </StoreButton>
+            <TrashButton hidden={true}>
+              <img src={Trash_New} />
+              <span>쓰레기 치우기</span>
+            </TrashButton>
+          </ButtonWrapper>
+          <CharacterBox>
+            <CharacterImage src={userInfo?.characterImage} />
+          </CharacterBox>
+          <CompleteModal />
+        </Wrapper>
+      )}
     </Container>
   );
 };
@@ -121,7 +144,7 @@ const CharacterImage = styled.img`
   height: auto;
 `;
 
-const Out = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -138,14 +161,19 @@ const Out = styled.div`
 `;
 
 const StoreButton = styled.button`
-  display: flex;
+  display: ${props => (props.hidden ? 'none' : 'flex')};
   align-items: center;
   flex-direction: column;
   width: 25%;
   color: ${props => props.theme.colors.text.white};
-  
+
   img {
     width: 85%;
+    display: ${props => (props.hidden ? 'none' : 'block')};
+  }
+
+  span {
+    display: ${props => (props.hidden ? 'none' : 'block')};
   }
 `;
 
