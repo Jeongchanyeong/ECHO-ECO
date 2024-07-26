@@ -43,8 +43,6 @@ export default function Movie() {
     }
   }, [time]);
 
-  console.log('비디오 데이터:', videoData?.url);
-
   return (
     <Container>
       <Header
