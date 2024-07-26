@@ -17,7 +17,6 @@ import { userData } from '../share/recoil/userAtom';
 import CompleteModal from '../components/Modal/CompleteModal';
 import { getCookie } from '../cookie';
 
-
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
   const [token, setToken] = useState(getCookie('Authorization'));
@@ -71,7 +70,24 @@ const Stage = () => {
     <Container>
       <Header rightChild={<Point />} />
       {userInfo?.level === userInfo?.character.maxLevel ? (
-        <Wrapper backgroundImage={userInfo?.backgroundImage}>
+        <Wrapper $backgroundImage={userInfo?.backgroundImage}>
+          <ButtonWrapper>
+            <StoreButton hidden={true}>
+              <img src={Store} />
+              <span>상점</span>
+            </StoreButton>
+            <TrashButton hidden={true}>
+              <img src={Trash_New} />
+              <span>쓰레기 치우기</span>
+            </TrashButton>
+          </ButtonWrapper>
+          <CharacterBox>
+            <CharacterImage src={userInfo?.characterImage} />
+          </CharacterBox>
+          <CompleteModal />
+        </Wrapper>
+      ) : (
+        <Wrapper $backgroundImage={userInfo?.backgroundImage}>
           <ButtonWrapper>
             <StoreButton onClick={goStorePage}>
               <img src={Store} />
@@ -91,23 +107,6 @@ const Stage = () => {
             <FeatureButtons />
           </InfoBox>
         </Wrapper>
-      ) : (
-        <Wrapper backgroundImage={userInfo?.backgroundImage}>
-          <ButtonWrapper>
-            <StoreButton hidden={true}>
-              <img src={Store} />
-              <span>상점</span>
-            </StoreButton>
-            <TrashButton hidden={true}>
-              <img src={Trash_New} />
-              <span>쓰레기 치우기</span>
-            </TrashButton>
-          </ButtonWrapper>
-          <CharacterBox>
-            <CharacterImage src={userInfo?.characterImage} />
-          </CharacterBox>
-          <CompleteModal />
-        </Wrapper>
       )}
     </Container>
   );
@@ -115,12 +114,12 @@ const Stage = () => {
 
 export default Stage;
 
-const Wrapper = styled.div<{ backgroundImage?: string }>`
+const Wrapper = styled.div<{ $backgroundImage?: string }>`
   position: relative;
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
-  background-image: url(${props => props.backgroundImage});  
+  background-image: url(${props => props.$backgroundImage});  
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

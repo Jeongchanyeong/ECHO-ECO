@@ -76,8 +76,8 @@ export default function StoreDetail() {
         {Calnum > 0 ? (
           <ButtonBox>
             <Button
-              bgColor='lightGray'
-              textColor='gray'
+              $bgColor='lightGray'
+              $textColor='gray'
               width='45%'
               height='50px'
               onClick={() => navigate(-1)}
@@ -85,8 +85,8 @@ export default function StoreDetail() {
               취소
             </Button>
             <Button
-              bgColor='blue'
-              textColor='lightGray'
+              $bgColor='blue'
+              $textColor='lightGray'
               width='45%'
               height='50px'
               onClick={() => setIsModal(true)}
@@ -99,7 +99,7 @@ export default function StoreDetail() {
             <NoPayButton disabled={true}>구매 불가</NoPayButton>
           </NoPayButtonBox>
         )}
-        <ModalBox isModal={isModal}>{isModal && <ItemModal item={item} />}</ModalBox>
+        <ModalBox $isModal={isModal}>{isModal && <ItemModal item={item} />}</ModalBox>
       </Container>
     </>
   );
@@ -112,11 +112,11 @@ const DetailBox = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-const ModalBox = styled.div<{ isModal: boolean }>`
+const ModalBox = styled.div<{ $isModal: boolean }>`
   position: absolute;
   width:100%;
   max-width: 480px;
-  opacity: ${({ isModal }) => (isModal ? 1 : 0)};
+  opacity: ${({ $isModal }) => ($isModal ? 1 : 0)};
   transition: opacity 0.7s ease-in-out; 
 `;
 

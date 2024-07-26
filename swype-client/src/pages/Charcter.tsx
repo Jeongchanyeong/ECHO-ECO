@@ -66,10 +66,10 @@ export default function Charcter() {
           </CardBox>
           <ButtonBox>
             <Button
-              bgColor={'blue'}
+              $bgColor={'blue'}
               width='90%'
               height='50px'
-              textColor='lightGray'
+              $textColor='lightGray'
               onClick={() => navigate(`/selected?character=${selectedItem}`)}
             >
               확인
