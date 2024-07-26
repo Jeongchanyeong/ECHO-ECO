@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../share/utils/GlobalStyle';
 import coffee from '../assets/coffee.png';
 import CheckFalse from '../assets/CheckFalse.png';
 import CheckTrue from '../assets/CheckTrue.png';
 import Button from '../common/Button';
-import EmailIcon from '../assets/EmailIcon.png';
 
 export default function GiftModal() {
   const [isCheck, setIsCheck] = useState(false);

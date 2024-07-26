@@ -13,17 +13,20 @@ import axios from 'axios';
 import { getCookie } from '../../cookie';
 import { useEffect, useState } from 'react';
 import QuizModal from '../../components/Modal/QuizModal';
+import { QuizType } from '../../model/quizType';
+import { showToast } from '../../share/utils/Toast';
 
 export default function Quiz() {
-  const navigate = useNavigate();
-  const token = getCookie('Authorization');
   const [isModal, setIsModal] = useState(false);
   const [data, setData] = useState();
+  const navigate = useNavigate();
+  const token = getCookie('Authorization');
+
   const {
     data: quiz,
-    isLoading,
+    error,
     refetch,
-  } = useQuery({
+  } = useQuery<QuizType>({
     queryKey: ['quiz'],
     queryFn: useGetQuiz,
   });
@@ -34,12 +37,15 @@ export default function Quiz() {
     }
   }, [isModal]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (error) {
+    navigate('/stage');
+    showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.', '비 정상적인 접근입니다.');
+  }
 
-  const quizList = quiz ? JSON.parse(quiz.body) : null;
+  const quizList = typeof quiz?.body === 'string' ? JSON.parse(quiz.body) : [];
 
   const handleAnswer = (idx: number) => {
-    const data = { id: quiz.id, select: idx };
+    const data = { id: quiz?.id, select: idx };
     axios
       .post(`${BASE_URL}/question/post`, data, {
         headers: {
@@ -52,6 +58,7 @@ export default function Quiz() {
       })
       .catch(err => console.log(err));
   };
+
   return (
     <Container>
       <Header

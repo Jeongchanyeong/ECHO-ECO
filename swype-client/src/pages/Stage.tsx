@@ -14,9 +14,11 @@ import { useQuery } from '@tanstack/react-query';
 import { getUserInfo } from '../apis/userInfo';
 import { useSetRecoilState } from 'recoil';
 import { userData } from '../share/recoil/userAtom';
+import { getCookie } from '../cookie';
 
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
+  const [token, setToken] = useState(getCookie('Authorization'));
   const navigate = useNavigate();
   const setUserData = useSetRecoilState(userData);
 
@@ -24,6 +26,13 @@ const Stage = () => {
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
   });
+
+  useEffect(() => {
+    const tokenFromCookie = getCookie('Authorization');
+    if (tokenFromCookie !== token) {
+      setToken(tokenFromCookie);
+    }
+  }, [token]);
 
   useEffect(() => {
     if (userInfo) {

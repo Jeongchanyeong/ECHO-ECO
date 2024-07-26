@@ -5,8 +5,6 @@ import Frozen_Land from '../assets/Frozen_Land.png';
 import Header from '../components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import InfoModal from '../components/Modal/InfoModal';
-import { useEffect } from 'react';
-import { checkUser } from '../share/utils/checkUser';
 
 const Wrapper = styled.div`
   position: relative;

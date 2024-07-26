@@ -26,7 +26,7 @@ const QuizLife = () => {
   const setRemainData = useSetRecoilState(remainData);
 
   const { data } = useQuery({
-    queryKey: ['quiz'],
+    queryKey: ['remain'],
     queryFn: remainContents,
   });
 

@@ -6,14 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { showToast } from '../share/utils/Toast';
 import { userData } from '../share/recoil/userAtom';
 import { useRecoilValue } from 'recoil';
-import { remainData } from '../share/recoil/remainAtom';
 import { useGetChance } from '../share/queries/useGetChance';
 
 const FeatureButtons = () => {
   const userInfo = useRecoilValue(userData);
-  const remainQuiz = useRecoilValue(remainData);
-
   const navigate = useNavigate();
+
   const { data: chance } = useQuery({
     queryKey: ['chance'],
     queryFn: useGetChance,
@@ -55,7 +53,7 @@ const FeatureButtons = () => {
           <QuizImg src={Quiz}></QuizImg>
           <QuizText>
             남은 횟수 <br />
-            {remainQuiz.remainQuestion}/3
+            {chance?.remainQuestion}/3
           </QuizText>
         </QuizBox>
 
