@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
+import { TrashItemProps } from '../../model/trashType';
 
 const Wrapper = styled.div<{ top: string; left: string }>`
     position: absolute;
@@ -11,16 +12,6 @@ const Wrapper = styled.div<{ top: string; left: string }>`
       height: auto;
     }
   `;
-
-interface TrashItemProps {
-  index: number;
-  item: {
-    src: string;
-    alt: string;
-    top: string;
-    left: string;
-  };
-}
 
 const TrashItem = ({ item, index }: TrashItemProps) => (
   <Draggable

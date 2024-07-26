@@ -13,19 +13,19 @@ const TrashModal = ({ addPoint, afterPoint }: TrashModalProps) => {
     <ModalBox>
       <InfoModal>
         <Title>
-          <text>쓰레기 줍기 완료!</text>
+          <span>쓰레기 줍기 완료!</span>
         </Title>
 
         <LevelBox>
           <PointText>
-            <text>
-              획득 포인트 : <text>+ {addPoint}P</text>
-            </text>
+            <span>
+              획득 포인트 : <span>+ {addPoint}P</span>
+            </span>
           </PointText>
           <CurrentPointBox>
             <PointText>현재 포인트 : </PointText>
             <CurrentPointText>
-              <text>{afterPoint} P</text>
+              <span>{afterPoint} P</span>
             </CurrentPointText>
           </CurrentPointBox>
         </LevelBox>
@@ -34,8 +34,8 @@ const TrashModal = ({ addPoint, afterPoint }: TrashModalProps) => {
           onClick={() => {
             navigate('/stage');
           }}
-          bgColor='blue'
-          textColor='white'
+          $bgColor='blue'
+          $textColor='white'
           width='100%'
           height='50px'
         >

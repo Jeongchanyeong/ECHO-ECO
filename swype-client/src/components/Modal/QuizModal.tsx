@@ -58,8 +58,8 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
           </>
         ) : (
           <Button
-            bgColor='blue'
-            textColor='white'
+            $bgColor='blue'
+            $textColor='white'
             width='100%'
             height='50px'
             onClick={() => setIsModal(false)}

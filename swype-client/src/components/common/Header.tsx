@@ -19,7 +19,7 @@ const Nav = styled.div`
   box-sizing: border-box; 
 
 `;
-const Col = styled.div<{ buttonColor?: string }>`
+const Col = styled.div<{ $buttonColor?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +35,7 @@ const Col = styled.div<{ buttonColor?: string }>`
 
   button {
     font-size: 24px;
-    color: ${props => props.buttonColor || props.theme.colors.text.black};
+    color: ${props => props.$buttonColor || props.theme.colors.text.black};
   }
 `;
 
@@ -58,7 +58,7 @@ const Header = ({
 }: HeaderProps) => {
   return (
     <Nav>
-      <Col buttonColor={buttonColor}>
+      <Col $buttonColor={buttonColor}>
         <button
           onClick={onClick}
           style={{ color: buttonColor }}

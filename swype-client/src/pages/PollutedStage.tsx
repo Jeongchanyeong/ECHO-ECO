@@ -18,16 +18,7 @@ import { getTrashImg } from '../apis/trashImg';
 
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import { userData } from '../share/recoil/userAtom';
-
-interface TrashImgData {
-  backgroundImage: string;
-  characterImage: string;
-}
-
-interface TrashPointData {
-  addPoint: number;
-  afterPoint: number;
-}
+import { TrashImgData, TrashPointData } from '../model/trashType';
 
 const PollutedStage = () => {
   const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
@@ -35,10 +26,8 @@ const PollutedStage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [addPoint, setAddPoint] = useState(0);
   const [afterPoint, setAfterPoint] = useState(0);
-
   const userInfo = useRecoilValue(userData);
 
-  // 쓰레기 배경, 동물 받아오기
   const { data: trashStatusImg } = useQuery<TrashImgData>({
     queryKey: ['trashStatusImg'],
     queryFn: getTrashImg,
@@ -46,13 +35,11 @@ const PollutedStage = () => {
 
   const mutation = useMutation<TrashPointData>({
     mutationFn: trashPoint,
-
     onSuccess: data => {
       setAddPoint(data.addPoint);
       setAfterPoint(data.afterPoint);
       setModalVisible(true);
     },
-
     onError: error => {
       console.error(error);
     },
@@ -93,7 +80,7 @@ const PollutedStage = () => {
         buttonText={'〈'}
         rightChild={<Point />}
       />
-      <Wrapper backgroundImage={trashStatusImg?.backgroundImage}>
+      <Wrapper $backgroundImage={trashStatusImg?.backgroundImage}>
         <Text>
           <span>쓰레기를 드래그하여 휴지통에 넣어주세요!</span>
         </Text>
@@ -158,12 +145,12 @@ const PollutedStage = () => {
 
 export default PollutedStage;
 
-const Wrapper = styled.div<{ backgroundImage?: string }>`
+const Wrapper = styled.div<{ $backgroundImage?: string }>`
   position: relative;
   background-color: #e1f3f4;
   width: 100%;
   height: 100vh;
-  background-image: url(${props => props.backgroundImage});
+  background-image: url(${props => props.$backgroundImage});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

@@ -69,43 +69,57 @@ const Stage = () => {
   return (
     <Container>
       <Header rightChild={<Point />} />
+      {userInfo?.level === userInfo?.character.maxLevel ? (
+        <Wrapper $backgroundImage={userInfo?.backgroundImage}>
+          <ButtonWrapper>
+            <StoreButton hidden={true}>
+              <img src={Store} />
+              <span>상점</span>
+            </StoreButton>
+            <TrashButton hidden={true}>
+              <img src={Trash_New} />
+              <span>쓰레기 치우기</span>
+            </TrashButton>
+          </ButtonWrapper>
+          <CharacterBox>
+            <CharacterImage src={userInfo?.characterImage} />
+          </CharacterBox>
+          <CompleteModal />
+        </Wrapper>
+      ) : (
+        <Wrapper $backgroundImage={userInfo?.backgroundImage}>
+          <ButtonWrapper>
+            <StoreButton onClick={goStorePage}>
+              <img src={Store} />
+              <span>상점</span>
+            </StoreButton>
+            <TrashButton onClick={goPollutedPage}>
+              <img src={isClean ? Trash_Old : Trash_New} />
+              <span>쓰레기 치우기</span>
+            </TrashButton>
+          </ButtonWrapper>
 
-      <Wrapper backgroundImage={userInfo?.backgroundImage}>
-        <ButtonWrapper>
-          <StoreButton onClick={goStorePage}>
-            <img src={Store} />
-            <span>상점</span>
-          </StoreButton>
-          <TrashButton onClick={goPollutedPage}>
-            <img src={isClean ? Trash_Old : Trash_New} />
-            <span>쓰레기 치우기</span>
-          </TrashButton>
-        </ButtonWrapper>
+          <CharacterBox>
+            <CharacterImage src={userInfo?.characterImage} />
+          </CharacterBox>
 
-        <CharacterBox>
-          <CharacterImage src={userInfo?.characterImage} />
-        </CharacterBox>
-
-        <InfoBox>
-          {userInfo?.level !== userInfo?.character.maxLevel ? (
+          <InfoBox>
             <FeatureButtons />
-          ) : (
-            <CompleteModal />
-          )}
-        </InfoBox>
-      </Wrapper>
+          </InfoBox>
+        </Wrapper>
+      )}
     </Container>
   );
 };
 
 export default Stage;
 
-const Wrapper = styled.div<{ backgroundImage?: string }>`
+const Wrapper = styled.div<{ $backgroundImage?: string }>`
   position: relative;
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
-  background-image: url(${props => props.backgroundImage});  
+  background-image: url(${props => props.$backgroundImage});  
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
