@@ -122,10 +122,10 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
         {characters.map((character, index) => (
           <Button
             key={index}
-            bgColor={selectedCharacter === index ? '#7FD0FF' : '#FFFFF'}
+            $bgColor={selectedCharacter === index ? '#7FD0FF' : '#FFFFF'}
             width='80%'
             height='80%'
-            textColor='black'
+            $textColor='black'
             onClick={index === 0 ? handlePolaClick : undefined}
           >
             <CharacterImg src={character.src} />
@@ -137,10 +137,10 @@ const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
       </CharacterButtonWrapper>
       <SubmitButton>
         <Button
-          bgColor={isSelected ? 'blue' : 'gray'}
+          $bgColor={isSelected ? 'blue' : 'gray'}
           width='90%'
           height='40%'
-          textColor='lightGray'
+          $textColor='lightGray'
           onClick={handleCharacter}
           disabled={!isSelected}
         >

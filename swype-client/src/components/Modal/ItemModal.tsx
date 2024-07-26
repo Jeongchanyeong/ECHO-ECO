@@ -61,8 +61,8 @@ const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
           </LevelBox>
 
           <Button
-            bgColor='blue'
-            textColor='white'
+            $bgColor='blue'
+            $textColor='white'
             width='100%'
             height='50px'
             onClick={buyItem}

@@ -1,4 +1,3 @@
-// recoil atom 정의 파일
 import { atom } from 'recoil';
 import Can from '../../assets/trash/Can.png';
 import Mask from '../../assets/trash/Mask.png';

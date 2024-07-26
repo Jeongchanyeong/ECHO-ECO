@@ -75,7 +75,7 @@ export default function Movie() {
         </TimeBox>
       </MovieBox>
 
-      <ButtonBox time={time}>
+      <ButtonBox $time={time}>
         <button
           disabled={time !== 0}
           onClick={() => mutation.mutate()}
@@ -119,12 +119,12 @@ const Timer = styled.div`
   }
 `;
 
-const ButtonBox = styled.div<{ time: number }>`
+const ButtonBox = styled.div<{ $time: number }>`
   padding:30px 15px;
   background-color: black;
 
   button{
-    background-color: ${({ time }) => (time === 0 ? '#23A1F8' : '#D9D9D9')};
+    background-color: ${({ $time }) => ($time === 0 ? '#23A1F8' : '#D9D9D9')};
     color: ${props => props.theme.colors.text.white};
     font-weight: 700;
     font-size: ${props => props.theme.font.size.buttonText};

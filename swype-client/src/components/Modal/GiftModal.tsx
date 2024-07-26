@@ -35,8 +35,8 @@ export default function GiftModal() {
           </InputBox>
           <Noti $isText={isText}>! 유효하지 않은 이메일입니다.</Noti>
           <Button
-            bgColor='blue'
-            textColor='white'
+            $bgColor='blue'
+            $textColor='white'
             width='100%'
             height='50px'
           >

@@ -96,30 +96,30 @@ const LoginForm = () => {
       </LoginText>
       <ButtonWrapper>
         <Button
-          bgColor='kakao'
+          $bgColor='kakao'
           width='93%'
           height='25%'
-          textColor='black'
+          $textColor='black'
           onClick={handleKakaoLogin}
         >
           <img src={kakao_logo} />
           카카오로 시작하기
         </Button>
         <Button
-          bgColor='naver'
+          $bgColor='naver'
           width='93%'
           height='25%'
-          textColor='white'
+          $textColor='white'
           onClick={handleNaverLogin}
         >
           <img src={naver_logo} />
           네이버로 시작하기
         </Button>
         <Button
-          bgColor='google'
+          $bgColor='google'
           width='93%'
           height='25%'
-          textColor='black'
+          $textColor='black'
           onClick={handleGoogleLogin}
         >
           <img src={google_logo} />
