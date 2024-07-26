@@ -165,6 +165,7 @@ const StoreButton = styled.button`
   flex-direction: column;
   width: 25%;
   color: ${props => props.theme.colors.text.white};
+  margin-top: 10px;
 
   img {
     width: 85%;
@@ -188,5 +189,5 @@ const InfoBox = styled.div`
   height: 40%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `;
