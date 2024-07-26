@@ -9,10 +9,8 @@ const Item = styled.div`
   justify-content: center;
   border-radius: 15px;
   background-color: ${props => props.theme.colors.text.white};
-
-  width: 66px;
-  height: 30px;
-  
+  font-weight: 700;
+  padding:7px 10px;
   color: ${props => props.theme.colors.text.gray};
 img{
   padding-right: 8px;

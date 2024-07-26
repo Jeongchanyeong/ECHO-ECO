@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from './theme';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { RecoilRoot } from 'recoil';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const GlobalStyle = createGlobalStyle`
 
