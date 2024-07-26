@@ -28,7 +28,7 @@ export default function Movie() {
     intervalIdRef.current = setInterval(() => {
       setTime(prev => prev - 1);
       setWidth(prev => prev + 3.4);
-    }, 10);
+    }, 1000);
 
     return () => {
       if (intervalIdRef.current) {
@@ -42,6 +42,8 @@ export default function Movie() {
       clearInterval(intervalIdRef.current);
     }
   }, [time]);
+
+  console.log('비디오 데이터:', videoData?.url);
 
   return (
     <Container>
