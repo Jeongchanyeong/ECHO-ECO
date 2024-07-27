@@ -1,6 +1,22 @@
 import { ButtonHTMLAttributes } from 'react';
 import styled, { DefaultTheme } from 'styled-components';
 
+const Button = ({ $bgColor, width, height, $textColor, children, onClick }: ButtonProps) => {
+  return (
+    <CommonButton
+      $bgColor={$bgColor}
+      $textColor={$textColor}
+      width={width}
+      height={height}
+      onClick={onClick}
+    >
+      {children}
+    </CommonButton>
+  );
+};
+
+export default Button;
+
 const CommonButton = styled.button<ButtonProps>`
   background-color: ${props =>
     props.theme.colors.bgColor[props.$bgColor as keyof DefaultTheme['colors']['bgColor']] ||
@@ -34,19 +50,3 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   $textColor: keyof DefaultTheme['colors']['text'] | string;
   $bgColor: keyof DefaultTheme['colors']['bgColor'] | string;
 }
-
-const Button = ({ $bgColor, width, height, $textColor, children, onClick }: ButtonProps) => {
-  return (
-    <CommonButton
-      $bgColor={$bgColor}
-      $textColor={$textColor}
-      width={width}
-      height={height}
-      onClick={onClick}
-    >
-      {children}
-    </CommonButton>
-  );
-};
-
-export default Button;

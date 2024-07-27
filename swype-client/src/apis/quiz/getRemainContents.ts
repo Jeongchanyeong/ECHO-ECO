@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { BASE_URL } from '../share/utils/OAuth';
-import { getCookie } from '../cookie';
-import { RemainData } from '../model/remainDataType';
+import { getCookie } from '../../cookie';
+import { RemainData } from '../../model/remainDataType';
+import { BASE_URL } from '../../share/utils/OAuth';
 
 const token = getCookie('Authorization');
 
@@ -13,7 +13,6 @@ export const remainContents = (): Promise<RemainData> => {
       },
     })
     .then(res => {
-      console.log('API response:', res.data.data); // 응답 데이터 로깅
       return res.data.data;
     })
     .catch(error => {

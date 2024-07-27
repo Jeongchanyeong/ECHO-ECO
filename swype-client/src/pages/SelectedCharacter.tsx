@@ -6,6 +6,29 @@ import Header from '../components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import InfoModal from '../components/Modal/InfoModal';
 
+const SelectedCharacter = () => {
+  const navigate = useNavigate();
+
+  return (
+    <Container>
+      <Header
+        onClick={() => {
+          navigate('/character');
+        }}
+        buttonText={' 〈 '}
+      />
+      <Wrapper>
+        <CharacterImageWrapper>
+          <CharacterImage src={Iceberg_Pola} />
+        </CharacterImageWrapper>
+        <InfoModal />
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default SelectedCharacter;
+
 const Wrapper = styled.div`
   position: relative;
   background-color: #E1F3F4;
@@ -32,33 +55,3 @@ const CharacterImage = styled.img`
   width: 85%;
   height: auto;
 `;
-
-const SelectedCharacter = () => {
-  const navigate = useNavigate();
-  // useEffect(() => {
-  //   try {
-  //     checkUser();
-  //     navigate('/');
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
-  return (
-    <Container>
-      <Header
-        onClick={() => {
-          navigate('/character');
-        }}
-        buttonText={' 〈 '}
-      />
-      <Wrapper>
-        <CharacterImageWrapper>
-          <CharacterImage src={Iceberg_Pola} />
-        </CharacterImageWrapper>
-        <InfoModal />
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default SelectedCharacter;

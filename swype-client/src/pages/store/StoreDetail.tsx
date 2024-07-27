@@ -5,16 +5,16 @@ import StorePoint from '../../assets/StorePoint.png';
 import Button from '../../components/common/Button';
 import Point from '../../components/Point';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDetailItems } from '../../share/queries/useDetailItem';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { DetailItem } from '../../model/storeType';
 import { useState } from 'react';
 import ItemModal from '../../components/Modal/ItemModal';
-import { useBuyItem } from '../../share/queries/useBuyItem';
 import { userData } from '../../share/recoil/userAtom';
 import { useSetRecoilState } from 'recoil';
+import { useDetailItems } from '../../apis/item/getDetailItem';
+import { useBuyItem } from '../../apis/item/buyItem';
 
-export default function StoreDetail() {
+const StoreDetail = () => {
   const [isModal, setIsModal] = useState(false);
   const setUserdata = useSetRecoilState(userData);
   const navigate = useNavigate();
@@ -118,7 +118,9 @@ export default function StoreDetail() {
       </Container>
     </>
   );
-}
+};
+
+export default StoreDetail;
 
 const DetailBox = styled.div`
     margin-top: 80px;

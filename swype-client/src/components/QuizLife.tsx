@@ -1,26 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import Quiz_Life from '../assets/Quiz_Life.png';
 import styled from 'styled-components';
-import { remainContents } from '../apis/remainContents';
 import { useSetRecoilState } from 'recoil';
 import { remainData } from '../share/recoil/remainAtom';
 import { useEffect } from 'react';
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  background-color: ${props => props.theme.colors.text.white};
-
-  width: 66px;
-  height: 30px;
-  
-  color: ${props => props.theme.colors.text.gray};
-  img{
-  padding-right: 10px;
-  };
-`;
+import { remainContents } from '../apis/quiz/getRemainContents';
 
 const QuizLife = () => {
   const setRemainData = useSetRecoilState(remainData);
@@ -50,3 +34,19 @@ const QuizLife = () => {
 };
 
 export default QuizLife;
+
+const Item = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: ${props => props.theme.colors.text.white};
+
+  width: 66px;
+  height: 30px;
+  
+  color: ${props => props.theme.colors.text.gray};
+  img{
+  padding-right: 10px;
+  };
+`;

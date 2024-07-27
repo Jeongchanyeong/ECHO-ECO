@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { showToast } from '../share/utils/Toast';
 import { userData } from '../share/recoil/userAtom';
 import { useRecoilValue } from 'recoil';
-import { useGetChance } from '../share/queries/useGetChance';
+import { remainContents } from '../apis/quiz/getRemainContents';
 
 const FeatureButtons = () => {
   const userInfo = useRecoilValue(userData);
@@ -14,13 +14,13 @@ const FeatureButtons = () => {
 
   const { data: chance } = useQuery({
     queryKey: ['chance'],
-    queryFn: useGetChance,
+    queryFn: remainContents,
   });
 
   const handleChanceCheck = (what: string) => {
     switch (what) {
       case 'quiz':
-        if (chance.remainQuestion === 0) {
+        if (chance?.remainQuestion === 0) {
           showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.', '12시 이후에 다시 만나요');
           return;
         } else {
@@ -28,7 +28,7 @@ const FeatureButtons = () => {
         }
         break;
       case 'video':
-        if (chance.remainVideo === 0) {
+        if (chance?.remainVideo === 0) {
           showToast('warning', '오늘의 영상을 이미 시청하였어요.', '12시 이후에 다시 만나요');
           return;
         } else {

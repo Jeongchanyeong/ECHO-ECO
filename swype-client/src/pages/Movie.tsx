@@ -9,7 +9,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { getVideo } from '../apis/video/getVideo';
 import { getVideoWatched } from '../apis/video/getVideoWatched';
 
-export default function Movie() {
+const Movie = () => {
   const navigate = useNavigate();
   const [time, setTime] = useState<number>(30);
   const [width, setWidth] = useState<number>(0);
@@ -85,7 +85,9 @@ export default function Movie() {
       </ButtonBox>
     </Container>
   );
-}
+};
+
+export default Movie;
 
 const MovieBox = styled.div`
   padding-top: 70px;

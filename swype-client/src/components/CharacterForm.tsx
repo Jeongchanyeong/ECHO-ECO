@@ -8,6 +8,76 @@ import Koala_Lock from '../assets/Koala_Lock.png';
 import { useState } from 'react';
 import axios from 'axios';
 
+const characters = [
+  { src: Pola_half, name: '폴라' },
+  { src: Quokka_Lock, name: '쿼카' },
+  { src: RedPanda_Lock, name: '붉은 팬더' },
+  { src: GreenTurtle_Lock, name: '바다 거북' },
+  { src: Koala_Lock, name: '코알라' },
+];
+
+// 전반적인 기능이 구현 되는지 확인 후 세부적을 기능구현할 때 타입 지정 예정
+
+const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handlePolaClick = () => {
+    setIsSelected(true);
+    characterSelect(0);
+  };
+
+  const handleCharacter = () => {
+    axios
+      .post(
+        'http://13.124.73.201:8080/character/pick',
+        { character_id: 1 },
+        {
+          headers: {
+            Authorization: 'asdsadads',
+          },
+        }
+      )
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  return (
+    <Form>
+      <CharacterButtonWrapper>
+        {characters.map((character, index) => (
+          <Button
+            key={index}
+            $bgColor={selectedCharacter === index ? '#7FD0FF' : '#FFFFF'}
+            width='80%'
+            height='80%'
+            $textColor='black'
+            onClick={index === 0 ? handlePolaClick : undefined}
+          >
+            <CharacterImg src={character.src} />
+            <NameWrapper>
+              <Name>{character.name}</Name>
+            </NameWrapper>
+          </Button>
+        ))}
+      </CharacterButtonWrapper>
+      <SubmitButton>
+        <Button
+          $bgColor={isSelected ? 'blue' : 'gray'}
+          width='90%'
+          height='40%'
+          $textColor='lightGray'
+          onClick={handleCharacter}
+          disabled={!isSelected}
+        >
+          확인
+        </Button>
+      </SubmitButton>
+    </Form>
+  );
+};
+
+export default CharacterForm;
+
 const Form = styled.div`
   display: flex;
   justify-content: center;
@@ -82,73 +152,3 @@ const Name = styled.div`
   color: ${props => props.theme.colors.text.gray};
   
 `;
-
-const characters = [
-  { src: Pola_half, name: '폴라' },
-  { src: Quokka_Lock, name: '쿼카' },
-  { src: RedPanda_Lock, name: '붉은 팬더' },
-  { src: GreenTurtle_Lock, name: '바다 거북' },
-  { src: Koala_Lock, name: '코알라' },
-];
-
-// 전반적인 기능이 구현 되는지 확인 후 세부적을 기능구현할 때 타입 지정 예정
-
-const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
-  const [isSelected, setIsSelected] = useState(false);
-
-  const handlePolaClick = () => {
-    setIsSelected(true);
-    characterSelect(0);
-  };
-
-  const handleCharacter = () => {
-    axios
-      .post(
-        'http://13.124.73.201:8080/character/pick',
-        { character_id: 1 },
-        {
-          headers: {
-            Authorization: 'asdsadads',
-          },
-        }
-      )
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  };
-
-  return (
-    <Form>
-      <CharacterButtonWrapper>
-        {characters.map((character, index) => (
-          <Button
-            key={index}
-            $bgColor={selectedCharacter === index ? '#7FD0FF' : '#FFFFF'}
-            width='80%'
-            height='80%'
-            $textColor='black'
-            onClick={index === 0 ? handlePolaClick : undefined}
-          >
-            <CharacterImg src={character.src} />
-            <NameWrapper>
-              <Name>{character.name}</Name>
-            </NameWrapper>
-          </Button>
-        ))}
-      </CharacterButtonWrapper>
-      <SubmitButton>
-        <Button
-          $bgColor={isSelected ? 'blue' : 'gray'}
-          width='90%'
-          height='40%'
-          $textColor='lightGray'
-          onClick={handleCharacter}
-          disabled={!isSelected}
-        >
-          확인
-        </Button>
-      </SubmitButton>
-    </Form>
-  );
-};
-
-export default CharacterForm;

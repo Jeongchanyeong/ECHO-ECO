@@ -3,20 +3,6 @@ import styled from 'styled-components';
 import { userData } from '../share/recoil/userAtom';
 import { useRecoilValue } from 'recoil';
 
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  background-color: ${props => props.theme.colors.text.white};
-  font-weight: 700;
-  padding:7px 10px;
-  color: ${props => props.theme.colors.text.gray};
-img{
-  padding-right: 8px;
-  };
-`;
-
 const Point = () => {
   const userInfo = useRecoilValue(userData);
 
@@ -34,3 +20,17 @@ const Point = () => {
 };
 
 export default Point;
+
+const Item = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: ${props => props.theme.colors.text.white};
+  font-weight: 700;
+  padding:7px 10px;
+  color: ${props => props.theme.colors.text.gray};
+  img {
+    padding-right: 8px;
+  };
+`;

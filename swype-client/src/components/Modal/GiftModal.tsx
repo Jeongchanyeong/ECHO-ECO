@@ -6,10 +6,11 @@ import CheckTrue from '../../assets/CheckTrue.png';
 import axios from 'axios';
 import { BASE_URL } from '../../share/utils/OAuth';
 import { getCookie } from '../../cookie';
-import { useEmailCheck } from '../../share/queries/useEmailCheck';
-import { useQuery } from '@tanstack/react-query';
 
-export default function GiftModal() {
+import { useQuery } from '@tanstack/react-query';
+import { useEmailCheck } from '../../apis/login/getEmailCheck';
+
+const GiftModal = () => {
   const [isCheck, setIsCheck] = useState(false);
   const [isText, setIsText] = useState(true);
   const [email, setEmail] = useState('');
@@ -85,9 +86,10 @@ export default function GiftModal() {
         )}
       </InfoModal>
     </ModalBox>
-
   );
-}
+};
+
+export default GiftModal;
 
 const ModalBox = styled.div`
     width:90%;

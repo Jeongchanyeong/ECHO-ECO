@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BASE_URL } from '../share/utils/OAuth';
-import { getCookie } from '../cookie';
+import { BASE_URL } from '../../share/utils/OAuth';
+import { getCookie } from '../../cookie';
 
 const token = getCookie('Authorization');
 

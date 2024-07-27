@@ -1,13 +1,80 @@
 import styled from 'styled-components';
 import Quokka from '../../assets/Quokka.png';
 import { useState } from 'react';
-import { useGetDescription } from '../../share/queries/useGetCharacter';
+
 import { DescriptionText } from '../../model/characterType';
 import { useQuery } from '@tanstack/react-query';
 import { MdArrowForwardIos } from 'react-icons/md';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../cookie';
+import { useGetDescription } from '../../apis/user/getCharacter';
+
+const InfoModal = () => {
+  const navigate = useNavigate();
+  const params = new URL(document.URL).searchParams;
+  const character = params.get('character');
+  const characterId = params.get('id');
+  const token = getCookie('Authorization');
+
+  const { data: Description } = useQuery<DescriptionText>({
+    queryKey: ['Description'],
+    queryFn: () => useGetDescription(character as string),
+  });
+
+  const [index, setIndex] = useState(0);
+
+  const handleClick = () => {
+    if (Description && index < Description.length - 1) {
+      setIndex(index + 1);
+    }
+  };
+
+  // 뮤테이션으로 바꿀 예정
+  const PickCharacter = () => {
+    axios
+      .post(
+        `${import.meta.env.VITE_BASE_URL}/character/pick`,
+        { characterId },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      .then(res => {
+        console.log(res);
+        navigate('/stage');
+      })
+      .catch(e => console.log(e));
+  };
+
+  return (
+    <Wrapper>
+      <InfoWrapper>
+        <TextWrapper>
+          <Text>{Description && Description[index].step}</Text>
+        </TextWrapper>
+        <ButtonWrapper>
+          {Description && index < Description.length - 1 ? (
+            <Next onClick={handleClick}>
+              다음 <MdArrowForwardIos />
+            </Next>
+          ) : (
+            <Finish onClick={PickCharacter}>
+              시작하기 <MdArrowForwardIos />
+            </Finish>
+          )}
+        </ButtonWrapper>
+      </InfoWrapper>
+      <ImgWrapper>
+        <img src={Quokka} />
+      </ImgWrapper>
+    </Wrapper>
+  );
+};
+
+export default InfoModal;
 
 const Wrapper = styled.div`
   display: flex;
@@ -79,69 +146,3 @@ const Finish = styled.div`
   font-size: ${props => props.theme.font.size.body};
   font-weight: ${props => props.theme.font.weight.bold};
 `;
-
-const InfoModal = () => {
-  const navigate = useNavigate();
-  const params = new URL(document.URL).searchParams;
-  const character = params.get('character');
-  const characterId = params.get('id');
-  const token = getCookie('Authorization');
-
-  const { data: Description } = useQuery<DescriptionText>({
-    queryKey: ['Description'],
-    queryFn: () => useGetDescription(character as string),
-  });
-
-  const [index, setIndex] = useState(0);
-
-  const handleClick = () => {
-    if (Description && index < Description.length - 1) {
-      setIndex(index + 1);
-    }
-  };
-
-  // 뮤테이션으로 바꿀 예정
-  const PickCharacter = () => {
-    axios
-      .post(
-        `${import.meta.env.VITE_BASE_URL}/character/pick`,
-        { characterId },
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      )
-      .then(res => {
-        console.log(res);
-        navigate('/stage');
-      })
-      .catch(e => console.log(e));
-  };
-
-  return (
-    <Wrapper>
-      <InfoWrapper>
-        <TextWrapper>
-          <Text>{Description && Description[index].step}</Text>
-        </TextWrapper>
-        <ButtonWrapper>
-          {Description && index < Description.length - 1 ? (
-            <Next onClick={handleClick}>
-              다음 <MdArrowForwardIos />
-            </Next>
-          ) : (
-            <Finish onClick={PickCharacter}>
-              시작하기 <MdArrowForwardIos />
-            </Finish>
-          )}
-        </ButtonWrapper>
-      </InfoWrapper>
-      <ImgWrapper>
-        <img src={Quokka} />
-      </ImgWrapper>
-    </Wrapper>
-  );
-};
-
-export default InfoModal;
