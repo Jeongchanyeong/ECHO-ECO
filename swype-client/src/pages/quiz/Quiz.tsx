@@ -6,7 +6,6 @@ import quizbackground from '../../assets/quizbackground.png';
 import QuizLife from '../../components/QuizLife';
 import Point from '../../components/Point';
 import { useNavigate } from 'react-router-dom';
-import { useGetQuiz } from '../../share/queries/useGetQuiz';
 import { useQuery } from '@tanstack/react-query';
 import { BASE_URL } from '../../share/utils/OAuth';
 import axios from 'axios';
@@ -15,8 +14,9 @@ import { useEffect, useState } from 'react';
 import QuizModal from '../../components/Modal/QuizModal';
 import { QuizType } from '../../model/quizType';
 import { showToast } from '../../share/utils/Toast';
+import { useGetQuiz } from '../../apis/quiz/getQuiz';
 
-export default function Quiz() {
+const Quiz = () => {
   const [isModal, setIsModal] = useState(false);
   const [data, setData] = useState();
   const navigate = useNavigate();
@@ -102,7 +102,9 @@ export default function Quiz() {
       </MainBox>
     </Container>
   );
-}
+};
+
+export default Quiz;
 
 const MainBox = styled.div`
     width:100%;

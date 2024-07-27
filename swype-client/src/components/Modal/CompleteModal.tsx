@@ -3,7 +3,7 @@ import Quokka from '../../assets/Quokka.png';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { MdArrowForwardIos } from 'react-icons/md';
-import { characterComplete } from '../../apis/characterComplete';
+import { characterComplete } from '../../apis/user/getCharacterMax';
 import GiftModal from './GiftModal';
 
 const CompleteModal = () => {

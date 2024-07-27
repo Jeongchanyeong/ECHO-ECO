@@ -6,9 +6,9 @@ import Point from '../../components/Point';
 import { useNavigate } from 'react-router-dom';
 import { ItemList } from '../../model/storeType';
 import { useQuery } from '@tanstack/react-query';
-import { useGetItems } from '../../share/queries/useGetItems';
+import { useGetItems } from '../../apis/item/getItems';
 
-export default function StoreMain() {
+const StoreMain = () => {
   const navigate = useNavigate();
 
   const { data: items } = useQuery<ItemList[]>({
@@ -40,7 +40,8 @@ export default function StoreMain() {
       </Container>
     </>
   );
-}
+};
+export default StoreMain;
 
 const MainBox = styled.div`
   padding: 15px;

@@ -9,6 +9,35 @@ import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
 import Koala_Lock from '../assets/Koala_Lock.png';
 
 import { useState } from 'react';
+
+const characters = [Tree_Pola, Quokka_Lock, RedPanda_Lock, GreenTurtle_Lock, Koala_Lock];
+
+const CharacterSelection = () => {
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  return (
+    <Container>
+      <Wrapper>
+        <Text>
+          <span>성장시킬 동물을 선택해주세요!</span>
+        </Text>
+        {selectedCharacter !== null ? (
+          <CharacterImageWrapper>
+            <CharacterImage src={characters[selectedCharacter]} />
+          </CharacterImageWrapper>
+        ) : null}
+
+        <CharacterForm
+          selectedCharacter={selectedCharacter}
+          characterSelect={setSelectedCharacter}
+        />
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default CharacterSelection;
+
 const Wrapper = styled.div`
   position: relative;
   background-color: #E1F3F4;
@@ -48,31 +77,3 @@ const Text = styled.div`
   position: absolute;
   letter-spacing: -0.03rem;
   top: 10%;`;
-
-const characters = [Tree_Pola, Quokka_Lock, RedPanda_Lock, GreenTurtle_Lock, Koala_Lock];
-
-const CharacterSelection = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
-
-  return (
-    <Container>
-      <Wrapper>
-        <Text>
-          <span>성장시킬 동물을 선택해주세요!</span>
-        </Text>
-        {selectedCharacter !== null ? (
-          <CharacterImageWrapper>
-            <CharacterImage src={characters[selectedCharacter]} />
-          </CharacterImageWrapper>
-        ) : null}
-
-        <CharacterForm
-          selectedCharacter={selectedCharacter}
-          characterSelect={setSelectedCharacter}
-        />
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default CharacterSelection;

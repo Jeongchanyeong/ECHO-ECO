@@ -3,9 +3,10 @@ import Leeca from '../../assets/LeeCa.png';
 import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../../share/utils/Toast';
-import { useGetChance } from '../../share/queries/useGetChance';
+
 import { useQuery } from '@tanstack/react-query';
 import { QuizType } from '../../model/quizType';
+import { remainContents } from '../../apis/quiz/getRemainContents';
 
 type Props = {
   data?: string;
@@ -18,11 +19,11 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
 
   const { data: chance } = useQuery({
     queryKey: ['chance'],
-    queryFn: useGetChance,
+    queryFn: remainContents,
   });
 
   const GoToMovie = () => {
-    if (chance.remainVideo === 0) {
+    if (chance?.remainVideo === 0) {
       showToast('warning', '오늘 영상 시청을 하셨어요 !', '');
       return;
     } else {

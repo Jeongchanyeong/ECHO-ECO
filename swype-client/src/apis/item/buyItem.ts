@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { BASE_URL } from '../utils/OAuth';
-import { showToast } from '../utils/Toast';
 import { getCookie } from '../../cookie';
+import { BASE_URL } from '../../share/utils/OAuth';
+import { showToast } from '../../share/utils/Toast';
 
 const token = getCookie('Authorization');
 export const useBuyItem = (itemId?: number) => {

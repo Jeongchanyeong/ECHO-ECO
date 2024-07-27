@@ -6,12 +6,13 @@ import Pola from '../assets/Pola.png';
 import CharacterCard from '../components/CharacterCard';
 import Button from '../components/common/Button';
 import { useState } from 'react';
-import { useGetCharacter } from '../share/queries/useGetCharacter';
+
 import { useQuery } from '@tanstack/react-query';
 import { CharacterList } from '../model/characterType';
 import { useNavigate } from 'react-router-dom';
+import { useGetCharacter } from '../apis/user/getCharacter';
 
-export default function Charcter() {
+const Charcter = () => {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [selectImage, setSelectImage] = useState<string>('');
   const [selectId, setSelectId] = useState<number>();
@@ -80,7 +81,9 @@ export default function Charcter() {
       </BackBox>
     </Container>
   );
-}
+};
+
+export default Charcter;
 
 const BackBox = styled.div`
     width:100%;

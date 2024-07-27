@@ -6,7 +6,7 @@ import { setCookie } from '../cookie';
 import { Container } from '../share/utils/GlobalStyle';
 import LoginWait from '../assets/loading.gif';
 import { BASE_URL } from '../share/utils/OAuth';
-import { getUserInfo } from '../apis/userInfo';
+import { getUserInfo } from '../apis/user/getUserInfo';
 import { useQuery } from '@tanstack/react-query';
 
 const Loading = () => {
@@ -40,9 +40,9 @@ const Loading = () => {
   );
 };
 
+export default Loading;
+
 const LoadingGIF = styled.img`
     width:100%;
     height: 100%;
 `;
-
-export default Loading;
