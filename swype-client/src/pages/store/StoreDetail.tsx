@@ -85,7 +85,7 @@ export default function StoreDetail() {
             />
             구매 후 잔여포인트
           </InfoText>
-          <InfoText> {Calnum} P</InfoText>
+          <InfoText> {Calnum >= 0 ? `${Calnum} P` : '구매불가'} </InfoText>
         </InfoBox>
 
         {Calnum > 0 ? (
