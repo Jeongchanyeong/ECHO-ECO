@@ -76,7 +76,6 @@ const Wrapper = styled.div`
   width:90%;
   height: 80%;
   padding:20px;
-  margin-bottom: 15px;
 `;
 
 const ButtonContainer = styled.div`
@@ -84,14 +83,15 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80%;
+  height: 85%;
+  margin-top: 10px;
 `;
 
 const Info = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 20%;
+  height: 15%;
 `;
 
 const LevelBox = styled.div`
@@ -107,13 +107,11 @@ const LevelBox = styled.div`
 const NameBox = styled.div`
   font-weight: ${props => props.theme.font.weight.extraBold};
   font-size: ${props => props.theme.font.size.buttonText};
-  
-
 `;
 
 const MovieBox = styled.div`
   width:50%;
-  height: 80%;
+  height: 85%;
   padding:30px;
   border-radius: 20px;
   background-color: #f5f5f5;
@@ -121,11 +119,9 @@ const MovieBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  cursor: pointer;
 `;
 
 const QuizBox = styled(MovieBox)`
-  cursor: pointer;
   margin-right: 10px;
 `;
 

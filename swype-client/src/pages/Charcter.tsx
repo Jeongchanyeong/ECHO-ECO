@@ -14,20 +14,16 @@ import { useNavigate } from 'react-router-dom';
 export default function Charcter() {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [selectImage, setSelectImage] = useState<string>('');
+  const [selectId, setSelectId] = useState<number>();
+
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   try {
-  //     checkUser();
-  //     navigate('/');
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
 
   const { data: Characters } = useQuery<CharacterList[]>({
     queryKey: ['Character'],
     queryFn: useGetCharacter,
   });
+
+  console.log(Characters);
 
   const handleSelect = (item: string) => {
     const newItem = item === selectedItem ? '' : item;
@@ -36,6 +32,10 @@ export default function Charcter() {
 
   const handleImage = (image: string) => {
     setSelectImage(image);
+  };
+
+  const handleId = (id: number) => {
+    setSelectId(id);
   };
 
   return (
@@ -61,6 +61,7 @@ export default function Charcter() {
                 isSelected={selectedItem === item.name}
                 handleSelect={handleSelect}
                 handleImage={handleImage}
+                handleId={handleId}
               />
             ))}
           </CardBox>
@@ -70,7 +71,7 @@ export default function Charcter() {
               width='90%'
               height='50px'
               $textColor='lightGray'
-              onClick={() => navigate(`/selected?character=${selectedItem}`)}
+              onClick={() => navigate(`/selected?character=${selectedItem}&id=${selectId}`)}
             >
               확인
             </Button>

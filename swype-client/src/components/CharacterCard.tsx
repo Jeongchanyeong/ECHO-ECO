@@ -6,6 +6,7 @@ type CharacterData = {
   isSelected: boolean;
   handleSelect: (item: string) => void;
   handleImage: (image: string) => void;
+  handleId: (id: number) => void;
 };
 
 interface ImgBoxProps {
@@ -17,6 +18,7 @@ const CharacterCard: React.FC<CharacterData> = ({
   isSelected,
   handleSelect,
   handleImage,
+  handleId,
 }) => {
   const handleCheck = () => {
     if (!Characters.isPossible) {
@@ -24,6 +26,7 @@ const CharacterCard: React.FC<CharacterData> = ({
       return;
     } else {
       handleSelect(Characters.name);
+      handleId(Characters.id);
     }
 
     !isSelected ? handleImage(Characters.image) : handleImage('');

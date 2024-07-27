@@ -134,12 +134,11 @@ const CharacterBox = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  height: 40%;
+  height: 70%;
 `;
 
 const CharacterImage = styled.img`
   width: 85%;
-  height: 100%;
   height: auto;
 `;
 
@@ -149,9 +148,8 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: auto;
+  position: absolute;
   margin-top: 70px;
-  height: 20%;
   span{
     font-weight: ${props => props.theme.font.weight.extraBold};
     font-size: ${props => props.theme.font.size.choose};
@@ -186,8 +184,8 @@ const TrashButton = styled(StoreButton)`
 
 const InfoBox = styled.div`
   width:100%;
-  height: 40%;
+  height: 35%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 `;
