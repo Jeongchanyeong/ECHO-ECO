@@ -6,13 +6,17 @@ import Button from '../../components/common/Button';
 import Point from '../../components/Point';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDetailItems } from '../../share/queries/useDetailItem';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { DetailItem } from '../../model/storeType';
 import { useState } from 'react';
 import ItemModal from '../../components/Modal/ItemModal';
+import { useBuyItem } from '../../share/queries/useBuyItem';
+import { userData } from '../../share/recoil/userAtom';
+import { useSetRecoilState } from 'recoil';
 
 export default function StoreDetail() {
   const [isModal, setIsModal] = useState(false);
+  const setUserdata = useSetRecoilState(userData);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -22,6 +26,17 @@ export default function StoreDetail() {
   });
 
   const Calnum = (item?.userPoint ?? 0) - (item?.itemResponse?.price ?? 0);
+
+  const BuyItem = useMutation({
+    mutationFn: useBuyItem,
+    onSuccess: data => {
+      setIsModal(true);
+      setUserdata(prev => ({
+        ...prev,
+        level: prev.level + data.levelUp,
+      }));
+    },
+  });
 
   return (
     <>
@@ -89,7 +104,7 @@ export default function StoreDetail() {
               $textColor='lightGray'
               width='45%'
               height='50px'
-              onClick={() => setIsModal(true)}
+              onClick={() => BuyItem.mutate(item?.itemResponse.id)}
             >
               구매하기
             </Button>

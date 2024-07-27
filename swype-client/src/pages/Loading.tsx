@@ -14,14 +14,17 @@ const Loading = () => {
   const useremail = params.get('useremail');
   const navigate = useNavigate();
 
-  const { data: userInfo } = useQuery({
+  const { data: userInfo, error } = useQuery({
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
+    retry: 1,
   });
 
   if (userInfo?.character.id) {
     navigate('/stage');
-  } else {
+  }
+
+  if (error) {
     navigate('/character');
   }
 

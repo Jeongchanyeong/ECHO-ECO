@@ -6,9 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userData } from '../../share/recoil/userAtom';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { BASE_URL } from '../../share/utils/OAuth';
-import axios from 'axios';
-import { getCookie } from '../../cookie';
 interface ItemModalProps {
   item?: DetailItem;
 }
@@ -16,35 +13,17 @@ interface ItemModalProps {
 const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
   const user = useRecoilValue(userData);
   const navigate = useNavigate();
-  const token = getCookie('Authorization');
-
-  const buyItem = () => {
-    axios
-      .post(
-        `${BASE_URL}/item/buy`,
-        { itemId: item?.itemResponse.id },
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      )
-      .then(res => {
-        console.log(res);
-        navigate('/store');
-      }).catch;
-  };
 
   return (
     <Container>
       <ModalBox>
         <InfoModal>
           <Title>
-            <text>{item?.itemResponse.name} 구매 완료</text>
+            <span>{item?.itemResponse.name} 구매 완료</span>
           </Title>
 
           <Info>
-            <text>{item?.itemResponse.description}</text>
+            <span>{item?.itemResponse.description}</span>
           </Info>
 
           <ImgBox>
@@ -55,9 +34,9 @@ const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
           </ImgBox>
 
           <LevelBox>
-            <PointText>Lv.{item?.itemResponse.levelUp} </PointText>
+            <PointText>Lv.{Number(user?.level) - Number(item?.itemResponse.levelUp)} </PointText>
             <PointText>{<FaArrowRightLong />}</PointText>
-            <UpPointText>Lv.{Number(item?.itemResponse.levelUp) + Number(user?.level)}</UpPointText>
+            <UpPointText>Lv.{user?.level}</UpPointText>
           </LevelBox>
 
           <Button
@@ -65,7 +44,7 @@ const ItemModal: React.FC<ItemModalProps> = ({ item }) => {
             $textColor='white'
             width='100%'
             height='50px'
-            onClick={buyItem}
+            onClick={() => navigate('/store')}
           >
             확인
           </Button>
@@ -139,6 +118,5 @@ const PointText = styled.p`
 `;
 
 const UpPointText = styled(PointText)`
-    color: ${props => props.theme.colors.text.blue};
-   
+    color: ${props => props.theme.colors.text.blue}; 
 `;
