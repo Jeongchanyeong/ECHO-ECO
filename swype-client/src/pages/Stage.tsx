@@ -149,7 +149,8 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   position: absolute;
-  margin-top: 70px;
+  margin-top: 60px;
+  
   span{
     font-weight: ${props => props.theme.font.weight.extraBold};
     font-size: ${props => props.theme.font.size.choose};
