@@ -7,14 +7,15 @@ import TrashCan from '../components/Trash-related/TrashCan';
 import { useEffect, useState } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { draggableItemsState, initialTrashItemsState } from '../share/recoil/dndAtoms';
 import Point from '../components/Point';
 import { useNavigate } from 'react-router-dom';
 import TrashModal from '../components/Modal/TrashModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { trashPoint } from '../apis/trashPoint';
-import { getTrashImg } from '../apis/trashImg';
+import { trashPoint } from '../apis/trash/trashPoint';
+import { getTrashImg } from '../apis/trash/getTrashImg';
+import { getUserInfo } from '../apis/user/getUserInfo';
 
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import { userData } from '../share/recoil/userAtom';
@@ -27,10 +28,16 @@ const PollutedStage = () => {
   const [addPoint, setAddPoint] = useState(0);
   const [afterPoint, setAfterPoint] = useState(0);
   const userInfo = useRecoilValue(userData);
+  const setUserData = useSetRecoilState(userData);
 
   const { data: trashStatusImg } = useQuery<TrashImgData>({
     queryKey: ['trashStatusImg'],
     queryFn: getTrashImg,
+  });
+
+  const { data: userDataFetch } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
   });
 
   const mutation = useMutation<TrashPointData>({
@@ -44,6 +51,12 @@ const PollutedStage = () => {
       console.error(error);
     },
   });
+
+  useEffect(() => {
+    if (userDataFetch) {
+      setUserData(userDataFetch);
+    }
+  }, [userDataFetch, setUserData]);
 
   useEffect(() => {
     setTrashItems(initialTrashItemsState);
@@ -73,6 +86,7 @@ const PollutedStage = () => {
   };
 
   const navigate = useNavigate();
+
   return (
     <Container>
       <Header
