@@ -84,6 +84,7 @@ const InfoModal = () => {
   const navigate = useNavigate();
   const params = new URL(document.URL).searchParams;
   const character = params.get('character');
+  const characterId = params.get('id');
   const token = getCookie('Authorization');
 
   const { data: Description } = useQuery<DescriptionText>({
@@ -104,7 +105,7 @@ const InfoModal = () => {
     axios
       .post(
         `${import.meta.env.VITE_BASE_URL}/character/pick`,
-        { characterId: 2 },
+        { characterId },
         {
           headers: {
             Authorization: `${token}`,
