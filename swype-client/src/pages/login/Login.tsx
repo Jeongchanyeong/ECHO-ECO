@@ -16,6 +16,9 @@ const Login = () => {
 export default Login;
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;
