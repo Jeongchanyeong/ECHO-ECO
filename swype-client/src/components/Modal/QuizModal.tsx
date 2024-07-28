@@ -7,6 +7,9 @@ import { showToast } from '../../share/utils/Toast';
 import { useQuery } from '@tanstack/react-query';
 import { QuizType } from '../../model/quizType';
 import { remainContents } from '../../apis/quiz/getRemainContents';
+import { useEffect } from 'react';
+import { userData } from '../../share/recoil/userAtom';
+import { useSetRecoilState } from 'recoil';
 
 type Props = {
   data?: string;
@@ -15,6 +18,7 @@ type Props = {
 };
 
 const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
+  const setInfo = useSetRecoilState(userData);
   const navigate = useNavigate();
 
   const { data: chance } = useQuery({
@@ -30,6 +34,15 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
       navigate('/movie');
     }
   };
+
+  useEffect(() => {
+    if (data !== 'INCORRECT') {
+      setInfo(prev => ({
+        ...prev,
+        userPoint: prev.userPoint + 10,
+      }));
+    }
+  }, [data]);
 
   return (
     <ModalBox>
