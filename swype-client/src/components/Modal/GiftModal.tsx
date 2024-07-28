@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import coffee from '../../assets/coffee.png';
 import CheckFalse from '../../assets/CheckFalse.png';
@@ -25,6 +25,12 @@ const GiftModal = () => {
       return data.isPost;
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      setIsModal(data);
+    }
+  }, [data]);
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
@@ -73,7 +79,7 @@ const GiftModal = () => {
           <Img src={coffee} />
           <Tag>[빽다방]</Tag>
           <SubInfo>아이스 아메리카노</SubInfo>
-          {!data || isModal ? (
+          {!isModal ? (
             <>
               <InputBox>
                 <EmailInput

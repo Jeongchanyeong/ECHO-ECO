@@ -74,7 +74,7 @@ const Stage = () => {
   return (
     <Container>
       <Header rightChild={<Point />} />
-      {userInfo?.level === userInfo?.character.maxLevel ? (
+      {Number(userInfo?.level) >= Number(userInfo?.character.maxLevel) ? (
         <Wrapper $backgroundImage={userInfo?.backgroundImage}>
           <ButtonWrapper>
             <StoreButton hidden={true}>
