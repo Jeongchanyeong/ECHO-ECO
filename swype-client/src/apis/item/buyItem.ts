@@ -3,8 +3,8 @@ import { getCookie } from '../../cookie';
 import { BASE_URL } from '../../share/utils/OAuth';
 import { showToast } from '../../share/utils/Toast';
 
-const token = getCookie('Authorization');
 export const useBuyItem = (itemId?: number) => {
+  const token = getCookie('Authorization');
   return axios
     .post(
       `${BASE_URL}/item/buy`,

@@ -8,9 +8,8 @@ interface VideoData {
   url: string;
 }
 
-const token = getCookie('Authorization');
-
 export const getVideo = (): Promise<VideoData> => {
+  const token = getCookie('Authorization');
   return axios
     .get<{ data: VideoData }>(`${BASE_URL}/video`, {
       headers: {
