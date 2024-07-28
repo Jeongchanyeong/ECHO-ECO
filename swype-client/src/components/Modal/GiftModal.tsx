@@ -6,7 +6,7 @@ import CheckTrue from '../../assets/CheckTrue.png';
 import axios from 'axios';
 import { BASE_URL } from '../../share/utils/OAuth';
 import { getCookie } from '../../cookie';
-
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useEmailCheck } from '../../apis/login/getEmailCheck';
 
@@ -15,6 +15,8 @@ const GiftModal = () => {
   const [isText, setIsText] = useState(true);
   const [email, setEmail] = useState('');
   const token = getCookie('Authorization');
+  const [isModal, setIsModal] = useState(false);
+  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: ['EmailCheck'],
@@ -43,7 +45,23 @@ const GiftModal = () => {
           },
         }
       )
-      .then(res => console.log(res));
+      .then(() => setIsModal(true));
+  };
+
+  const ResetUser = () => {
+    axios
+      .post(
+        `${BASE_URL}/character/complete`,
+        {},
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      .then(res => {
+        navigate('/character');
+      });
   };
 
   return (
@@ -55,7 +73,7 @@ const GiftModal = () => {
           <Img src={coffee} />
           <Tag>[빽다방]</Tag>
           <SubInfo>아이스 아메리카노</SubInfo>
-          {!data ? (
+          {!data || isModal ? (
             <>
               <InputBox>
                 <EmailInput
@@ -82,7 +100,7 @@ const GiftModal = () => {
                 <br />
                 twin2688@naver.com으로 메일주세요.
               </InfoText>
-              <ResetButton>다시 한번 시작하기</ResetButton>
+              <ResetButton onClick={ResetUser}>다시 한번 시작하기</ResetButton>
             </>
           )}
         </InfoModal>
@@ -173,7 +191,7 @@ const EmailInput = styled.input`
 const Icon = styled.img`
   position: absolute;
   right: 0;
-  padding-right: 15px;
+  padding:25px 10px 10px 10px;
 `;
 
 const Noti = styled.p<{ $isText: boolean }>`
@@ -200,6 +218,8 @@ const ResetButton = styled.button`
   color: #fff;
   background-color: #23A1F8;
   margin-top: 20px;
+  font-weight: 700;
+  font-size: ${props => props.theme.font.size.buttonText};
 `;
 
 const InfoText = styled.div`
