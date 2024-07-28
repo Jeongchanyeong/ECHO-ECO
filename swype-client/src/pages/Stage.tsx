@@ -40,7 +40,7 @@ const Stage = () => {
     if (userInfo) {
       setUserData(userInfo);
     }
-  }, [userInfo, setUserData]);
+  }, [userInfo, token]);
 
   useEffect(() => {
     const cleanData = async () => {
