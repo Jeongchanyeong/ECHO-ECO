@@ -59,7 +59,7 @@ const GiftModal = () => {
           },
         }
       )
-      .then(res => {
+      .then(() => {
         navigate('/character');
       });
   };
