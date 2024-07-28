@@ -66,7 +66,6 @@ export default CompleteModal;
 const Wrapper = styled.div`
   display: flex;
   width: 90%; 
-  background-color: #FAFAFA; 
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -88,6 +87,7 @@ const TextWrapper = styled.div`
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
   margin-bottom: 10px;
+  background-color: #FAFAFA; 
 `;
 
 const Text = styled.span`
@@ -100,6 +100,8 @@ const ButtonWrapper = styled.div`
   height: 30%;
   display: flex;
   justify-content: flex-start;
+  background-color: #FAFAFA; 
+
 `;
 
 const ImgWrapper = styled.div`
