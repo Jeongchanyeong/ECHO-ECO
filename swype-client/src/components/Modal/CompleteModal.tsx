@@ -5,14 +5,25 @@ import { useQuery } from '@tanstack/react-query';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { characterComplete } from '../../apis/user/getCharacterMax';
 import GiftModal from './GiftModal';
+import { getCookie } from '../../cookie';
+import { useNavigate } from 'react-router-dom';
 
 const CompleteModal = () => {
   const [index, setIndex] = useState(0);
   const [isModal, setIsModal] = useState(true);
-  const { data: completeMessages } = useQuery({
+  const token = getCookie('Authorization');
+  const navigate = useNavigate();
+
+  const { data: completeMessages, error } = useQuery({
     queryKey: ['characterComplete'],
     queryFn: characterComplete,
+    enabled: !!token,
+    retry: 1,
   });
+
+  if (error) {
+    navigate('/character');
+  }
 
   const handleClick = () => {
     if (completeMessages && index < completeMessages.length - 1) {
@@ -68,8 +79,9 @@ export default CompleteModal;
 const Box = styled.div`
   height: 30%;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
+  padding-bottom: 30px;
 `;
 
 const Wrapper = styled.div`
