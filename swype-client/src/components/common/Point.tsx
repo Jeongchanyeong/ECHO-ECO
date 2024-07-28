@@ -1,10 +1,23 @@
 import StorePoint from '../../assets/StorePoint.png';
 import styled from 'styled-components';
 import { userData } from '../../share/recoil/userAtom';
-import { useRecoilValue } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import { useQuery } from '@tanstack/react-query';
+import { getUserInfo } from '../../apis/user/getUserInfo';
+import { useEffect } from 'react';
 
 const Point = () => {
-  const userInfo = useRecoilValue(userData);
+  const setUserData = useSetRecoilState(userData);
+  const { data: userInfo } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+  });
+
+  useEffect(() => {
+    if (userInfo) {
+      setUserData(userInfo);
+    }
+  }, [userInfo]);
 
   return (
     <>

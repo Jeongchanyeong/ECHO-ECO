@@ -18,7 +18,7 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
   const navigate = useNavigate();
 
   const { data: chance } = useQuery({
-    queryKey: ['chance'],
+    queryKey: ['remain'],
     queryFn: remainContents,
   });
 
@@ -52,7 +52,7 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
 
         <InfoBox>{quiz?.head}</InfoBox>
 
-        {chance?.remainQuestion == 0 ? (
+        {chance?.remainQuestion === 0 ? (
           <>
             <BlueButton onClick={() => navigate('/stage')}>남은 횟수 소진! 스테이지로</BlueButton>
             <GrayButton onClick={GoToMovie}>영상 보고 퀴즈 더 풀기</GrayButton>
