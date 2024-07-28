@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setCookie } from '../cookie';
-import { Container } from '../share/utils/GlobalStyle';
-import LoginWait from '../assets/loading.gif';
-import { BASE_URL } from '../share/utils/OAuth';
-import { getUserInfo } from '../apis/user/getUserInfo';
+import { setCookie } from '../../cookie';
+import { Container } from '../../share/utils/GlobalStyle';
+import LoginWait from '../../assets/loading.gif';
+import { BASE_URL } from '../../share/utils/OAuth';
+import { getUserInfo } from '../../apis/user/getUserInfo';
 import { useQuery } from '@tanstack/react-query';
 
 const Loading = () => {

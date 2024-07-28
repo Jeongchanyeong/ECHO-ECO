@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from '../../components/common/Header';
 import StorePoint from '../../assets/StorePoint.png';
 import Button from '../../components/common/Button';
-import Point from '../../components/Point';
+import Point from '../../components/common/Point';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { DetailItem } from '../../model/storeType';

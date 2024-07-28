@@ -96,6 +96,7 @@ const TextWrapper = styled.div`
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
   margin-bottom: 10px;
+  background-color: #FAFAFA; 
 `;
 
 const Text = styled.span`
@@ -108,6 +109,8 @@ const ButtonWrapper = styled.div`
   height: 30%;
   display: flex;
   justify-content: flex-start;
+  background-color: #FAFAFA; 
+
 `;
 
 const ImgWrapper = styled.div`

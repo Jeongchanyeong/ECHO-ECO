@@ -79,7 +79,6 @@ export default InfoModal;
 const Wrapper = styled.div`
   display: flex;
   width: 90%; 
-  background-color: #FAFAFA; 
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -95,6 +94,7 @@ const TextWrapper = styled.div`
   height: 70%;
   display: flex;
   flex-direction: column;
+  background-color: #FAFAFA; 
   justify-content: center;
   color: #333;
   font-size: ${props => props.theme.font.size.body};
@@ -114,6 +114,8 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   padding-left: 20px;
+  background-color: #FAFAFA; 
+
 `;
 
 const ImgWrapper = styled.div`

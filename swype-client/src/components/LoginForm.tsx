@@ -75,8 +75,7 @@ const Form = styled.div`
   flex-direction: column;
   background-color: white;
   
-  position: absolute;
-  bottom: 0;
+
   width: 100%;
   max-width: 480px;
   height: 50%;
