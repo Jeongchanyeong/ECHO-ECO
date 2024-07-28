@@ -22,40 +22,42 @@ const CompleteModal = () => {
 
   return (
     <>
-      <Wrapper>
-        {isModal ? (
-          <>
-            <InfoWrapper>
-              <TextWrapper>
-                {completeMessages && completeMessages[index] && (
-                  <Text>{completeMessages[index].step}</Text>
-                )}
-              </TextWrapper>
-              <ButtonWrapper>
-                {completeMessages && index < completeMessages.length - 1 ? (
-                  <Next onClick={handleClick}>
-                    다음 <MdArrowForwardIos />
-                  </Next>
-                ) : (
-                  <Finish
-                    onClick={() => {
-                      setIsModal(false);
-                    }}
-                  >
-                    기프티콘 받으러 가기 <MdArrowForwardIos />
-                  </Finish>
-                )}
-              </ButtonWrapper>
-            </InfoWrapper>
-            <ImgWrapper>
-              <img
-                src={Quokka}
-                alt='Quokka'
-              />
-            </ImgWrapper>
-          </>
-        ) : null}
-      </Wrapper>
+      <Box>
+        <Wrapper>
+          {isModal ? (
+            <>
+              <InfoWrapper>
+                <TextWrapper>
+                  {completeMessages && completeMessages[index] && (
+                    <Text>{completeMessages[index].step}</Text>
+                  )}
+                </TextWrapper>
+                <ButtonWrapper>
+                  {completeMessages && index < completeMessages.length - 1 ? (
+                    <Next onClick={handleClick}>
+                      다음 <MdArrowForwardIos />
+                    </Next>
+                  ) : (
+                    <Finish
+                      onClick={() => {
+                        setIsModal(false);
+                      }}
+                    >
+                      기프티콘 받으러 가기 <MdArrowForwardIos />
+                    </Finish>
+                  )}
+                </ButtonWrapper>
+              </InfoWrapper>
+              <ImgWrapper>
+                <img
+                  src={Quokka}
+                  alt='Quokka'
+                />
+              </ImgWrapper>
+            </>
+          ) : null}
+        </Wrapper>
+      </Box>
       {!isModal && <GiftModal />}
     </>
   );
@@ -63,14 +65,20 @@ const CompleteModal = () => {
 
 export default CompleteModal;
 
+const Box = styled.div`
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Wrapper = styled.div`
   display: flex;
-  width: 90%; 
+  width: 90%;
   background-color: #FAFAFA; 
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin-bottom: 30px;
 `;
 
 const InfoWrapper = styled.div`
