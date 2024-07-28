@@ -24,8 +24,6 @@ const Charcter = () => {
     queryFn: useGetCharacter,
   });
 
-  console.log(Characters);
-
   const handleSelect = (item: string) => {
     const newItem = item === selectedItem ? '' : item;
     setSelectedItem(newItem);
@@ -67,16 +65,20 @@ const Charcter = () => {
             ))}
           </CardBox>
           <ButtonBox>
-            <StyledButton
-              $bgColor={'blue'}
+            <Button
+              $bgColor={selectedItem ? 'blue' : 'gray'}
               width='90%'
               height='50px'
               $textColor='lightGray'
-              onClick={() => navigate(`/selected?character=${selectedItem}&id=${selectId}`)}
+              onClick={
+                selectedItem
+                  ? () => navigate(`/selected?character=${selectedItem}&id=${selectId}`)
+                  : undefined
+              }
               disabled={!selectedItem}
             >
               확인
-            </StyledButton>
+            </Button>
           </ButtonBox>
         </SelectBox>
       </BackBox>
@@ -88,27 +90,27 @@ export default Charcter;
 
 const BackBox = styled.div`
     width:100%;
-    height: 100%;
-    background-image: url(${back});
-    background-size: cover;
+  height: 100%;
+  background-image: url(${back});
+  background-size: cover;
 `;
 
 const TitleBox = styled.div`
     width:100%;
-    height: 15%;
+  height: 15%;
     color:#fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.p`
-    font-size: ${props => props.theme.font.size.priceText};
-    font-weight: ${props => props.theme.font.weight.bold};
-    border: 1px solid #fff;
-    display: inline-block;
-    padding: 15px;
-    border-radius: 20px;
+  font-size: ${props => props.theme.font.size.priceText};
+  font-weight: ${props => props.theme.font.weight.bold};
+  border: 1px solid #fff;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 20px;
 `;
 
 const Animal = styled.img`
@@ -117,44 +119,44 @@ const Animal = styled.img`
 
 const Tree = styled.img`
     width:70%;
-    position: relative;
-    bottom: 20px;
+  position: relative;
+  bottom: 20px;
 `;
 
 const ImgBox = styled.div`
     width:100%;
     color:#fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
 `;
 
 const SelectBox = styled.div`
-    background-color: #fff;
-    height: 45%;
-    border-radius: 20px 20px 0px 0px;
+  background-color: #fff;
+  height: 45%;
+  border-radius: 20px 20px 0px 0px;
     padding:15px;
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 `;
 
 const CardBox = styled.div`
     width:100%;
-    height: 75%;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+  height: 75%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 `;
 
 const ButtonBox = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 25%;
-    padding-top: 3px;
+  display: flex;
+  justify-content: center;
+  height: 25%;
+  padding-top: 3px;
 `;
 
 const AnimalImageBox = styled.div`
@@ -175,10 +177,4 @@ const TreeImageBox = styled.div`
   justify-content: center;
   z-index: 1;
   position: relative;
-`;
-
-const StyledButton = styled(Button)<{ disabled?: boolean }>`
-  background-color: ${props => (props.disabled ? '#D9D9D9' : props.theme.colors.bgColor.blue)};
-  color: ${props => (props.disabled ? '#959595' : props.theme.colors.text.white)};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
