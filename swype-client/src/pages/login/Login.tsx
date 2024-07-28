@@ -97,6 +97,7 @@ const Kakao = styled.button`
   justify-content: center;
   align-items: center;
   font-weight: 700;
+  color:black;
   img {
     margin-right: 5px;
   }
@@ -127,6 +128,7 @@ const Google = styled.button`
   justify-content: center;
   align-items: center;
   font-weight: 700;
+  color:black;
   img {
     margin-right: 5px;
   }
