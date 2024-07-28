@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Container } from '../share/utils/GlobalStyle';
-import LoginForm from '../components/LoginForm';
-import Login_Img from '../assets/Login_Img.png';
+import { Container } from '../../share/utils/GlobalStyle';
+import LoginForm from '../../components/LoginForm';
+import Login_Img from '../../assets/Login_Img.png';
 
 const Login = () => {
   return (

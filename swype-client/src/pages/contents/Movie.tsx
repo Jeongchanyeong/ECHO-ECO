@@ -1,13 +1,13 @@
-import { Container } from '../share/utils/GlobalStyle';
+import { Container } from '../../share/utils/GlobalStyle';
 import styled from 'styled-components';
-import Header from '../components/common/Header';
+import Header from '../../components/common/Header';
 import ReactPlayer from 'react-player';
 
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { getVideo } from '../apis/video/getVideo';
-import { getVideoWatched } from '../apis/video/getVideoWatched';
+import { getVideo } from '../../apis/video/getVideo';
+import { getVideoWatched } from '../../apis/video/getVideoWatched';
 
 const Movie = () => {
   const navigate = useNavigate();

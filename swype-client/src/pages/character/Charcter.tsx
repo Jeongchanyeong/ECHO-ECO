@@ -1,16 +1,16 @@
-import { Container } from '../share/utils/GlobalStyle';
+import { Container } from '../../share/utils/GlobalStyle';
 import styled from 'styled-components';
-import back from '../assets/Grass_Land.png';
-import TreeImg from '../assets/tree.png';
-import Pola from '../assets/Pola.png';
-import CharacterCard from '../components/CharacterCard';
-import Button from '../components/common/Button';
+import back from '../../assets/Grass_Land.png';
+import TreeImg from '../../assets/tree.png';
+import Pola from '../../assets/Pola.png';
+import Button from '../../components/common/Button';
 import { useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { CharacterList } from '../model/characterType';
+import { CharacterList } from '../../model/characterType';
 import { useNavigate } from 'react-router-dom';
-import { useGetCharacter } from '../apis/user/getCharacter';
+import { useGetCharacter } from '../../apis/user/getCharacter';
+import CharacterCard from '../../components/character/CharacterCard';
 
 const Charcter = () => {
   const [selectedItem, setSelectedItem] = useState<string>('');

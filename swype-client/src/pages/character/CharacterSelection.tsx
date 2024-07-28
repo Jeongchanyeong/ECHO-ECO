@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Container } from '../share/utils/GlobalStyle';
+import { Container } from '../../share/utils/GlobalStyle';
 import Grass_Land from '../assets/Grass_Land.png';
-import CharacterForm from '../components/CharacterForm';
 import Tree_Pola from '../assets/Tree_Pola.png';
 import Quokka_Lock from '../assets/Quokka_Lock.png';
 import RedPanda_Lock from '../assets/RedPanda_Lock.png';
@@ -9,6 +8,7 @@ import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
 import Koala_Lock from '../assets/Koala_Lock.png';
 
 import { useState } from 'react';
+import CharacterForm from '../../components/character/CharacterForm';
 
 const characters = [Tree_Pola, Quokka_Lock, RedPanda_Lock, GreenTurtle_Lock, Koala_Lock];
 

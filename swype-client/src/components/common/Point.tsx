@@ -1,6 +1,6 @@
-import StorePoint from '../assets/StorePoint.png';
+import StorePoint from '../../assets/StorePoint.png';
 import styled from 'styled-components';
-import { userData } from '../share/recoil/userAtom';
+import { userData } from '../../share/recoil/userAtom';
 import { useRecoilValue } from 'recoil';
 
 const Point = () => {
