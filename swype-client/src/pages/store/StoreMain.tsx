@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ItemCard from '../../components/ItemCard';
 import { Container } from '../../share/utils/GlobalStyle';
 import Header from '../../components/common/Header';
-import Point from '../../components/Point';
+import Point from '../../components/common/Point';
 import { useNavigate } from 'react-router-dom';
 import { ItemList } from '../../model/storeType';
 import { useQuery } from '@tanstack/react-query';

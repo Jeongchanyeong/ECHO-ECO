@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { CharacterList } from '../model/characterType';
-import { showToast } from '../share/utils/Toast';
+import { CharacterList } from '../../model/characterType';
+import { showToast } from '../../share/utils/Toast';
 type CharacterData = {
   Characters: CharacterList;
   isSelected: boolean;

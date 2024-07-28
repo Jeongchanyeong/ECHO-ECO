@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from './common/Button';
 import Pola_half from '../assets/Pola_half.png';
 import Quokka_Lock from '../assets/Quokka_Lock.png';
 import RedPanda_Lock from '../assets/RedPanda_Lock.png';
@@ -7,6 +6,7 @@ import GreenTurtle_Lock from '../assets/GreenTurtle_Lock.png';
 import Koala_Lock from '../assets/Koala_Lock.png';
 import { useState } from 'react';
 import axios from 'axios';
+import Button from '../common/Button';
 
 const characters = [
   { src: Pola_half, name: '폴라' },
@@ -15,8 +15,6 @@ const characters = [
   { src: GreenTurtle_Lock, name: '바다 거북' },
   { src: Koala_Lock, name: '코알라' },
 ];
-
-// 전반적인 기능이 구현 되는지 확인 후 세부적을 기능구현할 때 타입 지정 예정
 
 const CharacterForm = ({ selectedCharacter, characterSelect }: any) => {
   const [isSelected, setIsSelected] = useState(false);

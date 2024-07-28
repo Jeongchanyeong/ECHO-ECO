@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Container } from '../share/utils/GlobalStyle';
-import LoginForm from '../components/LoginForm';
-import Login_Img from '../assets/Login_Img.png';
+import { Container } from '../../share/utils/GlobalStyle';
+import LoginForm from '../../components/LoginForm';
+import Login_Img from '../../assets/Login_Img.png';
 
 const Login = () => {
   return (
@@ -16,6 +16,9 @@ const Login = () => {
 export default Login;
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+
   background-color: #E1F3F4;
   width: 100%;
   height: 100vh;

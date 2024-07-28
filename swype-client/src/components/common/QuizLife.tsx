@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import Quiz_Life from '../assets/Quiz_Life.png';
+import Quiz_Life from '../../assets/Quiz_Life.png';
 import styled from 'styled-components';
 import { useSetRecoilState } from 'recoil';
-import { remainData } from '../share/recoil/remainAtom';
+import { remainData } from '../../share/recoil/remainAtom';
 import { useEffect } from 'react';
-import { remainContents } from '../apis/quiz/getRemainContents';
+import { remainContents } from '../../apis/quiz/getRemainContents';
 
 const QuizLife = () => {
   const setRemainData = useSetRecoilState(remainData);

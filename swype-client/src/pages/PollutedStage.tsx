@@ -9,7 +9,7 @@ import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { draggableItemsState, initialTrashItemsState } from '../share/recoil/dndAtoms';
-import Point from '../components/Point';
+import Point from '../components/common/Point';
 import { useNavigate } from 'react-router-dom';
 import TrashModal from '../components/Modal/TrashModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
