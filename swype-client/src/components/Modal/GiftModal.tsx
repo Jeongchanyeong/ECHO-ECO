@@ -47,53 +47,63 @@ const GiftModal = () => {
   };
 
   return (
-    <ModalBox>
-      <InfoModal>
-        <Title> 기프티콘 발송 안내</Title>
-        <Info>이메일을 입력하고 기프티콘을 받아요</Info>
-        <Img src={coffee} />
-        <Tag>[빽다방]</Tag>
-        <SubInfo>아이스 아메리카노</SubInfo>
-        {!data ? (
-          <>
-            <InputBox>
-              <EmailInput
-                placeholder='example@echoeco.com'
-                onChange={handleCheck}
-              ></EmailInput>
-              <Icon src={isCheck ? CheckTrue : CheckFalse} />
-            </InputBox>
-            <Noti $isText={isText}>! 유효하지 않은 이메일입니다.</Noti>
-            <SendButton
-              onClick={SendToEmail}
-              disabled={!isCheck}
-              $isCheck={isCheck}
-            >
-              확인
-            </SendButton>
-          </>
-        ) : (
-          <>
-            <InfoText>
-              하루가 지나도 메일이 도착하지 않는다면,
-              <br />
-              스팸함을 확인해 주세요. 다른 문제가 생기면
-              <br />
-              twin2688@naver.com으로 메일주세요.
-            </InfoText>
-            <ResetButton>다시 한번 시작하기</ResetButton>
-          </>
-        )}
-      </InfoModal>
-    </ModalBox>
+    <Box>
+      <ModalBox>
+        <InfoModal>
+          <Title> 기프티콘 발송 안내</Title>
+          <Info>이메일을 입력하고 기프티콘을 받아요</Info>
+          <Img src={coffee} />
+          <Tag>[빽다방]</Tag>
+          <SubInfo>아이스 아메리카노</SubInfo>
+          {!data ? (
+            <>
+              <InputBox>
+                <EmailInput
+                  placeholder='example@echoeco.com'
+                  onChange={handleCheck}
+                ></EmailInput>
+                <Icon src={isCheck ? CheckTrue : CheckFalse} />
+              </InputBox>
+              <Noti $isText={isText}>! 유효하지 않은 이메일입니다.</Noti>
+              <SendButton
+                onClick={SendToEmail}
+                disabled={!isCheck}
+                $isCheck={isCheck}
+              >
+                확인
+              </SendButton>
+            </>
+          ) : (
+            <>
+              <InfoText>
+                하루가 지나도 메일이 도착하지 않는다면,
+                <br />
+                스팸함을 확인해 주세요. 다른 문제가 생기면
+                <br />
+                twin2688@naver.com으로 메일주세요.
+              </InfoText>
+              <ResetButton>다시 한번 시작하기</ResetButton>
+            </>
+          )}
+        </InfoModal>
+      </ModalBox>
+    </Box>
   );
 };
 
 export default GiftModal;
 
+const Box = styled.div`
+  width:100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ModalBox = styled.div`
     width:90%;
-    position: absolute;
     margin: 20px;
     box-shadow: 0 10px 20px 0 rgb(0 0 0 / 20%);
 `;
