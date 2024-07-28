@@ -28,7 +28,9 @@ const GiftModal = () => {
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
-    const validation = email.length > 0 && email.includes('@');
+
+    const emaiCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const validation = emaiCheck.test(email);
     setEmail(e.target.value);
     setIsCheck(validation);
     setIsText(email.length > 0 && validation);
