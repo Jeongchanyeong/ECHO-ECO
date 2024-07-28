@@ -23,16 +23,11 @@ const Stage = () => {
   const navigate = useNavigate();
   const setUserData = useSetRecoilState(userData);
 
-  const { data: userInfo, error } = useQuery({
+  const { data: userInfo } = useQuery({
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
     enabled: !!token,
-    retry: 1,
   });
-
-  if (error) {
-    navigate('/character');
-  }
 
   useEffect(() => {
     if (!!!token) {
