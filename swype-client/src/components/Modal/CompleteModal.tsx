@@ -7,6 +7,7 @@ import { characterComplete } from '../../apis/user/getCharacterMax';
 import GiftModal from './GiftModal';
 import { getCookie } from '../../cookie';
 import { useNavigate } from 'react-router-dom';
+import { showToast } from '../../share/utils/Toast';
 
 const CompleteModal = () => {
   const [index, setIndex] = useState(0);
@@ -31,6 +32,15 @@ const CompleteModal = () => {
     }
   };
 
+  const handleCheck = () => {
+    if (token) {
+      setIsModal(false);
+    } else {
+      showToast('warning', '로그인을 해주세요', '');
+      navigate('/login');
+    }
+  };
+
   return (
     <>
       <Box>
@@ -49,11 +59,7 @@ const CompleteModal = () => {
                       다음 <MdArrowForwardIos />
                     </Next>
                   ) : (
-                    <Finish
-                      onClick={() => {
-                        setIsModal(false);
-                      }}
-                    >
+                    <Finish onClick={handleCheck}>
                       기프티콘 받으러 가기 <MdArrowForwardIos />
                     </Finish>
                   )}

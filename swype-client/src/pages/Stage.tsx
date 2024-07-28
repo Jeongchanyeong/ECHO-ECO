@@ -34,7 +34,11 @@ const Stage = () => {
     navigate('/character');
   }
 
-  useEffect(() => {}, [token]);
+  useEffect(() => {
+    if (!!!token) {
+      navigate('/login');
+    }
+  }, [token]);
 
   useEffect(() => {
     if (userInfo) {
