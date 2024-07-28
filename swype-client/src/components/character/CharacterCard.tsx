@@ -46,7 +46,7 @@ export default CharacterCard;
 
 const CardBox = styled.div`
     border: 2px solid #EBEBEB;
-    border-radius: 10px;
+    border-radius: 13px;
     width: 30%;
     height: 45%;
     margin: 5px;
