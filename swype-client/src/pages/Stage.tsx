@@ -19,21 +19,22 @@ import { getCookie } from '../cookie';
 
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
-  const [token, setToken] = useState(getCookie('Authorization'));
+  const token = getCookie('Authorization');
   const navigate = useNavigate();
   const setUserData = useSetRecoilState(userData);
 
-  const { data: userInfo } = useQuery({
+  const { data: userInfo, error } = useQuery({
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
+    enabled: !!token,
+    retry: 1,
   });
 
-  useEffect(() => {
-    const tokenFromCookie = getCookie('Authorization');
-    if (tokenFromCookie !== token) {
-      setToken(tokenFromCookie);
-    }
-  }, [token]);
+  if (error) {
+    navigate('/character');
+  }
+
+  useEffect(() => {}, [token]);
 
   useEffect(() => {
     if (userInfo) {

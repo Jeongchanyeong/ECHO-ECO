@@ -3,9 +3,8 @@ import { getCookie } from '../../cookie';
 import { RemainData } from '../../model/remainDataType';
 import { BASE_URL } from '../../share/utils/OAuth';
 
-const token = getCookie('Authorization');
-
 export const remainContents = (): Promise<RemainData> => {
+  const token = getCookie('Authorization');
   return axios
     .get<{ data: RemainData }>(`${BASE_URL}/contents/remaining`, {
       headers: {

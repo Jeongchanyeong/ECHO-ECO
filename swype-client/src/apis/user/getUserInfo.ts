@@ -3,9 +3,8 @@ import { BASE_URL } from '../../share/utils/OAuth';
 import { getCookie } from '../../cookie';
 import { UserInfo } from '../../model/userInfoType';
 
-const token = getCookie('Authorization');
-
 export const getUserInfo = (): Promise<UserInfo> => {
+  const token = getCookie('Authorization');
   return axios
     .get<{ data: UserInfo }>(`${BASE_URL}/character/user`, {
       headers: {
@@ -14,7 +13,7 @@ export const getUserInfo = (): Promise<UserInfo> => {
     })
     .then(res => res.data.data)
     .catch(error => {
-      console.error('User err:', error);
+      console.error('신규 유저');
       throw error;
     });
 };

@@ -18,52 +18,7 @@ const LoginForm = () => {
     window.location.href = GOOGLE_AUTH_URL;
   };
 
-  return (
-    <Form>
-      <LoginText>
-        소셜 계정에 로그인하고
-        <br />
-        빠르게 ECHO ECO를 시작해보세요!
-      </LoginText>
-      <ButtonWrapper>
-        <Button
-          $bgColor='kakao'
-          width='93%'
-          height='25%'
-          $textColor='black'
-          onClick={handleKakaoLogin}
-        >
-          <img src={kakao_logo} />
-          카카오로 시작하기
-        </Button>
-        <Button
-          $bgColor='naver'
-          width='93%'
-          height='25%'
-          $textColor='white'
-          onClick={handleNaverLogin}
-        >
-          <img src={naver_logo} />
-          네이버로 시작하기
-        </Button>
-        <Button
-          $bgColor='google'
-          width='93%'
-          height='25%'
-          $textColor='black'
-          onClick={handleGoogleLogin}
-        >
-          <img src={google_logo} />
-          구글로 시작하기
-        </Button>
-      </ButtonWrapper>
-
-      <NoticeText>
-        로그인 시 개인정보 보호 정책 및 서비스 약관에 동의하는 것으로 간주하며,
-        <br /> 서비스 이용을 위해 이메일과 이름을 수집합니다.
-      </NoticeText>
-    </Form>
-  );
+  return <Form></Form>;
 };
 
 export default LoginForm;
