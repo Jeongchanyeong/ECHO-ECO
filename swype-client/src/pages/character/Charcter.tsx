@@ -67,15 +67,16 @@ const Charcter = () => {
             ))}
           </CardBox>
           <ButtonBox>
-            <Button
+            <StyledButton
               $bgColor={'blue'}
               width='90%'
               height='50px'
               $textColor='lightGray'
               onClick={() => navigate(`/selected?character=${selectedItem}&id=${selectId}`)}
+              disabled={!selectedItem}
             >
               확인
-            </Button>
+            </StyledButton>
           </ButtonBox>
         </SelectBox>
       </BackBox>
@@ -174,4 +175,10 @@ const TreeImageBox = styled.div`
   justify-content: center;
   z-index: 1;
   position: relative;
+`;
+
+const StyledButton = styled(Button)<{ disabled?: boolean }>`
+  background-color: ${props => (props.disabled ? '#D9D9D9' : props.theme.colors.bgColor.blue)};
+  color: ${props => (props.disabled ? '#959595' : props.theme.colors.text.white)};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
