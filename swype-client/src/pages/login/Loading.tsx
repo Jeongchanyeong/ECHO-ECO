@@ -6,6 +6,7 @@ import { setCookie } from '../../cookie';
 import { Container } from '../../share/utils/GlobalStyle';
 import LoginWait from '../../assets/loading.gif';
 import { BASE_URL } from '../../share/utils/OAuth';
+import { getUserInfo } from '../../apis/user/getUserInfo';
 
 const Loading = () => {
   const params = new URL(document.URL).searchParams;
@@ -13,10 +14,19 @@ const Loading = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/user/token/${useremail}`).then(res => {
-      setCookie('Authorization', res.data.data.authorization);
-      navigate('/stage');
-    });
+    const handleLogin = async () => {
+      await axios.get(`${BASE_URL}/user/token/${useremail}`).then(res => {
+        setCookie('Authorization', res.data.data.authorization);
+      });
+
+      try {
+        const user = await getUserInfo();
+        if (user) navigate('/stage');
+      } catch (e) {
+        navigate('/character');
+      }
+    };
+    handleLogin();
   }, []);
 
   return (
