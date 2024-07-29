@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getCookie } from '../../cookie';
+import { showToast } from '../../share/utils/Toast';
 
 export const useDetailItems = (id: string) => {
   const token = getCookie('Authorization');
@@ -10,5 +11,5 @@ export const useDetailItems = (id: string) => {
       },
     })
     .then(res => res.data.data)
-    .catch(e => console.log(e));
+    .catch(() => showToast('warning', '데이터를 불러오는데 실패했습니다.', ''));
 };

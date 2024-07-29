@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showToast } from '../../share/utils/Toast';
 
 export const useGetCharacter = () => {
   return axios.get(`${import.meta.env.VITE_BASE_URL}/character/list`).then(res => res.data.data);
@@ -13,5 +14,5 @@ export const useGetDescription = (characterName: string) => {
       );
       return JSON.parse(res.data.data[index].descriptions);
     })
-    .catch(e => console.log(e));
+    .catch(() => showToast('warning', '캐릭터 설명을 불러오는데 실패했습니다.', ''));
 };

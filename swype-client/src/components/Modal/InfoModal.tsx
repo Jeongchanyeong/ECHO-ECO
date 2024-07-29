@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../cookie';
 import { useGetDescription } from '../../apis/user/getCharacter';
+import { showToast } from '../../share/utils/Toast';
 
 const InfoModal = () => {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ const InfoModal = () => {
     }
   };
 
-  // 뮤테이션으로 바꿀 예정
   const PickCharacter = () => {
     axios
       .post(
@@ -43,10 +43,9 @@ const InfoModal = () => {
         }
       )
       .then(res => {
-        console.log(res);
         navigate('/stage');
       })
-      .catch(e => console.log(e));
+      .catch(() => showToast('warning', '이미 사용중인 캐릭터가 있습니다.', ''));
   };
 
   return (

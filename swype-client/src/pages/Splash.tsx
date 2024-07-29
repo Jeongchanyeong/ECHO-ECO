@@ -13,7 +13,7 @@ const Splash = () => {
     setFadeOut(true);
     setTimeout(() => {
       navigate('/login');
-    }, 1500);
+    }, 1000);
   };
 
   return (
@@ -27,6 +27,7 @@ const Splash = () => {
 const SplashGIF = styled.img`
   width: 100%;
   height: 100%;
+  cursor: pointer;
 `;
 
 const fadeOut = keyframes`
@@ -47,7 +48,7 @@ const FadeOutAnimation = styled.div`
   height: 100%;
   background-color: black;
   opacity: 0;
-  animation: ${fadeOut} 1.5s forwards;
+  animation: ${fadeOut} 1.0s forwards;
 `;
 
 export default Splash;
