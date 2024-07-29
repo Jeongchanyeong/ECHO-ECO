@@ -56,7 +56,7 @@ const Quiz = () => {
         setIsModal(true);
         setData(res.data.data.answer);
       })
-      .catch(err => console.log(err));
+      .catch(() => showToast('warning', '문제 푸는데 오류가 발생했습니다.', ''));
   };
 
   return (
@@ -163,6 +163,8 @@ const Choice = styled.div`
     background-color: #fff;
     display: flex;
     line-height: 1.3;
+    cursor: pointer; 
+
     h1{
         width:10%;
     }
@@ -171,9 +173,11 @@ const Choice = styled.div`
         text-align: left;
     }
 
-    &:hover {
+    @media(hover: hover) and (pointer: fine) {
+      &:hover {
         background-color: #23A1F8;
         color:#fff;
     }
-    cursor: pointer; 
+    }
+
 `;

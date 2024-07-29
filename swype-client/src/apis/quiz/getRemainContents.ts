@@ -15,7 +15,6 @@ export const remainContents = (): Promise<RemainData> => {
       return res.data.data;
     })
     .catch(error => {
-      console.log('err', error);
       throw error;
     });
 };
