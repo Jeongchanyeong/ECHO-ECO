@@ -42,7 +42,7 @@ const InfoModal = () => {
           },
         }
       )
-      .then(res => {
+      .then(() => {
         navigate('/stage');
       })
       .catch(() => showToast('warning', '이미 사용중인 캐릭터가 있습니다.', ''));
