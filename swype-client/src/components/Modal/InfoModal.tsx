@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Quokka from '../../assets/Quokka.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { DescriptionText } from '../../model/characterType';
 import { useQuery } from '@tanstack/react-query';
@@ -24,6 +24,23 @@ const InfoModal = () => {
   });
 
   const [index, setIndex] = useState(0);
+  const [infoText, setInfoText] = useState('');
+
+  useEffect(() => {
+    if (Description) {
+      let currentIndex = 0;
+      const fullText = Description[index].step;
+      const gap = setInterval(() => {
+        setInfoText(() => fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+
+        if (currentIndex === fullText.length) {
+          clearInterval(gap);
+        }
+      }, 35);
+      return () => clearInterval(gap);
+    }
+  }, [index, Description]);
 
   const handleClick = () => {
     if (Description && index < Description.length - 1) {
@@ -52,7 +69,7 @@ const InfoModal = () => {
     <Wrapper>
       <InfoWrapper>
         <TextWrapper>
-          <Text>{Description && Description[index].step}</Text>
+          <Text>{infoText}</Text>
         </TextWrapper>
         <ButtonWrapper>
           {Description && index < Description.length - 1 ? (
@@ -67,7 +84,10 @@ const InfoModal = () => {
         </ButtonWrapper>
       </InfoWrapper>
       <ImgWrapper>
-        <img src={Quokka} />
+        <img
+          src={Quokka}
+          alt='Quokka'
+        />
       </ImgWrapper>
     </Wrapper>
   );
@@ -78,6 +98,7 @@ export default InfoModal;
 const Wrapper = styled.div`
   display: flex;
   width: 90%; 
+  height: 160px;
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -90,30 +111,28 @@ const InfoWrapper = styled.div`
 
 const TextWrapper = styled.div`
   width: 100%;
-  height: 70%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   background-color: ${props => props.theme.colors.text.white};
-  justify-content: center;
+  justify-content: flex-start;
   line-height: 1.5;
-  padding: 20px 0px 20px 20px;
+  padding: 20px 5px 20px 20px;
 `;
 
 const Text = styled.span`
   color: #505050;
   font-size: ${props => props.theme.font.size.choose};
   font-weight: ${props => props.theme.font.weight.extraBold};
-  padding-top:20px;
-  
+  white-space: pre-wrap;
 `;
 
 const ButtonWrapper = styled.div`
   width: 100%;
-  height: 30%;
+  height: 20%;
   display: flex;
   justify-content: flex-start;
-  padding-left: 20px;
-  
+  padding: 0px 0px 10px 20px;
   background-color: ${props => props.theme.colors.text.white}; 
   color: ${props => props.theme.colors.text.darkGray};
   font-size: ${props => props.theme.font.size.body};
@@ -137,7 +156,6 @@ const Next = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-
 `;
 
 const Finish = styled(Next)`
