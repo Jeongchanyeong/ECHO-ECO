@@ -18,7 +18,7 @@ export const theme: DefaultTheme = {
       gray: '#959595',
       lightGray: '#EBEBEB',
       blue: '#23A1F8',
-      white: '#fafafa',
+      white: '#FAFAFA',
     },
   },
   font: {

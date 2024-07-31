@@ -144,10 +144,10 @@ const InfoBox = styled.div`
   background-color: #fff;
   text-align: center;
   padding:20px;
-  font-size: ${props => props.theme.font.size.body};
+  font-size: ${props => props.theme.font.size.choose};
   font-weight: ${props => props.theme.font.weight.bold};
-  color:#787878;
-  line-height: 1.5;
+  color:${props => props.theme.colors.text.darkGray};
+  line-height: 1.8;
 `;
 
 const BlueButton = styled.button`
@@ -163,7 +163,7 @@ const BlueButton = styled.button`
 
 const GrayButton = styled.button`
   background-color: #F9F9F9;
-  color:#959595;
+  color: ${props => props.theme.colors.text.gray};
   border-radius: 10px;
   width:100%;
   height: 50px;

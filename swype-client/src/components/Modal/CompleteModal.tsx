@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Quokka from '../../assets/Quokka.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { characterComplete } from '../../apis/user/getCharacterMax';
@@ -12,6 +12,7 @@ import { showToast } from '../../share/utils/Toast';
 const CompleteModal = () => {
   const [index, setIndex] = useState(0);
   const [isModal, setIsModal] = useState(true);
+  const [infoText, setInfoText] = useState('');
   const token = getCookie('Authorization');
   const navigate = useNavigate();
 
@@ -21,6 +22,22 @@ const CompleteModal = () => {
     enabled: !!token,
     retry: 1,
   });
+
+  useEffect(() => {
+    if (completeMessages && completeMessages[index]) {
+      let currentIndex = 0;
+      const fullText = completeMessages[index].step;
+      const gap = setInterval(() => {
+        setInfoText(() => fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+
+        if (currentIndex === fullText.length) {
+          clearInterval(gap);
+        }
+      }, 35);
+      return () => clearInterval(gap);
+    }
+  }, [index, completeMessages]);
 
   if (error) {
     navigate('/character');
@@ -49,9 +66,7 @@ const CompleteModal = () => {
             <>
               <InfoWrapper>
                 <TextWrapper>
-                  {completeMessages && completeMessages[index] && (
-                    <Text>{completeMessages[index].step}</Text>
-                  )}
+                  {completeMessages && completeMessages[index] && <Text>{infoText}</Text>}
                 </TextWrapper>
                 <ButtonWrapper>
                   {completeMessages && index < completeMessages.length - 1 ? (
@@ -93,7 +108,7 @@ const Box = styled.div`
 const Wrapper = styled.div`
   display: flex;
   width: 90%;
-  background-color: #FAFAFA; 
+  height: 160px;
   border-radius: 10px; 
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -102,6 +117,7 @@ const Wrapper = styled.div`
 const InfoWrapper = styled.div`
   width: 80%;
   padding:20px;
+  background-color: ${props => props.theme.colors.text.white};
 `;
 
 const TextWrapper = styled.div`
@@ -109,17 +125,17 @@ const TextWrapper = styled.div`
   height: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  color: #333;
+  justify-content: flex-start;
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
   margin-bottom: 10px;
-  background-color: #FAFAFA; 
 `;
 
 const Text = styled.span`
-  color: ${props => props.theme.colors.text.black};
+  color: #505050;
+  font-size: ${props => props.theme.font.size.choose};
   font-weight: ${props => props.theme.font.weight.extraBold};
+  white-space: pre-wrap;
 `;
 
 const ButtonWrapper = styled.div`
@@ -127,19 +143,22 @@ const ButtonWrapper = styled.div`
   height: 30%;
   display: flex;
   justify-content: flex-start;
-  background-color: #FAFAFA; 
 
+  color: ${props => props.theme.colors.text.darkGray};
+  font-size: ${props => props.theme.font.size.body};
+  font-weight: ${props => props.theme.font.weight.bold};
 `;
 
 const ImgWrapper = styled.div`
-  width: 20%;
-  background-color: #FAFAFA; 
   display: flex;
   align-items: center;
   justify-content: end;
+  width: 20%;
+
+  background-color: ${props => props.theme.colors.text.white};
 
   img {
-    width: 90%;
+    width: 110%;
     height: auto;
   }
 `;
@@ -148,16 +167,8 @@ const Next = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  color:#787878;
-  font-size: ${props => props.theme.font.size.body};
-  font-weight: ${props => props.theme.font.weight.bold};
+
 `;
 
-const Finish = styled.div`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  color:#787878;
-  font-size: ${props => props.theme.font.size.body};
-  font-weight: ${props => props.theme.font.weight.bold};
+const Finish = styled(Next)`
 `;
