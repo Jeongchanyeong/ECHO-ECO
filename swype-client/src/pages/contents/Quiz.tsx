@@ -145,7 +145,9 @@ const Text = styled.p`
     font-weight: ${props => props.theme.font.weight.bold};
     margin-bottom: 20px;
     line-height: 1.3;
-`;
+    display: flex;
+    text-align: center;
+    `;
 
 const ChoiceBox = styled.div`
     display: flex;

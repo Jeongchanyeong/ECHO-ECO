@@ -110,15 +110,15 @@ const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #333;
   font-size: ${props => props.theme.font.size.body};
   line-height: 1.5;
   margin-bottom: 10px;
-  background-color: #FAFAFA; 
+  background-color: ${props => props.theme.colors.text.white};
 `;
 
 const Text = styled.span`
-  color: ${props => props.theme.colors.text.black};
+  color: #505050;
+  font-size: ${props => props.theme.font.size.choose};
   font-weight: ${props => props.theme.font.weight.extraBold};
 `;
 
@@ -127,19 +127,23 @@ const ButtonWrapper = styled.div`
   height: 30%;
   display: flex;
   justify-content: flex-start;
-  background-color: #FAFAFA; 
 
+  background-color: ${props => props.theme.colors.text.white};
+  color: ${props => props.theme.colors.text.darkGray};
+  font-size: ${props => props.theme.font.size.body};
+  font-weight: ${props => props.theme.font.weight.bold};
 `;
 
 const ImgWrapper = styled.div`
-  width: 20%;
-  background-color: #FAFAFA; 
   display: flex;
   align-items: center;
   justify-content: end;
+  width: 20%;
+
+  background-color: ${props => props.theme.colors.text.white};
 
   img {
-    width: 90%;
+    width: 110%;
     height: auto;
   }
 `;
@@ -148,16 +152,8 @@ const Next = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  color:#787878;
-  font-size: ${props => props.theme.font.size.body};
-  font-weight: ${props => props.theme.font.weight.bold};
+
 `;
 
-const Finish = styled.div`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  color:#787878;
-  font-size: ${props => props.theme.font.size.body};
-  font-weight: ${props => props.theme.font.weight.bold};
+const Finish = styled(Next)`
 `;
