@@ -157,15 +157,15 @@
 <body>
     <tr>
         <td>
-          <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268488530481385492/image.png?ex=66ac9b81&is=66ab4a01&hm=696d4167641c6d9ebc42737f0b49184e7e03258a7256cb6c3114be1dd90fea86&" width="600px" height="342px" />
+          <img src="https://cdn.discordapp.com/attachments/1257699345910992976/1268558220096700416/image.png?ex=66acdc68&is=66ab8ae8&hm=92a0d4773735340af4485d3366a3053dffa3a81d41a09117e7764ba0c7d4c25e&" width="600px" height="342px" />
         </td>
         <td>
           <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268488530481385492/image.png?ex=66ac9b81&is=66ab4a01&hm=696d4167641c6d9ebc42737f0b49184e7e03258a7256cb6c3114be1dd90fea86&" width="600px" height="342px" />
         </td>
     </tr>
     <tr>
-        <td><p align="center">FE</p></td>
-        <td><p align="center">BE</p></td>
+        <td><p align="center">Front-End</p></td>
+        <td><p align="center">Back-End</p></td>
     </tr>
     
 </tbody>
