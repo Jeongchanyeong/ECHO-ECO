@@ -15,9 +15,10 @@ type Props = {
   data?: string;
   quiz?: QuizType;
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
+  isModal: boolean;
 };
 
-const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
+const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal, isModal }) => {
   const setInfo = useSetRecoilState(userData);
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
   }, [data]);
 
   return (
-    <ModalBox>
+    <ModalBox $isModal={isModal}>
       <ImgBox>
         <Img src={Leeca} />
       </ImgBox>
@@ -88,8 +89,8 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal }) => {
 
 export default QuizModal;
 
-const ModalBox = styled.div`
-    margin:  auto;
+const ModalBox = styled.div<{ $isModal: boolean }>`
+    margin: auto;
     width:80%;
 `;
 

@@ -119,10 +119,12 @@ const MovieBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 const QuizBox = styled(MovieBox)`
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 const QuizImg = styled.img`

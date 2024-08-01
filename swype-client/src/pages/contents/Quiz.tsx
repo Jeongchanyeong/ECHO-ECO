@@ -1,5 +1,5 @@
 import { Container } from '../../share/utils/GlobalStyle';
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import Leeca from '../../assets/LeeCa.png';
 import Header from '../../components/common/Header';
 import quizbackground from '../../assets/quizbackground.png';
@@ -75,9 +75,10 @@ const Quiz = () => {
             data={data}
             quiz={quiz}
             setIsModal={setIsModal}
+            isModal={isModal}
           />
         ) : (
-          <ModalBox>
+          <ModalBox $isModal={isModal}>
             <ImgBox>
               <Img src={Leeca} />
             </ImgBox>
@@ -116,8 +117,29 @@ const MainBox = styled.div`
     align-items: center;
 `;
 
-const ModalBox = styled.div`
-    width: 100%; 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+const ModalBox = styled.div<{ $isModal: boolean }>`
+    width: 100%;
+    ${({ $isModal }) => css`
+    animation: ${$isModal ? fadeOut : fadeIn} 1s ease-in-out forwards;
+  `}
 `;
 
 const InfoModal = styled.div`
