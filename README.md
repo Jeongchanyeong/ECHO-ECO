@@ -22,13 +22,13 @@
   <table>
     <tr>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762131501086/2024-08-03_3.57.17.png?ex=66af27a5&is=66add625&hm=21dede18df4cdac36c7d7c33b78aa44c8d0370bc934884fd510a16f556186fe6&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762131501086/2024-08-03_3.57.17.png?ex=66af27a5&is=66add625&hm=21dede18df4cdac36c7d7c33b78aa44c8d0370bc934884fd510a16f556186fe6&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762382893068/2024-08-03_3.57.43.png?ex=66af27a5&is=66add625&hm=975dd00b23d63710858b8665545c9e5d21ff72f382caf3b987f0631d0d5f968b&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762382893068/2024-08-03_3.57.43.png?ex=66af27a5&is=66add625&hm=975dd00b23d63710858b8665545c9e5d21ff72f382caf3b987f0631d0d5f968b&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762621972480/2024-08-03_3.57.56.png?ex=66af27a5&is=66add625&hm=1d2862f0d554349fddba014678f1e507149d799cce61c26f8db93a3fdef71c41&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762621972480/2024-08-03_3.57.56.png?ex=66af27a5&is=66add625&hm=1d2862f0d554349fddba014678f1e507149d799cce61c26f8db93a3fdef71c41&" width="240px" height="534px" />
       </td>
     </tr>
     <tr>
@@ -41,13 +41,13 @@
   <table>
     <tr>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268478936078225550/image.png?ex=66ac9291&is=66ab4111&hm=b2c81f36d8125db7df48371b718339cbfcfae7f9e492d42822b6ddf73ca7ebdd&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268478936078225550/image.png?ex=66ac9291&is=66ab4111&hm=b2c81f36d8125db7df48371b718339cbfcfae7f9e492d42822b6ddf73ca7ebdd&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268478992453861419/image.png?ex=66ac929f&is=66ab411f&hm=42ead409f14412ce78d359eb7d6394cfeaa2bebc873290523f2ef0cc48a8ba39&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268478992453861419/image.png?ex=66ac929f&is=66ab411f&hm=42ead409f14412ce78d359eb7d6394cfeaa2bebc873290523f2ef0cc48a8ba39&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268481767636074558/image.png?ex=66ac9534&is=66ab43b4&hm=493f829a4425a724914a085aa3f8df8dc5053e4611e6dc70ca91a594b4e8ac04&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268481767636074558/image.png?ex=66ac9534&is=66ab43b4&hm=493f829a4425a724914a085aa3f8df8dc5053e4611e6dc70ca91a594b4e8ac04&" width="240px" height="534px" />
       </td>
     </tr>
     <tr>
@@ -60,13 +60,13 @@
   <table>
     <tr>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762936807445/2024-08-03_3.59.34.png?ex=66af27a5&is=66add625&hm=ac1cb048e7b03864f5f7bf20552511279eae1ac86905c216d0ddb938d566f2b0&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188762936807445/2024-08-03_3.59.34.png?ex=66af27a5&is=66add625&hm=ac1cb048e7b03864f5f7bf20552511279eae1ac86905c216d0ddb938d566f2b0&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268479407891284028/image.png?ex=66ac9302&is=66ab4182&hm=23b3959ec004450bc2c37e9094284492fe6cb9d7369942317e8f6bba130b19e7&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268479407891284028/image.png?ex=66ac9302&is=66ab4182&hm=23b3959ec004450bc2c37e9094284492fe6cb9d7369942317e8f6bba130b19e7&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268479324881682507/image.png?ex=66ac92ee&is=66ab416e&hm=80bf55fbfe42f9b012828638afef951c658b138a6632f97c5d05151ce8812c22&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268479324881682507/image.png?ex=66ac92ee&is=66ab416e&hm=80bf55fbfe42f9b012828638afef951c658b138a6632f97c5d05151ce8812c22&" width="240px" height="534px" />
       </td>
     </tr>
     <tr>
@@ -79,13 +79,13 @@
   <table>
     <tr>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268479797689061428/image.png?ex=66ac935e&is=66ab41de&hm=08693efa551aaf1be2aa189a46a832fa4e0deda248e043c17f26866e320625e5&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1256824032909856870/1268479797689061428/image.png?ex=66ac935e&is=66ab41de&hm=08693efa551aaf1be2aa189a46a832fa4e0deda248e043c17f26866e320625e5&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269190033567518760/2024-08-03_4.07.39.png?ex=66af28d4&is=66add754&hm=0049fd57e72bd92f55c9cd57ba102bde38768fa1c6cf7bf749affe32b335dc35&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269190033567518760/2024-08-03_4.07.39.png?ex=66af28d4&is=66add754&hm=0049fd57e72bd92f55c9cd57ba102bde38768fa1c6cf7bf749affe32b335dc35&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269190033324376106/2024-08-03_4.07.53.png?ex=66af28d4&is=66add754&hm=bf971b5bc1ec135e70e1be25e856d30e16f088502c200c0aac7a238caec73229&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269190033324376106/2024-08-03_4.07.53.png?ex=66af28d4&is=66add754&hm=bf971b5bc1ec135e70e1be25e856d30e16f088502c200c0aac7a238caec73229&" width="240px" height="534px" />
       </td>
     </tr>
     <tr>
@@ -98,10 +98,10 @@
   <table>
     <tr>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188763179810847/2024-08-03_3.59.59.png?ex=66af27a5&is=66add625&hm=0f833c9178621f491ab962ecfd8b1396aa2525da821a6bc887559d57b76bd2ef&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188763179810847/2024-08-03_3.59.59.png?ex=66af27a5&is=66add625&hm=0f833c9178621f491ab962ecfd8b1396aa2525da821a6bc887559d57b76bd2ef&" width="240px" height="534px" />
       </td>
       <td>
-        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188763402113044/2024-08-03_4.00.24.png?ex=66af27a5&is=66add625&hm=1664a92e1dbd5a16ed2f5c493c5d0316eea4cd65177b2d25bc5045b29603e1cd&" width="200px" height="445px" />
+        <img src="https://cdn.discordapp.com/attachments/1206525186627608628/1269188763402113044/2024-08-03_4.00.24.png?ex=66af27a5&is=66add625&hm=1664a92e1dbd5a16ed2f5c493c5d0316eea4cd65177b2d25bc5045b29603e1cd&" width="240px" height="534px" />
       </td>
     </tr>
     <tr>
