@@ -58,6 +58,9 @@ const Nav = styled.div`
   padding: 15px;
   box-sizing: border-box; 
 
+img{
+  width: 30px;
+}
 `;
 const Col = styled.div<{ $buttonColor?: string }>`
   display: flex;
