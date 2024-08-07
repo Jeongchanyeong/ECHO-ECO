@@ -68,6 +68,7 @@ const PriceBox = styled.div`
     font-size: ${props => props.theme.font.size.priceText};
   }
   img{
+    width: 20px;
     margin-left: 5px;
   }
   span{

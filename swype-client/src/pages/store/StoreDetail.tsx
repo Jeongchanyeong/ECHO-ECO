@@ -170,6 +170,7 @@ const PriceBox = styled.div`
     letter-spacing: -0.3px;
   }
   img{
+    width: 20px;
     margin-left: 5px;
   }
   `;
@@ -195,6 +196,7 @@ const InfoText = styled.p`
   align-items: center;
 
   img{
+    width: 20px;
     margin-right: 5px;
   }
 `;
