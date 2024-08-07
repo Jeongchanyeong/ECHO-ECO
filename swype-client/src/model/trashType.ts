@@ -15,6 +15,7 @@ export interface TrashItemProps {
     alt: string;
     top: string;
     left: string;
+    width: string;
   };
 }
 

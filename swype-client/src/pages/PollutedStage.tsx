@@ -20,6 +20,7 @@ import { getUserInfo } from '../apis/user/getUserInfo';
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import { userData } from '../share/recoil/userAtom';
 import { TrashImgData, TrashPointData } from '../model/trashType';
+import { PollutedFloat } from '../share/utils/Float';
 
 const PollutedStage = () => {
   const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
@@ -214,20 +215,27 @@ const CharacterImageWrapper = styled.div`
   position: absolute;
   top: 20%;
   gap: 10px;
+
+  img {
+    width: 35%;
+    height: auto;
+    animation: ${PollutedFloat} 3.5s ease-in-out infinite;
+  }
 `;
 
 const PollutedWater = styled.div`
   display: flex;
-  align-items: flex-end;
   position: absolute;
   width: 100%;
+  height: 100%;
   z-index: 1;
   opacity: 0.4;
 
   img {
     width: 100%;
+    height: 50%;
+    position: absolute;
     bottom: 0;
-    height: auto;
   }
 `;
 

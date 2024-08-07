@@ -5,6 +5,7 @@ import Frozen_Land from '../../assets/Frozen_Land.png';
 import Header from '../../components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import InfoModal from '../../components/Modal/InfoModal';
+import { StageFloat } from '../../share/utils/Float';
 
 const SelectedCharacter = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const CharacterImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  animation: ${StageFloat} 4s ease-in-out infinite;
 `;
 
 const CharacterImage = styled.img`
