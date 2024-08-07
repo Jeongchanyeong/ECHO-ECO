@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Container } from '../share/utils/GlobalStyle';
 import Header from '../components/common/Header';
 import TrashItem from '../components/Trash-related/TrashItem';
@@ -20,24 +20,7 @@ import { getUserInfo } from '../apis/user/getUserInfo';
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import { userData } from '../share/recoil/userAtom';
 import { TrashImgData, TrashPointData } from '../model/trashType';
-
-const float = keyframes`
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-  25% {
-    transform: translateX(-5px) translateY(-10px);
-  }
-  50% {
-    transform: translateX(0) translateY(-5px);
-  }
-  75% {
-    transform: translateX(5px) translateY(-10px);
-  }
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-`;
+import { PollutedFloat } from '../share/utils/Float';
 
 const PollutedStage = () => {
   const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
@@ -236,7 +219,7 @@ const CharacterImageWrapper = styled.div`
   img {
     width: 35%;
     height: auto;
-    animation: ${float} 3.5s ease-in-out infinite;
+    animation: ${PollutedFloat} 3.5s ease-in-out infinite;
   }
 `;
 

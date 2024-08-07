@@ -16,6 +16,7 @@ import { useSetRecoilState } from 'recoil';
 import { userData } from '../share/recoil/userAtom';
 import CompleteModal from '../components/Modal/CompleteModal';
 import { getCookie } from '../cookie';
+import { StageFloat } from '../share/utils/Float';
 
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
@@ -140,6 +141,7 @@ const CharacterBox = styled.div`
 const CharacterImage = styled.img`
   width: 85%;
   height: auto;
+  animation: ${StageFloat} 4s ease-in-out infinite;
 `;
 
 const ButtonWrapper = styled.div`
@@ -179,7 +181,7 @@ const StoreButton = styled.button`
 const TrashButton = styled(StoreButton)`
   margin-top: 5%;
   img {
-  margin-bottom: 5%;
+    margin-bottom: 5%;
   }
 `;
 
