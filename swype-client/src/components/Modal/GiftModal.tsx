@@ -102,11 +102,17 @@ const GiftModal = () => {
           ) : (
             <>
               <InfoText>
-                하루가 지나도 메일이 도착하지 않는다면,
+                ECHO-ECO 서비스가 어땠는지 궁금해요.
                 <br />
-                스팸함을 확인해 주세요. 다른 문제가 생기면
+                여러분의 소중한 의견이 큰 도움이 됩니다!
                 <br />
-                twin2688@naver.com으로 메일주세요.
+                <br />
+                구글폼 작성자에 한해서 기프티콘 제공 예정
+                <br />
+                <br />
+                <a href='https://forms.gle/QgoyFdHAGM2y7iB59'>
+                  구글폼 작성하고 기프티콘 받기 Click!
+                </a>
               </InfoText>
               <ResetButton onClick={ResetUser}>다시 한번 시작하기</ResetButton>
             </>
@@ -132,6 +138,7 @@ const ModalBox = styled.div`
     width:90%;
     margin: 20px;
     box-shadow: 0 10px 20px 0 rgb(0 0 0 / 20%);
+    border-radius: 20px;
 `;
 
 const InfoModal = styled.div`
@@ -236,4 +243,8 @@ const InfoText = styled.div`
   font-weight: ${props => props.theme.font.weight.bold};
   margin-top: 20px;
   line-height: 1.5;
+
+  a{
+    color: ${props => props.theme.colors.text.blue}
+  }
 `;
