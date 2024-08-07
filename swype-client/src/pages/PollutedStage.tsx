@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Container } from '../share/utils/GlobalStyle';
 import Header from '../components/common/Header';
 import TrashItem from '../components/Trash-related/TrashItem';
@@ -20,6 +20,24 @@ import { getUserInfo } from '../apis/user/getUserInfo';
 import Polluted_Water from '../assets/trash/Polluted_Water.png';
 import { userData } from '../share/recoil/userAtom';
 import { TrashImgData, TrashPointData } from '../model/trashType';
+
+const float = keyframes`
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(0) translateY(-5px);
+  }
+  75% {
+    transform: translateX(5px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+`;
 
 const PollutedStage = () => {
   const [trashItems, setTrashItems] = useRecoilState(draggableItemsState);
@@ -214,20 +232,27 @@ const CharacterImageWrapper = styled.div`
   position: absolute;
   top: 20%;
   gap: 10px;
+
+  img {
+    width: 35%;
+    height: auto;
+    animation: ${float} 3.5s ease-in-out infinite;
+  }
 `;
 
 const PollutedWater = styled.div`
   display: flex;
-  align-items: flex-end;
   position: absolute;
   width: 100%;
+  height: 100%;
   z-index: 1;
   opacity: 0.4;
 
   img {
     width: 100%;
+    height: 50%;
+    position: absolute;
     bottom: 0;
-    height: auto;
   }
 `;
 
