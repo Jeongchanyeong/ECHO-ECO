@@ -152,6 +152,7 @@ const ButtonWrapper = styled.div`
   width: 100%;
   position: absolute;
   margin-top: 60px;
+  z-index: 1;
   
   span{
     font-weight: ${props => props.theme.font.weight.extraBold};
