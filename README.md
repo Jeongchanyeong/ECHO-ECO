@@ -1,7 +1,7 @@
 # 🌏 ECHO-ECO
 
 ![thumbnail](https://github.com/user-attachments/assets/bb405751-441c-4c64-9e79-e0b03b7d6cc8)
-## 하루 몇 분 투자로 환경 지식을 얻고, 귀여운 멸종 위기 동물을 키우며 보상도 받는 올인원 환경 인식 개선 앱 테크 서비스! 
+#### 하루 몇 분 투자로 환경 지식을 얻고, 귀여운 멸종 위기 동물을 키우며 보상도 받는 올인원 환경 인식 개선 앱 테크 서비스! 
 <br>
 
 # 📝 Description
@@ -215,7 +215,7 @@
     </tr>
     <tr>
         <td><p align="center">서예빈<br>PM</p></td>
-        <td><p align="center">박고운<br>DESIGNER</p></td>
+        <td><p align="center">박고운<br>DESIGN</p></td>
         <td><p align="center">정찬영<br>FE</p></td>
         <td><p align="center">정인성<br>FE</p></td>
         <td><p align="center">박세준<br>BE</p></td>
