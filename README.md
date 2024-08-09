@@ -1,7 +1,7 @@
 # 🌏 ECHO-ECO
 
 ![thumbnail](https://github.com/user-attachments/assets/bb405751-441c-4c64-9e79-e0b03b7d6cc8)
-### 하루 몇 분 투자로 환경 지식을 얻고, 귀여운 멸종 위기 동물을 키우며 보상도 받는 올인원 환경 인식 개선 앱 테크 서비스! 
+## 하루 몇 분 투자로 환경 지식을 얻고, 귀여운 멸종 위기 동물을 키우며 보상도 받는 올인원 환경 인식 개선 앱 테크 서비스! 
 <br>
 
 # 📝 Description
@@ -12,7 +12,7 @@
 
 이를 해결하기 위해, 저희 팀은 ECHO-ECO 올인원 환경 보호 서비스를 개발하였습니다.
 <br><br>
-### 🔗 배포 URL: [ECHO-ECO 바로가기](http://echoeco.shop.s3-website-us-east-1.amazonaws.com)
+### 🔗 배포 URL: [ECHO-ECO 바로가기](https://echo-eco.swygbro.com)
 <br>
 
 # 📚 Service Detail
