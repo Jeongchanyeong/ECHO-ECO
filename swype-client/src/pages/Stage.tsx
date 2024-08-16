@@ -59,7 +59,7 @@ const Stage = () => {
     if (!isClean) {
       navigate('/polluted');
     } else {
-      showToast('warning', '오늘의 쓰레기를 다 치웠어요.', '00시 이후에 다시 만나요!');
+      showToast('warning', '오늘의 쓰레기를 다 치웠어요.<br/>00시 이후에 다시 만나요!');
     }
   };
 

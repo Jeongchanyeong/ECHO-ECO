@@ -12,6 +12,6 @@ export const checkUser = () => {
       },
     })
     .catch(() => {
-      showToast('warning', '키우고 있는 동물이 있어요', '');
+      showToast('warning', '키우고 있는 동물이 있어요');
     });
 };

@@ -18,20 +18,13 @@ ${reset}
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'ChosunGu';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 
 
 * {
   box-sizing: border-box;
   margin: 0; 
   padding: 0; 
-  font-family: 'NanumSquareRound', 'ChosunGu', 'Arial', sans-serif;
+  font-family: 'NanumSquareRound', 'Arial', sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -40,8 +33,15 @@ ${reset}
 
 
 body {
+    font-family: 'NanumSquareRound', 'Arial', sans-serif;
+}
 
-    font-family: 'NanumSquareRound', 'ChosunGu', 'Arial', sans-serif;
+.swal2-title{
+  display: flex !important;
+  text-align: center !important;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
 }
 
 
