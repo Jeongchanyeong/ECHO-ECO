@@ -21,7 +21,7 @@ const FeatureButtons = () => {
     switch (what) {
       case 'quiz':
         if (chance?.remainQuestion === 0) {
-          showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.', '12시 이후에 다시 만나요');
+          showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.<br/>12시 이후에 다시 만나요.');
           return;
         } else {
           navigate('/quiz');
@@ -29,7 +29,7 @@ const FeatureButtons = () => {
         break;
       case 'video':
         if (chance?.remainVideo === 0) {
-          showToast('warning', '오늘의 영상을 이미 시청하였어요.', '12시 이후에 다시 만나요');
+          showToast('warning', '오늘의 영상을 이미 시청하였어요.<br/>12시 이후에 다시 만나요.');
           return;
         } else {
           navigate('/movie');

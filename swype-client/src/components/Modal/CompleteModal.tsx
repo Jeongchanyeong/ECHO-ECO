@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Quokka from '../../assets/Quokka.png';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { MdArrowForwardIos } from 'react-icons/md';
 import { characterComplete } from '../../apis/user/getCharacterMax';
 import GiftModal from './GiftModal';
 import { getCookie } from '../../cookie';
@@ -53,7 +52,7 @@ const CompleteModal = () => {
     if (token) {
       setIsModal(false);
     } else {
-      showToast('warning', '로그인을 해주세요', '');
+      showToast('warning', '로그인을 해주세요');
       navigate('/login');
     }
   };
@@ -70,13 +69,9 @@ const CompleteModal = () => {
                 </TextWrapper>
                 <ButtonWrapper>
                   {completeMessages && index < completeMessages.length - 1 ? (
-                    <Next onClick={handleClick}>
-                      다음 <MdArrowForwardIos />
-                    </Next>
+                    <Next onClick={handleClick}>다음</Next>
                   ) : (
-                    <Finish onClick={handleCheck}>
-                      기프티콘 받으러 가기 <MdArrowForwardIos />
-                    </Finish>
+                    <Finish onClick={handleCheck}>기프티콘 받으러 가기</Finish>
                   )}
                 </ButtonWrapper>
               </InfoWrapper>

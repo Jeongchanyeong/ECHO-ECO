@@ -14,5 +14,5 @@ export const useGetDescription = (characterName: string) => {
       );
       return JSON.parse(res.data.data[index].descriptions);
     })
-    .catch(() => showToast('warning', '캐릭터 설명을 불러오는데 실패했습니다.', ''));
+    .catch(() => showToast('warning', '캐릭터 설명을 불러오는데 실패했습니다.'));
 };
