@@ -29,7 +29,7 @@ const QuizModal: React.FC<Props> = ({ data, quiz, setIsModal, isModal }) => {
 
   const GoToMovie = () => {
     if (chance?.remainVideo === 0) {
-      showToast('warning', '오늘 영상 시청을 하셨어요 !', '');
+      showToast('warning', '오늘 영상 시청을 하셨어요 !');
       return;
     } else {
       navigate('/movie');

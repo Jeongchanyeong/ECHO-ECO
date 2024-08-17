@@ -39,7 +39,7 @@ const Quiz = () => {
 
   if (error) {
     navigate('/stage');
-    showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.', '비 정상적인 접근입니다.');
+    showToast('warning', '오늘의 퀴즈 횟수가 소진되었어요.<br/> 비 정상적인 접근입니다.');
   }
 
   const quizList = typeof quiz?.body === 'string' ? JSON.parse(quiz.body) : [];
@@ -56,7 +56,7 @@ const Quiz = () => {
         setIsModal(true);
         setData(res.data.data.answer);
       })
-      .catch(() => showToast('warning', '문제 푸는데 오류가 발생했습니다.', ''));
+      .catch(() => showToast('warning', '문제 푸는데 오류가 발생했습니다.'));
   };
 
   return (
