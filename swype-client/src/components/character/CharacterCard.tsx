@@ -22,7 +22,7 @@ const CharacterCard: React.FC<CharacterData> = ({
 }) => {
   const handleCheck = () => {
     if (!Characters.isPossible) {
-      showToast('info', '서비스 준비 중인 캐릭터입니다.', '');
+      showToast('info', '서비스 준비 중인 캐릭터입니다.');
       return;
     } else {
       handleSelect(Characters.name);
