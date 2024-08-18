@@ -12,8 +12,5 @@ export const characterComplete = () => {
     })
     .then(res => {
       return JSON.parse(res.data.data.completeMessages);
-    })
-    .catch(() => {
-      console.log('신규 유저');
     });
 };
