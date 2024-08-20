@@ -13,7 +13,6 @@ export const getUserInfo = (): Promise<UserInfo> => {
     })
     .then(res => res.data.data)
     .catch(error => {
-      console.error('신규 유저');
       throw error;
     });
 };

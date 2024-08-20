@@ -1,17 +1,19 @@
-import NotFound from './pages/NotFound';
-import Stage from './pages/Stage';
 import { createBrowserRouter } from 'react-router-dom';
-import StoreMain from './pages/store/StoreMain';
-import Quiz from './pages/contents/Quiz';
-import Movie from './pages/contents/Movie';
-import Login from './pages/login/Login';
-import SelectedCharacter from './pages/character/SelectedCharacter';
-import PollutedStage from './pages/PollutedStage';
-import OAuthControl from './pages/login/OAuthControl';
-import StoreDetail from './pages/store/StoreDetail';
-import Charcter from './pages/character/Charcter';
-import Loading from './pages/login/Loading';
-import Splash from './pages/Splash';
+import { lazy } from 'react';
+
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Stage = lazy(() => import('./pages/Stage'));
+const StoreMain = lazy(() => import('./pages/store/StoreMain'));
+const Quiz = lazy(() => import('./pages/contents/Quiz'));
+const Movie = lazy(() => import('./pages/contents/Movie'));
+const Login = lazy(() => import('./pages/login/Login'));
+const SelectedCharacter = lazy(() => import('./pages/character/SelectedCharacter'));
+const PollutedStage = lazy(() => import('./pages/PollutedStage'));
+const OAuthControl = lazy(() => import('./pages/login/OAuthControl'));
+const StoreDetail = lazy(() => import('./pages/store/StoreDetail'));
+const Charcter = lazy(() => import('./pages/character/Charcter'));
+const Loading = lazy(() => import('./pages/login/Loading'));
+const Splash = lazy(() => import('./pages/Splash'));
 
 export const router = createBrowserRouter([
   {

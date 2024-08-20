@@ -57,10 +57,10 @@ const Movie = () => {
         {videoData && (
           <ReactPlayer
             className='react-player'
-            url={videoData.url} // 플레이어 url
-            width='100%' // 플레이어 크기 (가로)
-            height='100%' // 플레이어 크기 (세로)
-            playing={true} // 자동 재생 on
+            url={videoData.url}
+            width='100%'
+            height='100%'
+            playing={true}
             muted={false}
             volume={0.5}
             controls={true}

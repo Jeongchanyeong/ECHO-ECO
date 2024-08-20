@@ -11,5 +11,5 @@ export const useGetQuiz = () => {
       },
     })
     .then(res => res.data.data)
-    .catch(() => showToast('warning', '퀴즈 데이터를 불러오는 데 실패했습니다.', ''));
+    .catch(() => showToast('warning', '퀴즈 데이터를 불러오는 데 실패했습니다.'));
 };

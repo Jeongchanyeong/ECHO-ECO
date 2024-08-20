@@ -88,7 +88,7 @@ const StoreDetail = () => {
           <InfoText> {Calnum >= 0 ? `${Calnum} P` : '구매불가'} </InfoText>
         </InfoBox>
 
-        {Calnum > 0 ? (
+        {Calnum >= 0 ? (
           <ButtonBox>
             <Button
               $bgColor='lightGray'

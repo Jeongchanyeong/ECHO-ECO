@@ -62,7 +62,7 @@ const InfoModal = () => {
       .then(() => {
         navigate('/stage');
       })
-      .catch(() => showToast('warning', '이미 사용중인 캐릭터가 있습니다.', ''));
+      .catch(() => showToast('warning', '이미 사용중인 캐릭터가 있습니다.'));
   };
 
   return (

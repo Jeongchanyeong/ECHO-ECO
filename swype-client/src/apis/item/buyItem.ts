@@ -19,7 +19,7 @@ export const useBuyItem = (itemId?: number) => {
       return res.data.data.itemResponse;
     })
     .catch(error => {
-      showToast('warning', '구매하는데 오류가 발생했습니다.', '');
+      showToast('warning', '구매하는데 오류가 발생했습니다.');
       return Promise.reject(error);
     });
 };

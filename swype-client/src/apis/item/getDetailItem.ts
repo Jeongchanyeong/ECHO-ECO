@@ -11,5 +11,5 @@ export const useDetailItems = (id: string) => {
       },
     })
     .then(res => res.data.data)
-    .catch(() => showToast('warning', '데이터를 불러오는데 실패했습니다.', ''));
+    .catch(() => showToast('warning', '데이터를 불러오는데 실패했습니다.'));
 };
