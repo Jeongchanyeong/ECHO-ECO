@@ -41,7 +41,7 @@ const Item = styled.div`
   justify-content: center;
   border-radius: 15px;
   background-color: ${props => props.theme.colors.text.white};
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   padding:7px 10px;
   color: ${props => props.theme.colors.text.gray};
   img{
