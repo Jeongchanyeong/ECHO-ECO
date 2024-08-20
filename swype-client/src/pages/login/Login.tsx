@@ -75,13 +75,13 @@ const Title = styled.div`
   padding:20px;
   text-align: center;
   line-height: 1.5;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   font-size: ${props => props.theme.font.size.body};
 `;
 
 const ButtonBox = styled.div`
   text-align: center;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   font-size: ${props => props.theme.font.size.body};
   display: flex;
   flex-direction: column;
@@ -100,7 +100,7 @@ const Kakao = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   color:black;
   img {
     margin-right: 5px;
@@ -117,7 +117,7 @@ const Naver = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   img {
     margin-right: 5px;
   }
@@ -131,7 +131,7 @@ const Google = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   color:black;
   img {
     margin-right: 5px;
@@ -140,7 +140,7 @@ const Google = styled.button`
 
 const Info = styled.div`
   text-align: center;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   color:#959595;
   font-size: 12px;
   line-height: 1.5;

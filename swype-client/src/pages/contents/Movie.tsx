@@ -129,7 +129,7 @@ const ButtonBox = styled.div<{ $time: number }>`
   button{
     background-color: ${({ $time }) => ($time === 0 ? '#23A1F8' : '#D9D9D9')};
     color: ${props => props.theme.colors.text.white};
-    font-weight: 700;
+    font-weight: ${props => props.theme.font.weight.bold};
     font-size: ${props => props.theme.font.size.buttonText};
     width: 100%;
     height: 50px;

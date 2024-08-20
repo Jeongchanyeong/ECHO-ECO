@@ -214,7 +214,7 @@ const Noti = styled.p<{ $isText: boolean }>`
   margin-bottom: 10px;
   color : #EA4335;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   display: ${props => (props.$isText ? 'none' : 'block')};
 `;
 
@@ -233,7 +233,7 @@ const ResetButton = styled.button`
   color: #fff;
   background-color: #23A1F8;
   margin-top: 20px;
-  font-weight: 700;
+  font-weight: ${props => props.theme.font.weight.bold};
   font-size: ${props => props.theme.font.size.buttonText};
 `;
 
