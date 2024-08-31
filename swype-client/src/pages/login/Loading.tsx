@@ -5,6 +5,7 @@ import { setCookie } from '../../cookie';
 import { Container } from '../../share/utils/GlobalStyle';
 import LoginWait from '../../assets/loading.gif';
 import { getUserInfo } from '../../apis/user/getUserInfo';
+import { aesEncrypt } from '../../key';
 
 const Loading = () => {
   const params = new URL(document.URL).searchParams;
@@ -13,7 +14,8 @@ const Loading = () => {
 
   useEffect(() => {
     const handleLogin = async () => {
-      setCookie('Authorization', `${token}`);
+      const encryptedToken = aesEncrypt(token as string);
+      setCookie('Authorization', `${encryptedToken}`);
 
       try {
         const user = await getUserInfo();

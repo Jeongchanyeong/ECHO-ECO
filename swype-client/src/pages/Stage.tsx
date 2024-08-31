@@ -17,10 +17,11 @@ import { userData } from '../share/recoil/userAtom';
 import CompleteModal from '../components/Modal/CompleteModal';
 import { getCookie } from '../cookie';
 import { StageFloat } from '../share/utils/Float';
+import { aesDecrypt } from '../key';
 
 const Stage = () => {
   const [isClean, setIsClean] = useState(false);
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
   const navigate = useNavigate();
   const setUserData = useSetRecoilState(userData);
 

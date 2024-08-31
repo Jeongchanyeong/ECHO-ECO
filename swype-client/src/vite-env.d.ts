@@ -17,6 +17,7 @@ interface ImportMetaEnv {
   readonly VITE_NAVER_CLIENT_ID: string;
   readonly VITE_NAVER_REDIRECT_URI: string;
   readonly VITE_APP_KEY: string;
+  readonly VITE_CRYPTO_KEY: string;
 }
 
 interface ImportMeta {
