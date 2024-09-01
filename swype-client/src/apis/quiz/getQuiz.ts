@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { getCookie } from '../../cookie';
 import { showToast } from '../../share/utils/Toast';
+import { aesDecrypt } from '../../key';
 
 export const useGetQuiz = () => {
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
   return axios
     .get(`${import.meta.env.VITE_BASE_URL}/question`, {
       headers: {

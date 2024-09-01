@@ -10,13 +10,14 @@ import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../cookie';
 import { useGetDescription } from '../../apis/user/getCharacter';
 import { showToast } from '../../share/utils/Toast';
+import { aesDecrypt } from '../../key';
 
 const InfoModal = () => {
   const navigate = useNavigate();
   const params = new URL(document.URL).searchParams;
   const character = params.get('character');
   const characterId = params.get('id');
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
 
   const { data: Description } = useQuery<DescriptionText>({
     queryKey: ['Description'],

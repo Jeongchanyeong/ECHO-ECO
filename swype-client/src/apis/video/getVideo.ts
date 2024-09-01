@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../../share/utils/OAuth';
 import { getCookie } from '../../cookie';
+import { aesDecrypt } from '../../key';
 
 interface VideoData {
   id: number;
@@ -9,7 +10,7 @@ interface VideoData {
 }
 
 export const getVideo = (): Promise<VideoData> => {
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
   return axios
     .get<{ data: VideoData }>(`${BASE_URL}/video`, {
       headers: {

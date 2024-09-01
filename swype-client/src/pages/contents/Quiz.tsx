@@ -15,12 +15,13 @@ import QuizModal from '../../components/Modal/QuizModal';
 import { QuizType } from '../../model/quizType';
 import { showToast } from '../../share/utils/Toast';
 import { useGetQuiz } from '../../apis/quiz/getQuiz';
+import { aesDecrypt } from '../../key';
 
 const Quiz = () => {
   const [isModal, setIsModal] = useState(false);
   const [data, setData] = useState();
   const navigate = useNavigate();
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
 
   const {
     data: quiz,
