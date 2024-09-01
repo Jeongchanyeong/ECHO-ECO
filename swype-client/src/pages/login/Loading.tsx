@@ -15,8 +15,8 @@ const Loading = () => {
   useEffect(() => {
     const handleLogin = async () => {
       const encryptedToken = aesEncrypt(token as string);
-      setCookie('Authorization', `${encryptedToken}`);
-
+      setCookie('Authorization', encryptedToken);
+      console.log(encryptedToken);
       try {
         const user = await getUserInfo();
         if (user) navigate('/stage');

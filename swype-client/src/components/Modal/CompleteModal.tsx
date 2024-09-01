@@ -7,12 +7,13 @@ import GiftModal from './GiftModal';
 import { getCookie } from '../../cookie';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../../share/utils/Toast';
+import { aesDecrypt } from '../../key';
 
 const CompleteModal = () => {
   const [index, setIndex] = useState(0);
   const [isModal, setIsModal] = useState(true);
   const [infoText, setInfoText] = useState('');
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
   const navigate = useNavigate();
 
   const { data: completeMessages, error } = useQuery({

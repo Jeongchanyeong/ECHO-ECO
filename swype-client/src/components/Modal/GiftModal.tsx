@@ -9,12 +9,13 @@ import { getCookie } from '../../cookie';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useEmailCheck } from '../../apis/login/getEmailCheck';
+import { aesDecrypt } from '../../key';
 
 const GiftModal = () => {
   const [isCheck, setIsCheck] = useState(false);
   const [isText, setIsText] = useState(true);
   const [email, setEmail] = useState('');
-  const token = getCookie('Authorization');
+  const token = aesDecrypt(getCookie('Authorization'));
   const [isModal, setIsModal] = useState(false);
   const navigate = useNavigate();
 
